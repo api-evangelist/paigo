@@ -1,0 +1,142 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "paigo": "https://paigo.tech/vocab/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Offering": "paigo:Offering",
+    "Dimension": "paigo:Dimension",
+    "Measurement": "paigo:Measurement",
+    "Usage": "paigo:Usage",
+    "Customer": "paigo:Customer",
+    "Enrollment": "paigo:Enrollment",
+    "Invoice": "paigo:Invoice",
+    "Webhook": "paigo:Webhook",
+    "FreeTrial": "paigo:FreeTrial",
+    "Transaction": "paigo:Transaction",
+    "Refund": "paigo:Refund",
+    "Settings": "paigo:Settings",
+
+    "offeringId": {
+      "@id": "paigo:offeringId",
+      "@type": "xsd:string"
+    },
+    "offeringName": {
+      "@id": "paigo:offeringName",
+      "@type": "xsd:string"
+    },
+    "dimensionId": {
+      "@id": "paigo:dimensionId",
+      "@type": "xsd:string"
+    },
+    "dimensionName": {
+      "@id": "paigo:dimensionName",
+      "@type": "xsd:string"
+    },
+    "measurementId": {
+      "@id": "paigo:measurementId",
+      "@type": "xsd:string"
+    },
+    "customerId": {
+      "@id": "paigo:customerId",
+      "@type": "xsd:string"
+    },
+    "customerName": {
+      "@id": "paigo:customerName",
+      "@type": "xsd:string"
+    },
+    "primaryEmailAddress": {
+      "@id": "paigo:primaryEmailAddress",
+      "@type": "xsd:string"
+    },
+    "invoiceId": {
+      "@id": "paigo:invoiceId",
+      "@type": "xsd:string"
+    },
+    "webhookId": {
+      "@id": "paigo:webhookId",
+      "@type": "xsd:string"
+    },
+    "recordValue": {
+      "@id": "paigo:recordValue",
+      "@type": "xsd:string"
+    },
+    "timestamp": {
+      "@id": "paigo:timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "metadata": {
+      "@id": "paigo:metadata",
+      "@type": "@json"
+    },
+    "startTime": {
+      "@id": "paigo:startTime",
+      "@type": "xsd:dateTime"
+    },
+    "endTime": {
+      "@id": "paigo:endTime",
+      "@type": "xsd:dateTime"
+    },
+    "status": {
+      "@id": "paigo:status",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "pricingModel": {
+      "@id": "paigo:pricingModel",
+      "@type": "xsd:string"
+    },
+    "billingAddress": {
+      "@id": "paigo:billingAddress",
+      "@type": "schema:PostalAddress"
+    },
+    "access_token": {
+      "@id": "paigo:accessToken",
+      "@type": "xsd:string"
+    },
+    "client_id": {
+      "@id": "paigo:clientId",
+      "@type": "xsd:string"
+    },
+    "grant_type": {
+      "@id": "paigo:grantType",
+      "@type": "xsd:string"
+    },
+    "amount": {
+      "@id": "schema:amount",
+      "@type": "xsd:decimal"
+    },
+    "currency": {
+      "@id": "schema:currency",
+      "@type": "xsd:string"
+    },
+    "dueDate": {
+      "@id": "paigo:dueDate",
+      "@type": "xsd:dateTime"
+    },
+    "periodStart": {
+      "@id": "paigo:periodStart",
+      "@type": "xsd:dateTime"
+    },
+    "periodEnd": {
+      "@id": "paigo:periodEnd",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

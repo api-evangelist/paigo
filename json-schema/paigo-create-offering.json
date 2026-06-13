@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://paigo.tech/json-schema/CreateOfferingDTO.json",
+  "title": "CreateOfferingDTO",
+  "type": "object",
+  "properties": {
+    "offeringVisibility": {
+      "description": "The visibility of the offering, specifically if its private or public.\nPublic offerings are designed to be shared among customers.\nPrivate offerings are typically used for enterprise deals which contain discounts or prepaid credits.\n<br><br>\nExample: `\"private\"`",
+      "example": "private",
+      "enum": [
+        "private",
+        "public"
+      ],
+      "type": "string",
+      "default": "public"
+    },
+    "offeringType": {
+      "type": "string",
+      "description": "The type of offering.\n<br>  \u2022 `usage-based` - The offering is a pure usage-based offering, or pay-as-you-go. Customers on this plan will be billed precisely based on consumption.\n<br>  \u2022 `subscription` - The offering is a fixed subscription. Customer will be billed on a fixed price.\n\nExample `\"subscription\"`",
+      "enum": [
+        "usage-based",
+        "subscription"
+      ],
+      "default": "usage-based",
+      "example": "subscription",
+      "externalDocs": {
+        "description": "Read more about the different offering types",
+        "url": "https://docs.paigo.tech/model-pricing-and-package/pricing-modeling-guide"
+      }
+    },
+    "billingCycle": {
+      "description": "The time frame when an automatic bill should be sent leave empty for no automated billing\n<br><br>\n\nExample `\"monthly\"`",
+      "example": "monthly",
+      "enum": [
+        "monthly",
+        "annualToDate",
+        "topUp"
+      ],
+      "type": "string",
+      "default": "monthly"
+    },
+    "currency": {
+      "description": "The supported currency for the offering. USD is currently supported. Customers can override the currency for their account.\nHowever all offerings are denoted in USD.\n<br><br>\nExample `\"USD\"`",
+      "example": "USD",
+      "enum": [
+        "USD",
+        "EUR",
+        "CNY"
+      ],
+      "type": "string"
+    },
+    "dimensionOverrides": {
+      "description": "Overrides for the offering. Applies specific overrides to the dimensions associated with the offering. These effect the price of each dimension on the offering.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DimensionOverridesDto"
+      }
+    },
+    "prepaidCredit": {
+      "type": "string",
+      "description": "Prepaid credit amount to be deducted as part of the bill payments. Only numerical string is allowed.\n<br><br>Example: `\"20.00\"` for $20.00.",
+      "example": "20.00"
+    },
+    "minimumCharge": {
+      "type": "string",
+      "nullable": true,
+      "description": "A minimum charge to be billed to the customer in the event that the customer's bill is less than the minimum charge. Only on usage based offerings. Only numerical strings are allowed, must be greater than zero.\n<br><br>Example: `\"32.00\"` for $32.00.",
+      "example": "32.00"
+    },
+    "topUpAmount": {
+      "type": "string",
+      "description": "The amount to top up the account by. Only positive number string is allowed. Required if `billingCycle` is `topUp`.\n<br><br>\nExample: `\"20.00\"` for $20.00.",
+      "example": "20.00"
+    },
+    "topUpThreshold": {
+      "type": "string",
+      "description": "The threshold at which the account should be topped up. Only positive number string is allowed. Between 0 and 1.\nIf not provided the default value will be 0.2 or 20%. Meaning that when the account balance reaches 20% of the the top up amount, the account will be\ntopped up, and the end customer charged.\n<br><br>\nExample: `\"0.2\"` for 20%.",
+      "example": "0.2"
+    },
+    "subscriptionPrice": {
+      "type": "number",
+      "description": "The price of the subscription.\nOnly positive number string is allowed.\nOnly required if `offeringType` is `subscription`.\n<br><br>\n\nExample: `20.00` for $20.00.",
+      "example": 20
+    },
+    "freeTrialLength": {
+      "type": "string",
+      "description": "The length of time for a free trial. This is a number of days.\nOnly positive number string is allowed.\n<br><br>\n\nExample: `\"1\"` for 1 day or 1 billing cycle depending on the offeringType.",
+      "example": "1"
+    },
+    "offeringName": {
+      "type": "string",
+      "description": "A friendly, human-readable name for the offering.\n<br><br>\nExample `\"Entperise Plan\"`",
+      "example": "Entperise Plan"
+    },
+    "dimensionIds": {
+      "description": "Array of the identifier of the dimensions that this offering contains. Dimensions specify the type of usage that is being billed for.\n<br><br>\nExample `[\"092f9444-851a-43fb-9503-2228dc01b1b\", \"4fcafdec-eeb9-4a7f-9caf-61387102b6fa\"]`",
+      "example": [
+        "092f9444-851a-43fb-9503-2228dc01b1b",
+        "4fcafdec-eeb9-4a7f-9caf-61387102b6fa"
+      ],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "An optional key-value map of additional metadata to associate with the offerings.\nsuch as environment, purpose, owner, developer, contract number,\nor any arbitrary data to be associated with this usage record. Additionally, if `null` is passed for any value in the metadata object it will be removed.\nTo entirely remove the metadata object, pass null to the metadata field.\n<br><br>\nExample `{\"environment\": \"staging\", \"purpose\": \"proof-of-concept\", \"owner\": \"John Doe\", \"workspaceId\": null}`\n<br><br>\nIn the above example, the `workspaceId` metadata key will be removed from the dimension. To remove all fields pass the following.\n<br><br>\nExample `\"metadata\": null`"
+    }
+  },
+  "required": [
+    "offeringName"
+  ]
+}

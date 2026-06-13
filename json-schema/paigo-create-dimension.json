@@ -1,0 +1,163 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://paigo.tech/json-schema/CreateDimensionDto.json",
+  "title": "CreateDimensionDto",
+  "type": "object",
+  "properties": {
+    "dimensionName": {
+      "type": "string",
+      "description": "A friendly, human-readable name for the dimension.\n<br><br>\nExample `\"API Call\"`",
+      "examples": [
+        "API Call",
+        "CPU Hours",
+        "Provisioned Capacity"
+      ]
+    },
+    "consumptionUnit": {
+      "description": "Consumption unit of the dimension.\nPaigo supports three types of consumption units: count-based, time-based, and data-based.\nSupported values for each consumption unit type are listed below. <br>\n- count: `\"count-based\"` <br>\n- time-based: `\"second\"`, `\"minute\"`, `\"hour\"`, `\"day\"` <br>\n- data-based: `\"byte\"`, `\"kilobyte\"`, `\"megabyte\"`, `\"gigabyte\"` <br>\n\nThis field accepts a JSON object with the following schema: <br>\n```\n{ \"type\": \"typeName\", \"unit\": \"unitName\" }\n```\n<br><br>\nExample: <br>\n`{ \"type\": \"count\", \"unit\": \"count-based\" }` <br>\n`{ \"type\": \"time\", \"unit\": \"hour\" }` <br>\n`{ \"type\": \"data\", \"unit\": \"byte\" }` <br>",
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/CountBasedConsumptionUnit"
+        },
+        {
+          "$ref": "#/components/schemas/TimeBasedConsumptionUnit"
+        },
+        {
+          "$ref": "#/components/schemas/DatabasedConsumptionUnit"
+        }
+      ]
+    },
+    "usageIncrement": {
+      "type": "string",
+      "description": "The minimum increment for usage amount.\nAs an example, if usage increment is 1 Hour job execution time,\nthen 1 Hour and 5 Minutes execution time may be calculated as 1 Hour or 2 Hours,\ndepending on the rounding algorithm field of the dimension.\n<br><br>\nExample `1`",
+      "example": "24",
+      "externalDocs": {
+        "description": "See how usage increment is used in the billing process",
+        "url": "https://docs.paigo.tech/model-pricing-and-package/define-product-metrics#understand-how-billing-aggregation-works"
+      }
+    },
+    "usageEntitlement": {
+      "description": "Used with Subscription Tier Offering type. <br>\nSaaS customers subscribed to a subscription tier are entitled to use the amount of product\nwith regard to the dimension up to the value specified in this field.\nFor example, a subscription tier may entitle subscribers to make up to 1,000,000 API requests.",
+      "oneOf": [
+        {
+          "type": "number",
+          "description": "The number of units that the customer is entitled to use, must be greater than or equal to 0",
+          "example": 1000000
+        },
+        {
+          "type": "string",
+          "format": "inf",
+          "description": "The customer is entitled to use the product's dimension without any limit",
+          "example": "inf"
+        }
+      ],
+      "examples": [
+        "inf",
+        1000000
+      ]
+    },
+    "aggregationInterval": {
+      "description": "Time interval to aggregate dimension usage data for billing. <br><br>",
+      "enum": [
+        "none",
+        "hour",
+        "day",
+        "month"
+      ],
+      "type": "string",
+      "example": "hour",
+      "default": "hour",
+      "externalDocs": {
+        "description": "See how aggregation interval is used in the billing process",
+        "url": "https://docs.paigo.tech/model-pricing-and-package/define-product-metrics#understand-how-billing-aggregation-works"
+      }
+    },
+    "aggregationMethod": {
+      "description": "The algorithm to aggregate raw usage data for billing.\n<br><br>",
+      "enum": [
+        "sum",
+        "max",
+        "min",
+        "count",
+        "average",
+        "last"
+      ],
+      "type": "string",
+      "example": "sum",
+      "default": "max",
+      "externalDocs": {
+        "description": "See how aggregation method is used in the billing process",
+        "url": "https://docs.paigo.tech/model-pricing-and-package/define-product-metrics#understand-how-billing-aggregation-works"
+      }
+    },
+    "measurementId": {
+      "type": "string",
+      "description": "The unique identifier of the measurement attached to the dimension.",
+      "example": "5f7d1e3a-3b2d-4b0a-8b9a-5b9b5c9b5c9b"
+    },
+    "rounding": {
+      "type": "string",
+      "description": "The rounding algorithm that is used to calculate the amount of usage increment.\nCeiling algorithm rounds up, floor algorithm rounds down, the round algrogrithm rounds to the nearest whole integer rounding half away from zero.\nAs an example, if usage increment is 1 Hour job execution time,\nthen 1 Hour and 5 Minutes execution time may be calculated as 2 Hours for ceiling algorithm, 1 Hour for floor algorithm, and 1 Hour for round algorithm.\ndepending on the rounding algorithm field of the dimension.\n<br><br>",
+      "enum": [
+        "round",
+        "floor",
+        "ceiling"
+      ]
+    },
+    "overageAllowed": {
+      "type": "string",
+      "description": "Used with Subscription Tier Offering type. <br>\nWhen the usage entitlement is specified,\nthis field decides if allowing SaaS customers to use more than entitled amount of the product dimension.",
+      "enum": [
+        "true",
+        "false"
+      ]
+    },
+    "consumptionPrice": {
+      "type": "string",
+      "description": "The unit price of dimension.\nNumerical values are represented as strings to avoid precision loss.\n<br><br>",
+      "example": "20.00"
+    },
+    "sampleType": {
+      "type": "string",
+      "description": "The sample type used for the data. Gauge is a value that can go up or down. <br>\nCurrently set to gauge by default on all dimensions.",
+      "example": "gauge",
+      "enum": [
+        "gauge",
+        "continious"
+      ]
+    },
+    "paymentSchedule": {
+      "type": "string",
+      "description": "The payment schedule for the dimension. Determines when billing should occur for a dimension. `upfront` will occur the moment a customer is enrolled in an offering containing the dimension. `arrear` will occur at the end of the billing cycle.\n`upfront` is used for dimensions like purchasing a subscription, or seats for a plan. Where as `arrear` is used for dimensions like usage based billing. Dimensions can be comingled in an offering, so you can have a dimension that is billed `upfront` and another that is billed `arrear`.\nOptional, if not included will be `arrear` by default.",
+      "example": "upfront",
+      "enum": [
+        "upfront",
+        "arrear"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "description": "An optional key-value map of additional metadata to associate with the dimensions.\nsuch as environment, purpose, owner, developer, contract number,\nor any arbitrary data to be associated with this usage record. Additionally, if `null` is passed for any value in the metadata object it will be removed.\nTo entirely remove the metadata object, pass null to the metadata field.\n<br><br>\nExample `{\"environment\": \"staging\", \"purpose\": \"proof-of-concept\", \"owner\": \"John Doe\", \"workspaceId\": null}`\n<br><br>\nIn the above example, the `workspaceId` metadata key will be removed from the dimension. To remove all fields pass the following.\n<br><br>\nExample `\"metadata\": null`"
+    },
+    "tiers": {
+      "description": "Used to more granularly define the price of a dimension. For example if you want to charge a customer $1 for the first 1000 API calls and $0.50 for every API call after that you would define two tiers, the first tier with an `upperLimit` of `\"1000\"` and `tierPosition` of `\"1\"` with a `unitPrice` of `\"1\"` and a second tier with an `upperLimit` of `\"inf\"`, `tierPosition`  of `\"2\"` and `unitPrice` of `\"0.50\"`. Exclusive with standard `consumptionPrice`, `entitlement` and `overageAllowed` fields.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DimensionTierDto"
+      }
+    },
+    "tiersGroupByMetadata": {
+      "description": "Used to group tiers by metadata, meaning instead of grouping by the dimensionId for usage Paigo will group requests with the metadata passed in on the usage request. Exclusive with standard `consumptionPrice`, `entitlement`, `overageAllowed` and `tiers` fields.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DimensionTiersGroupByMetadataDto"
+      }
+    }
+  },
+  "required": [
+    "dimensionName",
+    "consumptionUnit",
+    "usageIncrement",
+    "rounding"
+  ]
+}

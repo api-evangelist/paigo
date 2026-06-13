@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://paigo.tech/json-schema/CreateCustomerDto.json",
+  "title": "CreateCustomerDto",
+  "type": "object",
+  "properties": {
+    "currency": {
+      "description": "The customer's preferred currency. Only ISO 4217 currency codes are allowed. Overrides the currency on an offering. If not specified,\nthe currency on the offering will be used. If no currency is specified on the offering, the default currency of `\"USD\"` will be used.\n<br><br>\nExample `\"USD\"`",
+      "example": "USD",
+      "enum": [
+        "USD",
+        "EUR",
+        "CNY"
+      ],
+      "type": "string"
+    },
+    "taxExempt": {
+      "description": "Whether the customer is exempt from paying taxes\n<br><br>\nExample: `\"none\"`",
+      "example": "none",
+      "enum": [
+        "exempt",
+        "none"
+      ],
+      "type": "string",
+      "default": "none"
+    },
+    "customerId": {
+      "type": "string",
+      "description": "Unique identifier for a customer. If one is not passed in Paigo will assign a unique UUID for the customer. If one is passed in and it already exists an error will be returned.\n\nExample: `\"e345f409-daca-4144-91d2-0a0f87c96581\"`",
+      "example": "e345f409-daca-4144-91d2-0a0f87c96581"
+    },
+    "offeringId": {
+      "type": "string",
+      "description": "The unique identifier for the offering associated with a customer\n<br><br>\nExample: `\"eea7347bd-a2d8-4390-ae09-68f9b8e4ed6c\"`",
+      "example": "eea7347bd-a2d8-4390-ae09-68f9b8e4ed6c"
+    },
+    "offeringEnrollmentDate": {
+      "type": "string",
+      "description": "The date time when the user was enrolled in the offering. If not set the current date time will be used.\nMust be a valid RFC3339 date time string. Must be in the past UTC time.\n<br><br>\nExample: `\"2020-01-01T00:00:00Z\"`",
+      "example": "2020-01-01T00:00:00Z"
+    },
+    "customerName": {
+      "type": "string",
+      "description": "The friendly, human-readable name for the customer profile\n<br><br>\nExample: `\"John Doe\"`",
+      "example": "John Doe"
+    },
+    "customerVatId": {
+      "type": "string",
+      "description": "The VAT ID of the customer.\nEvery VAT identification number must begin with the code of the country concerned and\nfollowed by a block of digits or characters.\n<br><br>\nExample `\"GB VAT 123456789\"`",
+      "example": "GB VAT 123456789"
+    },
+    "email": {
+      "type": "string",
+      "description": "Customer email address\n<br><br>\nExample: `\"noreply@paigo.tech\"`",
+      "example": "noreply@paigo.tech"
+    },
+    "paymentChannel": {
+      "description": "The payment channel associated with a customer\n<br><br>\nExample: `\"Stripe\"`",
+      "example": "Stripe",
+      "enum": [
+        "Stripe",
+        "manual"
+      ],
+      "type": "string"
+    },
+    "paymentChannelOptions": {
+      "description": "Configuration options for the payment channel.\nFor Stripe payment, `stripeCustomerId` is required for existing Stripe customers.\nIf `stripeCustomerId` is not provided, a new Stripe customer will be created.\nSee example below.\n<br><br>\nExample `{\"stripeCustomerId\": \"cus_xxxxxxxxxxxxxx\"}`",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/StripePaymentChannelOptions"
+        }
+      ]
+    },
+    "address": {
+      "description": "The address of the customer",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Address"
+        }
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "description": "An optional key-value map of additional metadata to associate with the customer.\nsuch as environment, purpose, owner, developer, contract number,\nor any arbitrary data to be associated with this usage record. Additionally, if `null` is passed for any value in the metadata object it will be removed.\nTo entirely remove the metadata object, pass null to the metadata field.\n<br><br>\nExample `{\"environment\": \"staging\", \"purpose\": \"proof-of-concept\", \"owner\": \"John Doe\", \"workspaceId\": null}`\n<br><br>\nIn the above example, the `workspaceId` metadata key will be removed from the dimension. To remove all fields pass the following.\n<br><br>\nExample `\"metadata\": null`"
+    },
+    "usage": {
+      "description": "Optionally, usage can be initally applied for a customer when they are enrolling in an offering.\nThis is used for dimensions which have a paymentSchedule of `upfront` and need to have some usage for the intial enrollment.\nFor example, a customer purchases 3 seats then on the enrollment a usage `recordValue` of 3 must be sent in for the time of purchase.\nMultiple usage records can be sent in, regardless of dimension. If usage records are sent in for a dimension that is not on the current offering, they will be loaded into paigo,\nbut ignored on the invoice.\n<br><br>\nExample: `[{ \"dimensionId\": \"539b7f74-3832-474e-a955-6d69c5df12d0\", \"customerId\":\"f918b6f4-2ad6-48c4-8b62-ac23adada9ae\", \"recordValue\": 3, timestamp: \"2021-01-01T00:00:00Z\" }]`",
+      "example": "[{ \"dimensionId\": \"539b7f74-3832-474e-a955-6d69c5df12d0\", \"customerId\":\"f918b6f4-2ad6-48c4-8b62-ac23adada9ae\", \"recordValue\": 3, timestamp: \"2021-01-01T00:00:00Z\" }]",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/UsageForCustomerEnrollment"
+      }
+    }
+  },
+  "required": [
+    "customerName",
+    "email",
+    "paymentChannel"
+  ]
+}

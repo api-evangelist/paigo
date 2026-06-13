@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://paigo.tech/json-schema/AggregatedUsageResponse.json",
+  "title": "AggregatedUsageResponse",
+  "type": "object",
+  "properties": {
+    "offeringId": {
+      "type": "string",
+      "description": "The unique identifier of the offering."
+    },
+    "dimensionId": {
+      "type": "string",
+      "description": "The unique identifier of a dimension."
+    },
+    "usage": {
+      "description": "Array of usage records group by aggregation time interval",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/UsageResponseDocument"
+      }
+    }
+  },
+  "required": [
+    "dimensionId",
+    "usage"
+  ]
+}

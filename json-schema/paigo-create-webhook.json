@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://paigo.tech/json-schema/CreateWebhookDto.json",
+  "title": "CreateWebhookDto",
+  "type": "object",
+  "properties": {
+    "hookUrl": {
+      "type": "string",
+      "description": "The URL Paigo will callback to when the webhook type event occurs.\n<br/><br/>\nExample: `\"https://example.com/webhook\"`",
+      "example": "https://example.com/webhook"
+    },
+    "securityKey": {
+      "type": "string",
+      "description": "The security key used to authenticate the webhook. This is used to ensure the webhook is coming from Paigo. The key will be sent in the `X-Paigo-Security` header.\n<br/><br/>\nExample: `\"1234567890\"`",
+      "example": "1234567890"
+    },
+    "environment": {
+      "type": "string",
+      "description": "The environment the webhook is for. This is used to differentiate between sandbox and production. Optional, will default to `production` if not provided.\n<br/><br/>\nExample: `\"sandbox\"`",
+      "example": "sandbox"
+    },
+    "webhookType": {
+      "type": "string",
+      "description": "The type of webhook event to listen for. This will determine when the webhook is triggered.\n<br/><br/>\nExample: `\"INVOICE_CREATED\"`",
+      "example": "INVOICE_CREATED",
+      "enum": [
+        "INVOICE_CREATED",
+        "INVOICE_PAID",
+        "STRIPE_PAYMENT_FAILED",
+        "CUSTOMER_CREATED",
+        "CUSTOMER_UPDATED",
+        "ENTITLEMENT",
+        "INVOICE_SENT"
+      ]
+    },
+    "offeringId": {
+      "type": "string",
+      "description": "The offering the webhook is for. This is used to differentiate between different offerings. Only used for `ENTITLEMENT` webhooks.\n<br/><br/>\nExample: `\"539b7f74-3832-474e-a955-6d69c5df12d0\"`",
+      "example": "539b7f74-3832-474e-a955-6d69c5df12d0"
+    }
+  },
+  "required": [
+    "hookUrl",
+    "webhookType"
+  ]
+}

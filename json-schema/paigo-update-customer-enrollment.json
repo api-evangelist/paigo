@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://paigo.tech/json-schema/UpdateCustomerEnrollmentDto.json",
+  "title": "UpdateCustomerEnrollmentDto",
+  "type": "object",
+  "properties": {
+    "overrides": {
+      "description": "Overrides for the offering. Applies Customer specific overrides to the offering. Such as a discount or free trial or dimension specific overrides.",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/CustomOverrides"
+        }
+      ]
+    },
+    "offeringId": {
+      "type": "string",
+      "description": "Unique identifier for an offering assigned by Paigo. Including a new `\"offeringId\"` will \"enroll\" the customer in the specified offering. This may generate an invoice, in cases where relevant. Such as if the `\"offeringType\"` is a subscription offering. <br><br>\nTo unenroll customers from an offering. Pass in `null`. This will remove the offering from the customer. This may generate an invoice, in cases where relevant. Such as if the `\"offeringType\"` is a usage-based offering. <br><br>\nIncluding the same `\"offeringId\" ` multiple times in a row will not change the state of the customer, nor generate an invoice. If an `\"offeringId\"` is not included, the customer will remain enrolled in the same offering. Including a new `\"offeringId\"` while a customer is enrolled in an offering, is considered a change of plan or \"upgrade\". In specific cases of upgrades some credit might be issued for the remainder of their plan. <br><br>\n<br><br>\nExample: `539b7f74-3832-474e-a955-6d69c5df12d0`",
+      "example": "539b7f74-3832-474e-a955-6d69c5df12d0"
+    },
+    "removePriorOffering": {
+      "type": "boolean",
+      "description": "An optional flag to remove the prior offering from the customer. If set to `true`, the customer will be removed from all of their prior offerings. This may generate an invoice, in cases where relevant. Such as if the `\"offeringType\"` is a usage-based offering. If set to `false`, the customer will remain enrolled in the same offering.\n<br><br>\nExample: `true`",
+      "example": true
+    },
+    "unenrollOffering": {
+      "type": "string",
+      "description": "Used to specifically unenroll a customer from a singular offering. This may generate an invoice, in cases where relevant. Such as if the\n`\"offeringType\"` is a usage-based offering. Cannot be used in conjunction with `removePriorOffering` or enrolling a customer in a new\noffering with the`offeringId` field. A 400 error will be returned if this is the case.\n<br><br>\nExample: `\"177735fe-5d06-49a7-a8fb-f5da11773345\"`",
+      "example": "177735fe-5d06-49a7-a8fb-f5da11773345"
+    },
+    "usage": {
+      "description": "Optionally, usage can be initally applied for a customer when they are enrolling in an offering.\nThis is used for dimensions which have a paymentSchedule of `upfront` and need to have some usage for the intial enrollment.\nFor example, a customer purchases 3 seats then on the enrollment a usage `recordValue` of 3 must be sent in for the time of purchase.\nMultiple usage records can be sent in, regardless of dimension. If usage records are sent in for a dimension that is not on the current offering, they will be loaded into paigo,\nbut ignored on the invoice. Additionally, records must be unique in the sense that they cannot have the same dimensionId. Duplicates will cause the request to be rejected.\n<br><br>\nExample: `[{ \"dimensionId\": \"539b7f74-3832-474e-a955-6d69c5df12d0\", \"recordValue\": 3, timestamp: \"2021-01-01T00:00:00Z\" }]`",
+      "example": "[{ \"dimensionId\": \"539b7f74-3832-474e-a955-6d69c5df12d0\", \"recordValue\": 3, timestamp: \"2021-01-01T00:00:00Z\" }]",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/UsageForCustomerEnrollment"
+      }
+    }
+  }
+}

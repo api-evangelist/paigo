@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://paigo.tech/json-schema/CreateInvoicesDto.json",
+  "title": "CreateInvoicesDto",
+  "type": "object",
+  "properties": {
+    "customerId": {
+      "type": "string",
+      "description": "The client ID assocaited with the Business Entity, this is the name for the business which will be used in the invoce\n<br><br>\nExample: `\"Khols\"`",
+      "example": "Khols"
+    },
+    "items": {
+      "description": "The Itemized collection of elements to be billed. These could be instance compute hours, or number of users\n<br><br>\nExample: `[{ \"name\": \"MyService\", \"quantity\": 1, \"unitCost\": 100.09 }]`",
+      "example": [
+        {
+          "name": "Paigo Pro",
+          "quantity": 1,
+          "unitCost": 100.09
+        }
+      ],
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "invoiceDate": {
+      "type": "string",
+      "description": "The date the invoice is to be generated for\n<br><br>\nExample: `\"2020-09-18T17:34:02.666Z\"`",
+      "example": "2020-09-18T17:34:02.666Z"
+    },
+    "currency": {
+      "description": "The currency the invoice is to be generated in. If no Currency is passed in the currency used by the customer will be used.\n<br><br>\nExample: `\"EUR\"`",
+      "example": "EUR",
+      "enum": [
+        "USD",
+        "EUR",
+        "CNY"
+      ],
+      "type": "string"
+    },
+    "invoicePaymentTerm": {
+      "description": "The Payment Term for the invoice. This is the number of days until the invoice is considered past due. Default is \"none\". String `\"\"` represents \"none\".\n<br><br>\nExample: `\"30\"`",
+      "example": "30",
+      "enum": [
+        "30",
+        "60",
+        ""
+      ],
+      "type": "string"
+    },
+    "storePaymentAsCredit": {
+      "type": "boolean",
+      "description": "If storePaymentAsCredit is `true` then the payment on the invoice will ADD to the customers credit balance. By default it is false, meaning that the payment of an invoice inside of paigo will first, deduct from the credit balance and then charge the payment method on file.\n<br><br>\nExample: `true`",
+      "example": true
+    }
+  },
+  "required": [
+    "customerId",
+    "items"
+  ]
+}

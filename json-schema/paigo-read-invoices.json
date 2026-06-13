@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://paigo.tech/json-schema/ReadInvoicesDto.json",
+  "title": "ReadInvoicesDto",
+  "type": "object",
+  "properties": {
+    "invoiceStatus": {
+      "description": "The invoice status\n<br><br>\n\nExample: `\"Draft\"`",
+      "example": "Draft",
+      "enum": [
+        "Draft",
+        "Open",
+        "Paid",
+        "Voided"
+      ],
+      "type": "string",
+      "externalDocs": {
+        "url": "https://docs.paigo.tech/invoice-and-process-payment/issue-invoice",
+        "description": "See Invoice Life Cycle section for more details"
+      }
+    },
+    "invoicePaymentTerm": {
+      "description": "The payment term for the invoice\n<br><br>\nExample: `\"30\"`",
+      "example": 30,
+      "enum": [
+        "30",
+        "60",
+        ""
+      ],
+      "type": "string"
+    },
+    "invoiceDate": {
+      "type": "string",
+      "description": "The date the invoice was issued\n<br><br>\nExample: `\"2021-01-01T00:00:00.000Z\"`",
+      "example": "2021-01-01T00:00:00.000Z"
+    },
+    "customerId": {
+      "type": "string",
+      "description": "The unique identifier assigned by Paigo for the customer\n<br><br>\nExample: `\"e962aefe-6134-4f28-8967-a11cfe7f0bf2\"`",
+      "example": "e962aefe-6134-4f28-8967-a11cfe7f0bf2"
+    },
+    "totalAmountWithoutTax": {
+      "type": "number",
+      "description": "The total amount of the invoice without tax\n<br><br>\nExample: `100.00`",
+      "example": 100
+    },
+    "taxAmount": {
+      "type": "number",
+      "description": "The total amount of tax on the invoice\n<br><br>\nExample: `10.00`",
+      "example": 10
+    },
+    "amountPaid": {
+      "type": "number",
+      "description": "The total amount paid by the customer so far for the invoice\n<br><br>\nExample: `110.00`",
+      "example": 110
+    },
+    "invoiceUrl": {
+      "type": "string",
+      "description": "The URL to download the invoice. URLs are self signed and valid for 7 days after the link is generated.\n<br><br>\nExample: `\"https://my-cool-bucket.s3.amazonaws.com/invoices/123MyCoolCorp980/2021-01-01/123MyCoolCorp980-2021-01-01-1234567890.pdf\"`",
+      "example": "https://my-cool-bucket.s3.amazonaws.com/invoices/123MyCoolCorp980/2021-01-01/123MyCoolCorp980-2021-01-01-1234567890.pdf"
+    },
+    "currency": {
+      "description": "The currency of the invoice. Defaults to USD\n<br><br>\nExample: `\"USD\"`",
+      "example": "USD",
+      "enum": [
+        "USD",
+        "EUR",
+        "CNY"
+      ],
+      "type": "string"
+    },
+    "paymentLink": {
+      "type": "string",
+      "description": "The payment link for the invoice. Only used for invoices in the `Draft` or `Open` status. Otherwise this field will not be present.\n<br><br>\nExample: `\"https://example.com/redirect\"`",
+      "example": "https://example.com/redirect"
+    },
+    "invoiceType": {
+      "description": "The type of invoice. This is used to indicate how the invoice was created, whether it was created manually, via a topup event, roccuring event, etc.\n<br><br>\nExample: `\"TOPUP\"`",
+      "example": "TOPUP",
+      "enum": [
+        "TOPUP",
+        "MANUAL",
+        "RECURRING"
+      ],
+      "type": "string"
+    },
+    "invoiceCommunicationHistory": {
+      "type": "array",
+      "items": {
+        "required": false,
+        "description": "The communication history of the invoice. This is used to track the communication between Paigo and the customer.\n<br><br>\nExample: `[]`",
+        "example": [],
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/InvoiceCommunicationHistory"
+        }
+      }
+    },
+    "lineItems": {
+      "description": "The line items on the invoice",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/InvoiceLineItem"
+      }
+    },
+    "refunds": {
+      "description": "The refunds associated with the invoice",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/StripeRefundResponseDto"
+      }
+    },
+    "payments": {
+      "description": "The payments associated with the invoice",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ReadPaymentDto"
+      }
+    }
+  },
+  "required": [
+    "invoiceStatus",
+    "invoicePaymentTerm",
+    "invoiceDate",
+    "totalAmountWithoutTax",
+    "currency",
+    "invoiceCommunicationHistory",
+    "lineItems",
+    "refunds",
+    "payments"
+  ]
+}

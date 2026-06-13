@@ -1,0 +1,151 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://paigo.tech/json-schema/ReadCustomerResponseData.json",
+  "title": "ReadCustomerResponseData",
+  "type": "object",
+  "properties": {
+    "taxExempt": {
+      "description": "Whether the customer is exempt from paying taxes\n<br><br>\nExample `\"exempt\"`",
+      "example": "exempt",
+      "enum": [
+        "exempt",
+        "none"
+      ],
+      "type": "string",
+      "default": "none"
+    },
+    "invoices": {
+      "description": "Array of invoices associated with a customer",
+      "minItems": 0,
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomerInvoiceMetadata"
+      }
+    },
+    "stripeAccountReady": {
+      "type": "boolean",
+      "description": "Whether the customer's Stripe account has complete payment information\nThis property is only set if the customer's payment channel is Stripe\n<br><br>\nExample `true`",
+      "example": true
+    },
+    "discount": {
+      "description": "The specific customer level discount. This is the discount that is applied to the customer's overall bill.",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/CustomerContractDiscount"
+        }
+      ]
+    },
+    "children": {
+      "description": "The children of a customer group",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ReadChildRowResponseData",
+        "minimum": 0
+      }
+    },
+    "parent": {
+      "description": "The parent of a customer group",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ReadChildRowResponseData"
+        }
+      ]
+    },
+    "offering": {
+      "type": "object",
+      "description": "The offering associated with a customer"
+    },
+    "enrollments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomerEnrollmentResponseData"
+      }
+    },
+    "customerId": {
+      "type": "string",
+      "description": "Unique identifier assigned by Paigo\n<br><br>\nExample: `\"e345f409-daca-4144-91d2-0a0f87c96581\"`"
+    },
+    "customerName": {
+      "type": "string",
+      "description": "The friendly, human-readable name of the customer"
+    },
+    "paymentChannel": {
+      "description": "The payment channel associated with a customer",
+      "enum": [
+        "Stripe",
+        "manual"
+      ],
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "description": "Customer email address\n<br><br>\nExample: `\"noreply@paigo.tech\"`",
+      "example": "noreply@paigo.tech"
+    },
+    "paymentChannelOptions": {
+      "description": "Configuration options for the payment channel.\nFor Stripe payment, `stripeCustomerId` is required.\nSee example below.\n<br><br>\nExample `{\"stripeCustomerId\": \"acct-xxxxxxxxxxxxxx\"}`",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/StripePaymentChannelOptions"
+        }
+      ]
+    },
+    "address": {
+      "description": "The address of the customer",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Address"
+        }
+      ]
+    },
+    "customerVatId": {
+      "type": "string",
+      "description": "The VAT ID of the customer.\nEvery VAT identification number must begin with the code of the country concerned and\nfollowed by a block of digits or characters.\n<br><br>\nExample `\"GB VAT 123456789\"`",
+      "example": "GB VAT 123456789"
+    },
+    "offeringId": {
+      "type": "string",
+      "description": "<b> DEPRECATED </b>\nThe unique identifier of the offering associated with a customer. Contains the most recent offering the customer is enrolled in. To be removed at a later release date. Please use the enrollments array instead.",
+      "example": "e345f409-daca-4144-91d2-0a0f87c96581"
+    },
+    "creditBalance": {
+      "type": "string",
+      "description": "The amount of credit in the customers' account\n<br><br>\nExample `\"100\"`",
+      "example": "100"
+    },
+    "freeTrialEndDate": {
+      "type": "string",
+      "description": "<b> DEPRECATED </b>\nThe end date of the free trial for the offering. This is calculated from the current date and the free trial length. To be removed at a later release date. Please find the free trial end date on the enrollment object instead.\n<br><br>\nExample `\"2020-12-31T23:59:59.999Z\"`",
+      "example": "2020-12-31T23:59:59.999Z"
+    },
+    "offeringEnrollmentDate": {
+      "type": "string",
+      "description": "<b> DEPRECATED </b>\nThe date time when a customer enrolled for an offering. Please find this on the enrollment object instead\n<br><br>\nExample `\"2020-12-30T23:59:59.999Z\"`",
+      "example": "2020-12-30T23:59:59.999Z"
+    },
+    "freeTrialStartDate": {
+      "type": "string",
+      "description": "<b> DEPRECATED </b>\nThe start date of the free trial for the offering. This is determined when the customer is enrolled in the offering. To be removed at a later release date. Please find the free trial start date on the enrollment object instead.\n<br><br>\nExample `\"2020-12-28T23:59:59.999Z\"`",
+      "example": "2020-12-28T23:59:59.999Z"
+    },
+    "currency": {
+      "description": "The currency of the customer\n<br><br>\nExample `\"USD\"`",
+      "example": "USD",
+      "enum": [
+        "USD",
+        "EUR",
+        "CNY"
+      ],
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "offering",
+    "customerId",
+    "customerName",
+    "paymentChannel"
+  ]
+}

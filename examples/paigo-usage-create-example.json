@@ -1,0 +1,10 @@
+{
+  "timestamp": "2024-01-15T10:30:00Z",
+  "customerId": "cust_01234567-89ab-cdef-0123-456789abcdef",
+  "dimensionId": "dim_01234567-89ab-cdef-0123-456789abcdef",
+  "recordValue": "100",
+  "metadata": {
+    "region": "us-east-1",
+    "service": "api-calls"
+  }
+}

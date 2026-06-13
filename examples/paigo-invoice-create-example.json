@@ -1,0 +1,6 @@
+{
+  "customerId": "cust_01234567-89ab-cdef-0123-456789abcdef",
+  "periodStart": "2024-01-01T00:00:00Z",
+  "periodEnd": "2024-01-31T23:59:59Z",
+  "dueDate": "2024-02-15T00:00:00Z"
+}

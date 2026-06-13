@@ -1,0 +1,6 @@
+{
+  "offeringId": "my-saas-product",
+  "offeringName": "My SaaS Product",
+  "description": "API-based SaaS product with usage-based billing",
+  "pricingModel": "pay-as-you-go"
+}

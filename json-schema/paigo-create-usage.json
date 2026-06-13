@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://paigo.tech/json-schema/CreateUsageDto.json",
+  "title": "CreateUsageDto",
+  "type": "object",
+  "properties": {
+    "dimensionId": {
+      "type": "string",
+      "description": "The unique identifier of the dimension this usage record is associated with.\n<br><br>\nExample: `'da9611bd-e0f3-4c0d-a754-fda5be730872'`"
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "The timestamp of usage record in <a href=\"https://ijmacd.github.io/rfc3339-iso8601/\">RFC3339</a>\nformat with a 4-digit year.\nThis is the time the usage occurred, or the end of the usage period.\n<br><br>\nExample: `\"2023-02-08T19:24:10Z\"`"
+    },
+    "customerId": {
+      "type": "string",
+      "description": "The unique identifier of the customer this usage record attributes to.\n<br><br>\nExample: `\"e8366954-6f36-47e9-8431-ac95f88b5cc7\"`"
+    },
+    "recordValue": {
+      "type": "string",
+      "description": "The amount of the usage on this record.\nNumerical values are represented as strings to avoid precision loss.\n<br><br>\nExample: `\"0.87\"`"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "An optional key-value map of additional metadata to associate with this usage record.\nAdditional metadata to be stored on the usage record,\nsuch as environment, purpose, owner, developer, contract number,\nor any arbitrary data to be associated with this usage record.\nMetadata can be used for analytics purpose.\n<br><br>\nExample `{\"environment\": \"staging\", \"purpose\": \"proof-of-concept\", \"owner\": \"John Doe\"}`"
+    }
+  },
+  "required": [
+    "dimensionId",
+    "timestamp",
+    "customerId",
+    "recordValue"
+  ]
+}

@@ -1,0 +1,39 @@
+vocabulary:
+  name: Paigo API Vocabulary
+  description: Vocabulary of terms used in the Paigo usage-based billing and metering
+    API
+  version: v1.10
+  url: https://docs.paigo.tech/
+  terms:
+    offering: A product or service offering configured in Paigo, representing a billable
+      product with pricing structure
+    dimension: A measurable usage metric attached to an offering (e.g. API calls,
+      data GB, seats) used to calculate charges
+    measurement: Configuration for how usage data is collected and aggregated for
+      a dimension
+    usage: A recorded consumption event submitted via the API, containing customerId,
+      dimensionId, recordValue, and timestamp
+    customer: An end-customer account that subscribes to an offering and is billed
+      based on usage
+    enrollment: The relationship between a customer and an offering, activating billing
+      for that customer
+    invoice: A billing document generated for a customer covering a time period of
+      usage
+    webhook: An HTTP callback endpoint registered to receive real-time event notifications
+      from Paigo
+    freeTrial: A trial period configuration attached to a customer enrollment with
+      defined limits and duration
+    customerId: Unique identifier for a customer within Paigo (UUID or external ID)
+    offeringId: Unique identifier for an offering (product) within Paigo
+    dimensionId: Unique identifier for a usage dimension within Paigo
+    recordValue: The numeric quantity of usage to record, passed as a string
+    metadata: Optional key-value pairs attached to usage records for analytics and
+      filtering
+    client_credentials: OAuth 2.0 grant type used by Paigo for API authentication
+    access_token: Bearer token obtained from auth.paigo.tech used to authenticate
+      API requests
+    refund: A credit issued to a customer against their billing account
+    transaction: A financial transaction record in a customer's billing ledger
+    stripePortal: Customer-facing Stripe billing portal URL for managing payment methods
+    settings: Account-level configuration including profile and invoice appearance
+      settings

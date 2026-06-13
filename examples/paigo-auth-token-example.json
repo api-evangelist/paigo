@@ -1,0 +1,6 @@
+{
+  "audience": "https://qnonyh1pc7.execute-api.us-east-1.amazonaws.com",
+  "grant_type": "client_credentials",
+  "client_id": "{{client_id}}",
+  "client_secret": "{{client_secret}}"
+}
