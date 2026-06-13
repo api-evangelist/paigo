@@ -1,0 +1,73 @@
+aid: paigo
+name: Paigo
+description: >-
+  Paigo is a usage-based billing infrastructure platform with a REST API for
+  metering API calls, tracking consumption, managing pricing tiers, and
+  automating invoice generation for developer products. It supports pay-as-you-go,
+  subscription tier, seat-based, custom unit, and top-up pricing models with
+  zero transaction fees.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/paigo/refs/heads/main/apis.yml
+created: "2026-06-13"
+modified: "2026-06-13"
+specificationVersion: "0.19"
+tags:
+  - Billing
+  - Usage-Based Billing
+  - Metering
+  - Invoicing
+  - Pricing
+  - SaaS
+  - Subscriptions
+  - Developer Tools
+  - FinOps
+apis:
+  - aid: paigo:paigo-api
+    name: Paigo API
+    description: >-
+      REST API for metering SaaS product usage, managing customers and pricing
+      plans, generating invoices, and integrating usage-based billing into
+      developer products. Supports OAuth 2.0 client credentials for authentication.
+    humanURL: https://docs.paigo.tech/
+    baseURL: https://api.prod.paigo.tech
+    tags:
+      - Billing
+      - Metering
+      - Usage
+      - Invoicing
+      - Pricing Plans
+    properties:
+      - type: Documentation
+        url: https://docs.paigo.tech/
+      - type: GettingStarted
+        url: https://docs.paigo.tech/overview/getting-started-with-paigo
+      - type: OpenAPI
+        url: https://paigo-public-information.s3.us-east-2.amazonaws.com/public_api.html
+    contact:
+      - FN: Paigo Support
+        email: team@paigo.tech
+common:
+  - type: Website
+    url: https://www.paigo.tech/
+  - type: Documentation
+    url: https://docs.paigo.tech/
+  - type: GitHubOrg
+    url: https://github.com/paigo-tech
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/paigo-tech
+  - type: Blog
+    url: https://blog.paigo.tech/
+  - type: Pricing
+    url: https://paigo.tech/pricing
+  - type: X
+    url: https://x.com/PaigoTech
+  - type: Plans
+    url: plans/paigo-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/paigo-rate-limits.yml
+  - type: FinOps
+    url: finops/paigo-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

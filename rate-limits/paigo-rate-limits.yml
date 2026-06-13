@@ -1,0 +1,54 @@
+name: Paigo API Rate Limits
+description: >-
+  Paigo's publicly documented rate limits for its REST API. The platform
+  emphasizes scalable, real-time, and reliable usage metering designed to handle
+  high-volume SaaS workloads. Specific numeric rate limits are not explicitly
+  published in the public documentation as of June 2026.
+url: https://docs.paigo.tech/
+created: "2026-06-13"
+modified: "2026-06-13"
+authentication:
+  type: OAuth 2.0
+  flow: client_credentials
+  tokenEndpoint: https://auth.paigo.tech/oauth/token
+  audience: https://qnonyh1pc7.execute-api.us-east-1.amazonaws.com
+  notes: >-
+    Client ID and Client Secret are obtained from the Paigo dashboard under
+    Settings > API. Tokens are obtained via the OAuth 2.0 client credentials
+    grant and passed as Bearer tokens in API requests.
+endpoints:
+  - path: /usage
+    method: POST
+    baseURL: https://api.prod.paigo.tech
+    description: Report metered usage data for a customer and product metric.
+    notes: >-
+      Designed for high-throughput, real-time usage metering at scale. Supports
+      API-based, agent-based, infrastructure-based (AWS CloudWatch, Prometheus),
+      and datastore-based metering methods.
+knownLimits:
+  description: >-
+    Paigo is built for scalable, real-time metering. No explicit numeric rate
+    limits (requests per second, per minute, or per day) are published in the
+    public documentation. The platform advertises reliability and scale as core
+    design goals.
+  published: false
+  contactForLimits: team@paigo.tech
+environment:
+  sandbox:
+    available: true
+    description: >-
+      Paigo provides a sandbox environment for testing billing flows, usage
+      metering, and invoice generation without affecting production data.
+sdkExamples:
+  - language: JavaScript (Node.js)
+    dependency: cross-fetch
+    authEndpoint: https://auth.paigo.tech/oauth/token
+    usageEndpoint: https://api.prod.paigo.tech/usage
+  - language: Python
+    dependency: requests
+    authEndpoint: https://auth.paigo.tech/oauth/token
+    usageEndpoint: https://api.prod.paigo.tech/usage
+notes:
+  - Rate limit details should be confirmed directly with Paigo via team@paigo.tech.
+  - The platform targets SaaS companies requiring high-volume, real-time metering.
+  - AWS CloudWatch, Prometheus, and datastore integrations provide alternative metering paths that bypass direct API calls.

@@ -1,0 +1,103 @@
+name: Paigo FinOps
+description: >-
+  Paigo's financial operations capabilities for SaaS businesses, covering
+  cost visibility, pricing optimization, usage analytics, and billing
+  automation. Paigo enables SaaS companies to implement granular financial
+  controls and gain deep insight into product unit economics.
+url: https://docs.paigo.tech/
+created: "2026-06-13"
+modified: "2026-06-13"
+costVisibility:
+  description: >-
+    Paigo provides real-time usage metering and cost analytics that give
+    SaaS businesses detailed visibility into how customers consume their
+    product and what that costs to deliver.
+  features:
+    - Real-time usage metering and aggregation
+    - Per-customer consumption tracking
+    - Cost insights dashboard
+    - Profit margin analysis per product and customer
+    - Product unit cost calculation
+    - Data storage cost analytics
+    - Kubernetes infrastructure cost analytics
+    - Business analytics enablement
+usageMetering:
+  description: >-
+    Paigo supports four distinct methods for capturing usage data from
+    SaaS products, enabling FinOps teams to track costs at every layer
+    of the stack.
+  methods:
+    - name: API-based
+      description: Direct POST to the Paigo usage API endpoint from application code.
+      endpoint: https://api.prod.paigo.tech/usage
+    - name: Agent-based
+      description: Lightweight agent deployed alongside the application to capture usage.
+    - name: Infrastructure-based
+      description: >-
+        Integration with infrastructure monitoring tools (AWS CloudWatch, Prometheus)
+        to capture usage metrics without application code changes.
+      integrations:
+        - AWS CloudWatch
+        - Prometheus
+    - name: Datastore-based
+      description: >-
+        Usage data captured from existing databases or data warehouses for
+        scenarios where usage is already tracked in a datastore.
+pricingOptimization:
+  description: >-
+    Paigo enables SaaS companies to model and iterate on pricing strategies
+    without re-engineering their billing stack.
+  supportedModels:
+    - Pay-as-you-go (consumption-based, e.g., EC2)
+    - Subscription Tier (recurring with included usage)
+    - Custom Unit (composite units, e.g., Snowflake credits)
+    - Seat-based (per active user)
+    - Top-Up / Prepaid Credits (e.g., OpenAI tokens)
+  capabilities:
+    - Multi-plan management for self-serve and enterprise tiers
+    - Free trial support
+    - Prepaid credit / wallet system
+    - Usage entitlements and caps
+    - Flexible B2B deal structures
+invoiceAutomation:
+  description: >-
+    Paigo automates the full quote-to-cash cycle, from customer onboarding
+    to invoice generation and payment collection.
+  features:
+    - Automated invoice generation with itemized line items
+    - Stripe payment processing integration
+    - Cloud Marketplace billing (AWS, Azure, GCP) - closed preview
+    - Tax and compliance handling (tax-compliant invoices)
+    - Customer onboarding and offboarding billing lifecycle
+    - Revenue reporting
+  paymentChannels:
+    - Stripe (direct)
+    - AWS Marketplace (closed preview)
+    - Azure Marketplace (closed preview)
+    - Google Cloud Marketplace (closed preview)
+cloudMarketplace:
+  status: closed preview
+  description: >-
+    Paigo's Cloud Marketplace invoicing allows SaaS companies to use AWS,
+    Azure, or GCP as payment channels. Revenue is reported and transferred
+    through the marketplace. Cloud marketplaces charge their own transaction
+    fees on invoiced revenue.
+  contactForAccess: team@paigo.tech
+  notes:
+    - Cloud marketplace hourly usage aggregation is handled automatically for AWS.
+    - Different cloud platforms have different pricing plan models and constraints.
+unitEconomics:
+  description: >-
+    Paigo provides analytics to understand product profitability at a
+    granular level, supporting FinOps decision-making for infrastructure
+    and pricing strategy.
+  metrics:
+    - Product unit cost (cost to serve one unit of usage)
+    - Profit margin per customer and product
+    - Data storage cost per unit
+    - Kubernetes cost per workload
+    - Cost insights by customer segment
+notes:
+  - Paigo charges 0% transaction fees and takes no revenue share on any plan.
+  - The sandbox environment supports FinOps testing without production impact.
+  - Contact team@paigo.tech for enterprise billing arrangements and cloud marketplace access.

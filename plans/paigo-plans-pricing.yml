@@ -1,0 +1,64 @@
+name: Paigo Plans and Pricing
+description: >-
+  Paigo offers a Free Forever plan with no transaction fees, no revenue sharing,
+  and unlimited access to all features and users. The platform supports multiple
+  pricing models for SaaS products including pay-as-you-go, subscription tiers,
+  seat-based, custom unit, and top-up pricing.
+url: https://paigo.tech/pricing
+created: "2026-06-13"
+modified: "2026-06-13"
+plans:
+  - name: Free Forever
+    description: >-
+      No transaction fee, no revenue sharing, unlimited access to all features,
+      unlimited users. Designed for any business stage and go-to-market strategy.
+    price: 0
+    currency: USD
+    period: forever
+    features:
+      - Usage-based billing automation
+      - Subscription tier pricing
+      - Pay-as-you-go (EC2-style) pricing
+      - Seat-based pricing
+      - Custom unit pricing (Snowflake-style)
+      - Top-up pricing (OpenAI-style)
+      - Customer profile management
+      - Usage metering (API-based, agent-based, infrastructure-based, datastore-based)
+      - Automated invoice generation
+      - Stripe payment processing
+      - Cloud Marketplace invoicing (AWS, Azure, GCP) - closed preview
+      - Tax and compliance handling
+      - Sandbox environment
+      - Customer wallet and credits system
+      - Business analytics (cost insights, profit margin, unit cost)
+      - Kubernetes and data storage analytics
+      - Unlimited users
+    limits:
+      transactionFee: "0%"
+      revenueSharingFee: "0%"
+pricingModels:
+  - name: Pay-as-you-go
+    description: Charge customers based on actual consumption, similar to AWS EC2 pricing.
+    example: "Charge $0.02 per API call made"
+  - name: Subscription Tier
+    description: Fixed recurring fees per billing period, with optional included usage.
+    example: "Charge $99/month for up to 10,000 API calls"
+  - name: Custom Unit
+    description: >-
+      Price based on a composite or derived unit of measure, similar to Snowflake
+      credits pricing.
+    example: "Charge per compute credit or data credit consumed"
+  - name: Seat-based
+    description: Charge per active user or seat on the platform.
+    example: "Charge $15/user/month"
+  - name: Top-Up
+    description: >-
+      Prepaid credit system where customers purchase credits and consume them
+      over time, similar to OpenAI token pricing.
+    example: "Sell $50 credit packs consumed per API request"
+notes:
+  - Cloud Marketplace invoicing is currently in closed preview; contact team@paigo.tech for access.
+  - Cloud marketplaces (AWS, Azure, GCP) charge their own transaction fee as a percentage of revenue invoiced.
+contact:
+  email: team@paigo.tech
+  url: https://docs.paigo.tech/
