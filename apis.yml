@@ -48,6 +48,8 @@ apis:
       - FN: Paigo Support
         email: team@paigo.tech
 common:
+  - type: OAuthScopes
+    url: scopes/paigo-scopes.yml
   - type: Website
     url: https://www.paigo.tech/
   - type: Documentation

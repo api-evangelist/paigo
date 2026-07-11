@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/paigo-paigo-api-openapi.yml
+docs: https://docs.paigo.tech/overview/getting-started-with-paigo
+note: Paigo uses an OAuth 2.0 client_credentials flow (token from https://auth.paigo.tech/oauth/token with client ID/secret from Settings > API) and does not document or use OAuth scopes (https://docs.paigo.tech/overview/getting-started-with-paigo).
+schemes:
+- name: bearer
+  source: openapi/paigo-paigo-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.paigo.tech/oauth/token
+  description: Use bearer token to authenticate `Bearer <your access token>`
+scopes: []
