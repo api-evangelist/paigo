@@ -48,6 +48,10 @@ apis:
       - FN: Paigo Support
         email: team@paigo.tech
 common:
+  - type: DomainSecurity
+    url: security/paigo-domain-security.yml
+  - type: Authentication
+    url: authentication/paigo-authentication.yml
   - type: OAuthScopes
     url: scopes/paigo-scopes.yml
   - type: Website

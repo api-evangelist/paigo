@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.paigo.tech
+  https: false
+- host: docs.paigo.tech
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 16 13:17:00 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.prod.paigo.tech
+  https: false
+domains:
+- domain: paigo.tech
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/paigo-paigo-api-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: bearer
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.paigo.tech/oauth/token
+    scopes: 0
+  description: Use bearer token to authenticate `Bearer <your access token>`
+  sources:
+  - openapi/paigo-paigo-api-openapi.yml
