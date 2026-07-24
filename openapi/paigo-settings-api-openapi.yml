@@ -1,0 +1,595 @@
+openapi: 3.0.0
+info:
+  title: Paigo Customers Settings API
+  description: "\nFor developer documentation of the platform, please visit https://docs.paigo.tech.\n\n## Authentication\nPaigo API supports **bearer token** as the authentication method.\nSteps to set up authentication:\n1. Sign up with Paigo platform and get **client id** and **client secret**.\n2. Make a POST request to the auth endpoint `https://auth.paigo.tech/oauth/token` with the following body:\n```json\n{\n        audience: 'https://qnonyh1pc7.execute-api.us-east-1.amazonaws.com',\n        grant_type: 'client_credentials',\n        client_id: <your client id>,\n        client_secret: <your client secret>\n}\n```\nAdditionally verify that the following headers are set by the client you are using: \n```json\n{\n    \"Content-Type\": \"application/json\"\n}\n```\n\n3. Use the access token in the response to make requests to the Paigo API. Here is an example of the response:  \n```json   \n{\n            access_token: <your access token>,\n            expires_in: 86400,\n            token_type: 'Bearer'  \n}\n```\n4. To use Paigo API, add in the header of your request:\n```json\n{\n        Authorization: \"Bearer <your access token>\"\n}\n```\n\n## API Endpoints\nPaigo API has the following endpoint:\n- Production Environment API: `https://api.prod.paigo.tech`\n        "
+  version: v1.10
+  contact: {}
+servers:
+- url: https://api.prod.paigo.tech
+  description: Product Environment API
+tags:
+- name: Settings
+paths:
+  /settings/profile:
+    put:
+      operationId: Update Business Profile Settings
+      summary: ''
+      description: Update Business Info and Logo.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProfileDto'
+      responses:
+        '200':
+          description: Updated Business Profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadSettingsResponse'
+      tags:
+      - Settings
+      security:
+      - bearer: []
+    get:
+      operationId: Get Business Profile Settings
+      summary: ''
+      description: Get Business Info.
+      parameters: []
+      responses:
+        '200':
+          description: Get Business Profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadProfileResponseData'
+      tags:
+      - Settings
+      security:
+      - bearer: []
+  /settings/invoiceImage:
+    post:
+      operationId: Upload Invoice Image
+      summary: ''
+      description: 'Upload Business Logo, file format supported: png,jpg,jpeg; max file size supported: 30Mb.'
+      parameters: []
+      responses:
+        '200':
+          description: A message describing the upload success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicResponseDTO'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicResponseDTO'
+      tags:
+      - Settings
+      security:
+      - bearer: []
+components:
+  schemas:
+    PortalOfferingPageDto:
+      type: object
+      properties:
+        title:
+          type: string
+        subtitle:
+          type: string
+        price:
+          type: string
+        featured:
+          $ref: '#/components/schemas/FeaturedOfferingPortalDto'
+        cta:
+          $ref: '#/components/schemas/CTAOfferingPortalDto'
+        description:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+      required:
+      - cta
+      - features
+    InvoiceReminders:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        beforeDueReminders:
+          description: 'The number of days before the due date to send reminders.
+
+            <br><br>
+
+            Example: `{"first": "1", "second": "3", "third": "7"}`'
+          allOf:
+          - $ref: '#/components/schemas/InvoiceReminderSchedule'
+        afterDueReminders:
+          description: 'The number of days after the due date to send reminders.
+
+            <br><br>
+
+            Example: `{"first": "1", "second": "3", "third": "7"}`'
+          allOf:
+          - $ref: '#/components/schemas/InvoiceReminderSchedule'
+    PricingTableOfferingPortalDto:
+      type: object
+      properties:
+        ctaBorder:
+          type: string
+        ctaBackground:
+          type: string
+        ctaText:
+          type: string
+        featureListColor:
+          type: string
+        pricePlanBackground:
+          type: string
+        highlightedPrice:
+          type: string
+        featureListIcon:
+          type: string
+        showLogo:
+          type: boolean
+    ReadSettingsResponseData:
+      type: object
+      properties:
+        accountState:
+          description: 'Wether or not the account is a sandbox account. This effects payment and other integrations like tax.
+
+            <br><br>
+
+            Example: `"sandbox"`'
+          example: sandbox
+          enum:
+          - sandbox
+          - production
+          - ''
+          type: string
+          default: production
+        invoiceApproval:
+          description: 'Whether Paigo should automatically send invoices to customers.
+
+            <br><br>
+
+            Example: `"automatic"`'
+          example: automatic
+          enum:
+          - manual
+          - automatic
+          type: string
+        invoiceGeneration:
+          description: 'When Paigo should automatically generate invoices.
+
+            <br><br>
+
+            Example: `"perTransaction"`'
+          example: perTransaction
+          enum:
+          - perTransaction
+          - consolidatedPerBillingCycle
+          type: string
+        sendInvoiceEmail:
+          description: 'Whether Paigo should send invoices to customers.
+
+            <br><br>
+
+            Example: `"true"`'
+          example: true
+          enum:
+          - 'true'
+          - 'false'
+          type: string
+        freeDimensionOnInvoice:
+          description: 'A field to determine if line items with a 0$ rate should be shown on the invoice.
+
+            <br><br>
+
+            Example: `"hide"`'
+          example: hide
+          enum:
+          - show
+          - hide
+          type: string
+        businessName:
+          type: string
+        defaultCurrency:
+          type: string
+          enum:
+          - USD
+          - EUR
+          - CNY
+        taxRate:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        postalCode:
+          type: string
+        supportEmail:
+          type: string
+        vatId:
+          type: string
+        redirectionUrl:
+          type: string
+        invoiceEmailConfiguration:
+          $ref: '#/components/schemas/InvoiceEmailConfiguration'
+        invoicePaymentTerm:
+          type: string
+          enum:
+          - '30'
+          - '60'
+          - ''
+        customFields:
+          type: string
+        taxJarApiKey:
+          type: string
+        logoUrl:
+          type: string
+        taxCategory:
+          type: string
+        stripeAccountId:
+          type: string
+        generatePDFPaymentLink:
+          type: boolean
+          description: 'Whether or not to include a link to payment on the PDF of the invoice. Defaults to `true`
+
+            <br><br>
+
+            Example: `true`'
+          example: true
+        taxCalculationType:
+          type: string
+          enum:
+          - paigoCalculated
+          - manual
+          - ''
+        cloudIAM:
+          $ref: '#/components/schemas/CloudIAM'
+        pages:
+          $ref: '#/components/schemas/PortalPages'
+        computeCostSource:
+          type: string
+          description: 'The compute cost source for your account, this enables Paigo to calculate your compute costs so as to determine unit costs and usage based costs.
+
+            The default is ''none'''
+          example: ec2
+          enum:
+          - eks
+          - none
+        storageCostSource:
+          type: string
+          description: 'The storage cost source for your account, this enables Paigo to calculate your storage costs so as to determine unit costs and usage based costs.
+
+            The default is ''none'''
+          example: ebs
+          enum:
+          - ebs
+          - none
+        archiveCostSource:
+          type: string
+          description: 'The archive cost source for your account, this enables Paigo to calculate your archive costs so as to determine unit costs and usage based costs.
+
+            The default is ''none'''
+          example: ebs
+          enum:
+          - ebs
+          - none
+    BasicResponseDTO:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+      required:
+      - message
+    OfferingPortalPageSettings:
+      type: object
+      properties:
+        offerings:
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/PortalOfferingPageDto'
+        appearance:
+          $ref: '#/components/schemas/AppearanceOfferingPortalDto'
+        enabled:
+          type: boolean
+        text:
+          type: string
+    ReadProfileResponseData:
+      type: object
+      properties:
+        businessName:
+          type: string
+          description: 'The Name for the Business Entity using Paigo
+
+            <br><br>
+
+            Example: `"My Smart Business Name"`'
+          example: My Smart Business Name
+        addressLine1:
+          type: string
+          description: 'Street number and name (address line 1)
+
+            <br><br>
+
+            Example: `"123 Success Street"`'
+          example: 123 Success Street
+        addressLine2:
+          type: string
+          description: 'Apartment or unit and its number (address line 2)
+
+            <br><br>
+
+            Example: `"Suite 100"`'
+          example: Suite 100
+        city:
+          type: string
+          description: 'City of Business Entity''s Location
+
+            <br><br>
+
+            Example: `"San Francisco"`'
+          example: San Francisco
+        state:
+          type: string
+          description: 'State of Business Entity''s Location
+
+            <br><br>
+
+            Example: `"CA"`'
+          example: CA
+        country:
+          type: string
+          description: 'Country of Business Entity''s Location
+
+            <br><br>
+
+            Example: `"USA"`'
+          example: USA
+        postalCode:
+          type: string
+          description: 'Postal code of Business Entity''s Location
+
+            <br><br>
+
+            Example: `"94188"`'
+          example: '94188'
+        supportEmail:
+          type: string
+          description: 'Email address utilized by the Business Entity for customer support
+
+            <br><br>
+
+            Example: `"support@mybusiness.com"`'
+          example: support@mybusiness.com
+        sendInvoiceEmail:
+          type: string
+          description: 'Whether Paigo should send invoices to customers.
+
+            <br><br>
+
+            Example: `"true"`'
+          example: true
+          enum:
+          - 'true'
+          - 'false'
+        stripeAccountId:
+          type: string
+          description: 'The Stripe Account ID for the Business Entity. Only present if the account is connected to Stripe.
+
+            <br><br>
+
+            Example: `"acct_1J2k3l4m5n6o7p8q9r0s"`'
+          example: acct_1J2k3l4m5n6o7p8q9r0s
+        redirectionUrl:
+          type: string
+          description: A URL to redirect to after relevant connection, or payment actions.
+    FeaturedOfferingPortalDto:
+      type: object
+      properties:
+        text:
+          type: string
+    PaymentPortalPageSettings:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        text:
+          type: string
+    ReadSettingsResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReadSettingsResponseData'
+      required:
+      - message
+      - data
+    InvoiceEmailConfiguration:
+      type: object
+      properties:
+        reminders:
+          $ref: '#/components/schemas/InvoiceReminders'
+      required:
+      - reminders
+    CTAOfferingPortalDto:
+      type: object
+      properties:
+        text:
+          type: string
+        offeringId:
+          type: string
+        externalLink:
+          type: string
+    InvoicePortalPageSettings:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        text:
+          type: string
+    UpdateProfileDto:
+      type: object
+      properties:
+        sendInvoiceEmail:
+          description: 'Whether Paigo should send invoices to customers.
+
+            <br><br>
+
+            Example: `"true"`'
+          example: true
+          enum:
+          - 'true'
+          - 'false'
+          type: string
+        businessName:
+          type: string
+          description: 'The Name for the Business Entity using Paigo
+
+            <br><br>
+
+            Example: `"My Smart Business Name"`'
+          example: My Smart Business Name
+        addressLine1:
+          type: string
+          description: 'Street number and name (address line 1)
+
+            <br><br>
+
+            Example: `"123 Success Street"`'
+          example: 123 Success Street
+        addressLine2:
+          type: string
+          description: 'Apartment or unit and its number (address line 2)
+
+            <br><br>
+
+            Example: `"Suite 100"`'
+          example: Suite 100
+        city:
+          type: string
+          description: 'City of Business Entity''s Location
+
+            <br><br>
+
+            Example: `"San Francisco"`'
+          example: San Francisco
+        state:
+          type: string
+          description: 'State of Business Entity''s Location
+
+            <br><br>
+
+            Example: `"CA"`'
+          example: CA
+        country:
+          type: string
+          description: 'Country of Business Entity''s Location
+
+            <br><br>
+
+            Example: `"USA"`'
+          example: USA
+        postalCode:
+          type: string
+          description: 'Postal code of Business Entity''s Location
+
+            <br><br>
+
+            Example: `"94188"`'
+          example: '94188'
+        supportEmail:
+          type: string
+          description: 'Email address utilized by the Business Entity for customer support
+
+            <br><br>
+
+            Example: `"support@mybusiness.com"`'
+          example: support@mybusiness.com
+        redirectionUrl:
+          type: string
+          description: 'The URL to redirect to after relevant requests, such as completion of a connection.
+
+            <br><br>
+
+            Example: `"https://mybusiness.com/redirect"`'
+          example: https://mybusiness.com/redirect
+    CloudIAM:
+      type: object
+      properties:
+        iamRoleArn:
+          type: string
+        externalId:
+          type: string
+      required:
+      - iamRoleArn
+    AppearanceOfferingPortalDto:
+      type: object
+      properties:
+        border:
+          type: string
+        background:
+          type: string
+        accent:
+          type: string
+        radius:
+          type: string
+        paigoBranding:
+          type: string
+        pricingTable:
+          $ref: '#/components/schemas/PricingTableOfferingPortalDto'
+      required:
+      - pricingTable
+    PortalPages:
+      type: object
+      properties:
+        invoice:
+          $ref: '#/components/schemas/InvoicePortalPageSettings'
+        payment:
+          $ref: '#/components/schemas/PaymentPortalPageSettings'
+        offering:
+          $ref: '#/components/schemas/OfferingPortalPageSettings'
+        extended:
+          type: object
+      required:
+      - extended
+    InvoiceReminderSchedule:
+      type: object
+      properties:
+        first:
+          type: string
+        second:
+          type: string
+        third:
+          type: string
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: oauth2
+      in: Header
+      description: Use bearer token to authenticate `Bearer <your access token>`
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.paigo.tech/oauth/token
+          scopes: {}
