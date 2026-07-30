@@ -7,7 +7,20 @@ description: >-
   subscription tier, seat-based, custom unit, and top-up pricing models with
   zero transaction fees.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/paigo.png
 url: https://raw.githubusercontent.com/api-evangelist/paigo/refs/heads/main/apis.yml
 created: "2026-06-13"
 modified: "2026-06-13"
@@ -23,30 +36,120 @@ tags:
   - Developer Tools
   - FinOps
 apis:
-  - aid: paigo:paigo-api
-    name: Paigo API
-    description: >-
-      REST API for metering SaaS product usage, managing customers and pricing
-      plans, generating invoices, and integrating usage-based billing into
-      developer products. Supports OAuth 2.0 client credentials for authentication.
-    humanURL: https://docs.paigo.tech/
-    baseURL: https://api.prod.paigo.tech
-    tags:
-      - Billing
-      - Metering
-      - Usage
-      - Invoicing
-      - Pricing Plans
-    properties:
-      - type: Documentation
-        url: https://docs.paigo.tech/
-      - type: GettingStarted
-        url: https://docs.paigo.tech/overview/getting-started-with-paigo
-      - type: OpenAPI
-        url: https://paigo-public-information.s3.us-east-2.amazonaws.com/public_api.html
-    contact:
-      - FN: Paigo Support
-        email: team@paigo.tech
+- aid: paigo:paigo-customers-api
+  name: Paigo Customers API
+  description: Manage customers in Paigo.
+  humanURL: https://docs.paigo.tech/
+  baseURL: https://api.prod.paigo.tech
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/paigo-customers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.paigo.tech/
+  - type: GettingStarted
+    url: https://docs.paigo.tech/overview/getting-started-with-paigo
+- aid: paigo:paigo-dimensions-api
+  name: Paigo Dimensions API
+  description: Manage dimensions in Paigo.
+  humanURL: https://docs.paigo.tech/
+  baseURL: https://api.prod.paigo.tech
+  tags:
+  - Dimensions
+  properties:
+  - type: OpenAPI
+    url: openapi/paigo-dimensions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.paigo.tech/
+  - type: GettingStarted
+    url: https://docs.paigo.tech/overview/getting-started-with-paigo
+- aid: paigo:paigo-invoices-api
+  name: Paigo Invoices API
+  description: Manage invoices in Paigo.
+  humanURL: https://docs.paigo.tech/
+  baseURL: https://api.prod.paigo.tech
+  tags:
+  - Invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/paigo-invoices-api-openapi.yml
+  - type: Documentation
+    url: https://docs.paigo.tech/
+  - type: GettingStarted
+    url: https://docs.paigo.tech/overview/getting-started-with-paigo
+- aid: paigo:paigo-measurements-api
+  name: Paigo Measurements API
+  description: >-
+    Manage measurements in Paigo. <br><br> See <a href="https://docs.paigo.tech/measure-usage-and-collect-data/measure-and-collect-usage-data-at-production-scale">Measure
+    and Collect Usage Data at Production Scale</a> for more information.
+  humanURL: https://docs.paigo.tech/
+  baseURL: https://api.prod.paigo.tech
+  tags:
+  - Measurements
+  properties:
+  - type: OpenAPI
+    url: openapi/paigo-measurements-api-openapi.yml
+  - type: Documentation
+    url: https://docs.paigo.tech/
+  - type: GettingStarted
+    url: https://docs.paigo.tech/overview/getting-started-with-paigo
+- aid: paigo:paigo-offerings-api
+  name: Paigo Offerings API
+  description: Manage offerings in Paigo.
+  humanURL: https://docs.paigo.tech/
+  baseURL: https://api.prod.paigo.tech
+  tags:
+  - Offerings
+  properties:
+  - type: OpenAPI
+    url: openapi/paigo-offerings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.paigo.tech/
+  - type: GettingStarted
+    url: https://docs.paigo.tech/overview/getting-started-with-paigo
+- aid: paigo:paigo-settings-api
+  name: Paigo Settings API
+  description: The Settings API from Paigo — 2 operation(s) for settings.
+  humanURL: https://docs.paigo.tech/
+  baseURL: https://api.prod.paigo.tech
+  tags:
+  - Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/paigo-settings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.paigo.tech/
+  - type: GettingStarted
+    url: https://docs.paigo.tech/overview/getting-started-with-paigo
+- aid: paigo:paigo-usage-api
+  name: Paigo Usage API
+  description: Measure and collect usage data.
+  humanURL: https://docs.paigo.tech/
+  baseURL: https://api.prod.paigo.tech
+  tags:
+  - Usage
+  properties:
+  - type: OpenAPI
+    url: openapi/paigo-usage-api-openapi.yml
+  - type: Documentation
+    url: https://docs.paigo.tech/
+  - type: GettingStarted
+    url: https://docs.paigo.tech/overview/getting-started-with-paigo
+- aid: paigo:paigo-webhooks-api
+  name: Paigo Webhooks API
+  description: The Webhooks API from Paigo — 7 operation(s) for webhooks.
+  humanURL: https://docs.paigo.tech/
+  baseURL: https://api.prod.paigo.tech
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/paigo-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.paigo.tech/
+  - type: GettingStarted
+    url: https://docs.paigo.tech/overview/getting-started-with-paigo
 common:
   - type: AgenticAccess
     url: agentic-access/paigo-agentic-access.yml
