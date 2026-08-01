@@ -1,0 +1,28 @@
+{
+  "provider": "paigo",
+  "sources": [
+    "paigo-customers-api-openapi.yml",
+    "paigo-dimensions-api-openapi.yml",
+    "paigo-invoices-api-openapi.yml",
+    "paigo-measurements-api-openapi.yml",
+    "paigo-offerings-api-openapi.yml",
+    "paigo-settings-api-openapi.yml",
+    "paigo-usage-api-openapi.yml",
+    "paigo-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "paigo-customers-api-openapi.yml",
+    "paigo-dimensions-api-openapi.yml",
+    "paigo-invoices-api-openapi.yml",
+    "paigo-measurements-api-openapi.yml",
+    "paigo-offerings-api-openapi.yml",
+    "paigo-settings-api-openapi.yml",
+    "paigo-usage-api-openapi.yml",
+    "paigo-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
