@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paigo Customers Offerings API",
+    "version": "v1.10"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Offerings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all Offerings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.paigo.tech/offerings",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List all offerings created in this account"
+        },
+        {
+          "info": {
+            "name": "Create an offering",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.paigo.tech/offerings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create an offering"
+        },
+        {
+          "info": {
+            "name": "Get an offering by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.paigo.tech/offerings/:offeringId",
+            "params": [
+              {
+                "name": "offeringId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Find an offering"
+        },
+        {
+          "info": {
+            "name": "Update an offering",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.prod.paigo.tech/offerings/:offeringId",
+            "params": [
+              {
+                "name": "offeringId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update an offering"
+        },
+        {
+          "info": {
+            "name": "Delete an offering",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.prod.paigo.tech/offerings/:offeringId",
+            "params": [
+              {
+                "name": "offeringId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete an offering"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

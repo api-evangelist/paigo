@@ -1,0 +1,1000 @@
+{
+  "item": [
+    {
+      "id": "6878e486-6809-4bf7-810a-35f7c6139b1d",
+      "name": "Offerings",
+      "description": {
+        "content": "Manage offerings in Paigo.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "170baf3a-a9d5-4442-b3df-e861b1636201",
+          "name": "Get all Offerings",
+          "request": {
+            "name": "Get all Offerings",
+            "description": {
+              "content": "List all offerings created in this account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "offerings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "01949fc2-44ed-4c1d-99c2-a1dbd336921f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offerings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\",\n  \"data\": [\n    {\n      \"offeringId\": \"539b7f74-3832-474e-a955-6d69c5df12d0\",\n      \"dimensions\": [\n        {\n          \"dimensionName\": \"string\",\n          \"consumptionUnit\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"usageIncrement\": \"24\",\n          \"dimensionId\": \"8a7b5f91-3b85-4cf4-8585-dcdf17f49004\",\n          \"rounding\": \"round\",\n          \"usageEntitlement\": 1000000,\n          \"aggregationInterval\": \"hour\",\n          \"aggregationMethod\": \"sum\",\n          \"measurement\": {\n            \"measurementMode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementConfiguration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"overageAllowed\": \"true\",\n          \"consumptionPrice\": \"20.00\",\n          \"sampleType\": \"gauge\",\n          \"paymentSchedule\": \"upfront\",\n          \"metadata\": {},\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tiersGroupByMetadata\": [\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"dimensionName\": \"string\",\n          \"consumptionUnit\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"usageIncrement\": \"24\",\n          \"dimensionId\": \"8a7b5f91-3b85-4cf4-8585-dcdf17f49004\",\n          \"rounding\": \"round\",\n          \"usageEntitlement\": 1000000,\n          \"aggregationInterval\": \"hour\",\n          \"aggregationMethod\": \"sum\",\n          \"measurement\": {\n            \"measurementMode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementConfiguration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"overageAllowed\": \"false\",\n          \"consumptionPrice\": \"20.00\",\n          \"sampleType\": \"gauge\",\n          \"paymentSchedule\": \"upfront\",\n          \"metadata\": {},\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tiersGroupByMetadata\": [\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"offeringName\": \"Entperise Plan\",\n      \"offeringVisibility\": \"private\",\n      \"offeringType\": \"subscription\",\n      \"billingCycle\": \"monthly\",\n      \"currency\": \"USD\",\n      \"dimensionOverrides\": [\n        {\n          \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n          \"consumptionPrice\": \"10.00\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tiersGroupByMetadata\": [\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n          \"consumptionPrice\": \"10.00\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tiersGroupByMetadata\": [\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"prepaidCredit\": \"20.00\",\n      \"minimumCharge\": \"32.00\",\n      \"topUpAmount\": \"20.00\",\n      \"topUpThreshold\": \"0.2\",\n      \"subscriptionPrice\": 20,\n      \"freeTrialLength\": \"1\",\n      \"metadata\": {}\n    },\n    {\n      \"offeringId\": \"539b7f74-3832-474e-a955-6d69c5df12d0\",\n      \"dimensions\": [\n        {\n          \"dimensionName\": \"string\",\n          \"consumptionUnit\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"usageIncrement\": \"24\",\n          \"dimensionId\": \"8a7b5f91-3b85-4cf4-8585-dcdf17f49004\",\n          \"rounding\": \"ceiling\",\n          \"usageEntitlement\": 1000000,\n          \"aggregationInterval\": \"hour\",\n          \"aggregationMethod\": \"sum\",\n          \"measurement\": {\n            \"measurementMode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementConfiguration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"overageAllowed\": \"false\",\n          \"consumptionPrice\": \"20.00\",\n          \"sampleType\": \"gauge\",\n          \"paymentSchedule\": \"upfront\",\n          \"metadata\": {},\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tiersGroupByMetadata\": [\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"dimensionName\": \"string\",\n          \"consumptionUnit\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"usageIncrement\": \"24\",\n          \"dimensionId\": \"8a7b5f91-3b85-4cf4-8585-dcdf17f49004\",\n          \"rounding\": \"ceiling\",\n          \"usageEntitlement\": 1000000,\n          \"aggregationInterval\": \"hour\",\n          \"aggregationMethod\": \"sum\",\n          \"measurement\": {\n            \"measurementMode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementConfiguration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"overageAllowed\": \"false\",\n          \"consumptionPrice\": \"20.00\",\n          \"sampleType\": \"gauge\",\n          \"paymentSchedule\": \"upfront\",\n          \"metadata\": {},\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tiersGroupByMetadata\": [\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"offeringName\": \"Entperise Plan\",\n      \"offeringVisibility\": \"private\",\n      \"offeringType\": \"subscription\",\n      \"billingCycle\": \"monthly\",\n      \"currency\": \"USD\",\n      \"dimensionOverrides\": [\n        {\n          \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n          \"consumptionPrice\": \"10.00\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tiersGroupByMetadata\": [\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n          \"consumptionPrice\": \"10.00\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tiersGroupByMetadata\": [\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"prepaidCredit\": \"20.00\",\n      \"minimumCharge\": \"32.00\",\n      \"topUpAmount\": \"20.00\",\n      \"topUpThreshold\": \"0.2\",\n      \"subscriptionPrice\": 20,\n      \"freeTrialLength\": \"1\",\n      \"metadata\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad591889-5004-490a-b98f-69867c69fc84",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offerings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e112ce8-ff03-44ea-9238-be6775b5b2da",
+          "name": "Create an offering",
+          "request": {
+            "name": "Create an offering",
+            "description": {
+              "content": "Create an offering",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "offerings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"offeringName\": \"<string>\",\n  \"offeringVisibility\": \"public\",\n  \"offeringType\": \"usage-based\",\n  \"billingCycle\": \"monthly\",\n  \"currency\": \"<string>\",\n  \"dimensionOverrides\": [\n    {\n      \"dimensionId\": \"<string>\",\n      \"consumptionPrice\": \"<string>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"<string>\",\n          \"tierPosition\": \"<string>\",\n          \"tierName\": \"<string>\",\n          \"unitPrice\": \"<string>\"\n        },\n        {\n          \"upperBound\": \"<string>\",\n          \"tierPosition\": \"<string>\",\n          \"tierName\": \"<string>\",\n          \"unitPrice\": \"<string>\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"dimensionId\": \"<string>\",\n      \"consumptionPrice\": \"<string>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"<string>\",\n          \"tierPosition\": \"<string>\",\n          \"tierName\": \"<string>\",\n          \"unitPrice\": \"<string>\"\n        },\n        {\n          \"upperBound\": \"<string>\",\n          \"tierPosition\": \"<string>\",\n          \"tierName\": \"<string>\",\n          \"unitPrice\": \"<string>\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"prepaidCredit\": \"<string>\",\n  \"minimumCharge\": \"<string>\",\n  \"topUpAmount\": \"<string>\",\n  \"topUpThreshold\": \"<string>\",\n  \"subscriptionPrice\": \"<number>\",\n  \"freeTrialLength\": \"<string>\",\n  \"dimensionIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"metadata\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "57d93eef-286d-44b2-bc92-858da15fbf87",
+              "name": "Offering Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offerings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offeringName\": \"Entperise Plan\",\n  \"offeringVisibility\": \"private\",\n  \"offeringType\": \"subscription\",\n  \"billingCycle\": \"monthly\",\n  \"currency\": \"USD\",\n  \"dimensionOverrides\": [\n    {\n      \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n      \"consumptionPrice\": \"10.00\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n      \"consumptionPrice\": \"10.00\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"prepaidCredit\": \"20.00\",\n  \"minimumCharge\": \"32.00\",\n  \"topUpAmount\": \"20.00\",\n  \"topUpThreshold\": \"0.2\",\n  \"subscriptionPrice\": 20,\n  \"freeTrialLength\": \"1\",\n  \"dimensionIds\": [\n    \"092f9444-851a-43fb-9503-2228dc01b1b\",\n    \"4fcafdec-eeb9-4a7f-9caf-61387102b6fa\"\n  ],\n  \"metadata\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\",\n  \"offeringId\": \"fcb1fa34-8f11-4832-80f2-464cbc7a8546\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49bf0522-c24d-4ba1-9da5-d040e4bb7022",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offerings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offeringName\": \"Entperise Plan\",\n  \"offeringVisibility\": \"private\",\n  \"offeringType\": \"subscription\",\n  \"billingCycle\": \"monthly\",\n  \"currency\": \"USD\",\n  \"dimensionOverrides\": [\n    {\n      \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n      \"consumptionPrice\": \"10.00\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n      \"consumptionPrice\": \"10.00\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"prepaidCredit\": \"20.00\",\n  \"minimumCharge\": \"32.00\",\n  \"topUpAmount\": \"20.00\",\n  \"topUpThreshold\": \"0.2\",\n  \"subscriptionPrice\": 20,\n  \"freeTrialLength\": \"1\",\n  \"dimensionIds\": [\n    \"092f9444-851a-43fb-9503-2228dc01b1b\",\n    \"4fcafdec-eeb9-4a7f-9caf-61387102b6fa\"\n  ],\n  \"metadata\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "37298721-5267-4a31-ba6a-71d24f762b39",
+          "name": "Get an offering by ID",
+          "request": {
+            "name": "Get an offering by ID",
+            "description": {
+              "content": "Find an offering",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "offerings",
+                ":offeringId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "offeringId",
+                  "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "83319cb9-a9d8-40da-a235-cdfa99bd2439",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offerings",
+                    ":offeringId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "offeringId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\",\n  \"data\": [\n    {\n      \"offeringId\": \"539b7f74-3832-474e-a955-6d69c5df12d0\",\n      \"dimensions\": [\n        {\n          \"dimensionName\": \"string\",\n          \"consumptionUnit\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"usageIncrement\": \"24\",\n          \"dimensionId\": \"8a7b5f91-3b85-4cf4-8585-dcdf17f49004\",\n          \"rounding\": \"ceiling\",\n          \"usageEntitlement\": 1000000,\n          \"aggregationInterval\": \"hour\",\n          \"aggregationMethod\": \"sum\",\n          \"measurement\": {\n            \"measurementMode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementConfiguration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"overageAllowed\": \"false\",\n          \"consumptionPrice\": \"20.00\",\n          \"sampleType\": \"gauge\",\n          \"paymentSchedule\": \"upfront\",\n          \"metadata\": {},\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tiersGroupByMetadata\": [\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"dimensionName\": \"string\",\n          \"consumptionUnit\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"usageIncrement\": \"24\",\n          \"dimensionId\": \"8a7b5f91-3b85-4cf4-8585-dcdf17f49004\",\n          \"rounding\": \"round\",\n          \"usageEntitlement\": 1000000,\n          \"aggregationInterval\": \"hour\",\n          \"aggregationMethod\": \"sum\",\n          \"measurement\": {\n            \"measurementMode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementConfiguration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"overageAllowed\": \"true\",\n          \"consumptionPrice\": \"20.00\",\n          \"sampleType\": \"gauge\",\n          \"paymentSchedule\": \"upfront\",\n          \"metadata\": {},\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tiersGroupByMetadata\": [\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"offeringName\": \"Entperise Plan\",\n      \"offeringVisibility\": \"private\",\n      \"offeringType\": \"subscription\",\n      \"billingCycle\": \"monthly\",\n      \"currency\": \"USD\",\n      \"dimensionOverrides\": [\n        {\n          \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n          \"consumptionPrice\": \"10.00\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tiersGroupByMetadata\": [\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n          \"consumptionPrice\": \"10.00\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tiersGroupByMetadata\": [\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"prepaidCredit\": \"20.00\",\n      \"minimumCharge\": \"32.00\",\n      \"topUpAmount\": \"20.00\",\n      \"topUpThreshold\": \"0.2\",\n      \"subscriptionPrice\": 20,\n      \"freeTrialLength\": \"1\",\n      \"metadata\": {}\n    },\n    {\n      \"offeringId\": \"539b7f74-3832-474e-a955-6d69c5df12d0\",\n      \"dimensions\": [\n        {\n          \"dimensionName\": \"string\",\n          \"consumptionUnit\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"usageIncrement\": \"24\",\n          \"dimensionId\": \"8a7b5f91-3b85-4cf4-8585-dcdf17f49004\",\n          \"rounding\": \"round\",\n          \"usageEntitlement\": 1000000,\n          \"aggregationInterval\": \"hour\",\n          \"aggregationMethod\": \"sum\",\n          \"measurement\": {\n            \"measurementMode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementConfiguration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"overageAllowed\": \"true\",\n          \"consumptionPrice\": \"20.00\",\n          \"sampleType\": \"gauge\",\n          \"paymentSchedule\": \"upfront\",\n          \"metadata\": {},\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tiersGroupByMetadata\": [\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"dimensionName\": \"string\",\n          \"consumptionUnit\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"usageIncrement\": \"24\",\n          \"dimensionId\": \"8a7b5f91-3b85-4cf4-8585-dcdf17f49004\",\n          \"rounding\": \"round\",\n          \"usageEntitlement\": 1000000,\n          \"aggregationInterval\": \"hour\",\n          \"aggregationMethod\": \"sum\",\n          \"measurement\": {\n            \"measurementMode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementConfiguration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"measurementName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"overageAllowed\": \"false\",\n          \"consumptionPrice\": \"20.00\",\n          \"sampleType\": \"gauge\",\n          \"paymentSchedule\": \"upfront\",\n          \"metadata\": {},\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tiersGroupByMetadata\": [\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"offeringName\": \"Entperise Plan\",\n      \"offeringVisibility\": \"private\",\n      \"offeringType\": \"subscription\",\n      \"billingCycle\": \"monthly\",\n      \"currency\": \"USD\",\n      \"dimensionOverrides\": [\n        {\n          \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n          \"consumptionPrice\": \"10.00\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tiersGroupByMetadata\": [\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n          \"consumptionPrice\": \"10.00\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tiersGroupByMetadata\": [\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"metadataGroups\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tiers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"prepaidCredit\": \"20.00\",\n      \"minimumCharge\": \"32.00\",\n      \"topUpAmount\": \"20.00\",\n      \"topUpThreshold\": \"0.2\",\n      \"subscriptionPrice\": 20,\n      \"freeTrialLength\": \"1\",\n      \"metadata\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bde1d9f9-048f-483e-b9af-e18608d7cb69",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offerings",
+                    ":offeringId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "offeringId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b745dfa-f7e2-49a3-a714-c7f5089fe94d",
+              "name": "Offering Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offerings",
+                    ":offeringId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "offeringId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Offering with ID: 807867e0-26ca-4831-846b-a670224db055 not found\",\n  \"error\": \"Not Found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ee61479-e858-48c0-8d4b-dc6dec819bfd",
+          "name": "Update an offering",
+          "request": {
+            "name": "Update an offering",
+            "description": {
+              "content": "Update an offering",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "offerings",
+                ":offeringId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "offeringId",
+                  "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"offeringVisibility\": \"public\",\n  \"offeringType\": \"usage-based\",\n  \"billingCycle\": \"monthly\",\n  \"currency\": \"<string>\",\n  \"dimensionOverrides\": [\n    {\n      \"dimensionId\": \"<string>\",\n      \"consumptionPrice\": \"<string>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"<string>\",\n          \"tierPosition\": \"<string>\",\n          \"tierName\": \"<string>\",\n          \"unitPrice\": \"<string>\"\n        },\n        {\n          \"upperBound\": \"<string>\",\n          \"tierPosition\": \"<string>\",\n          \"tierName\": \"<string>\",\n          \"unitPrice\": \"<string>\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"dimensionId\": \"<string>\",\n      \"consumptionPrice\": \"<string>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"<string>\",\n          \"tierPosition\": \"<string>\",\n          \"tierName\": \"<string>\",\n          \"unitPrice\": \"<string>\"\n        },\n        {\n          \"upperBound\": \"<string>\",\n          \"tierPosition\": \"<string>\",\n          \"tierName\": \"<string>\",\n          \"unitPrice\": \"<string>\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"prepaidCredit\": \"<string>\",\n  \"minimumCharge\": \"<string>\",\n  \"topUpAmount\": \"<string>\",\n  \"topUpThreshold\": \"<string>\",\n  \"subscriptionPrice\": \"<number>\",\n  \"freeTrialLength\": \"<string>\",\n  \"offeringName\": \"<string>\",\n  \"dimensionIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"metadata\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "11989771-4472-4b59-8f77-1005ce6d9b79",
+              "name": "Offering Updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offerings",
+                    ":offeringId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "offeringId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offeringVisibility\": \"private\",\n  \"offeringType\": \"subscription\",\n  \"billingCycle\": \"monthly\",\n  \"currency\": \"USD\",\n  \"dimensionOverrides\": [\n    {\n      \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n      \"consumptionPrice\": \"10.00\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n      \"consumptionPrice\": \"10.00\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"prepaidCredit\": \"20.00\",\n  \"minimumCharge\": \"32.00\",\n  \"topUpAmount\": \"20.00\",\n  \"topUpThreshold\": \"0.2\",\n  \"subscriptionPrice\": 20,\n  \"freeTrialLength\": \"1\",\n  \"offeringName\": \"Entperise Plan\",\n  \"dimensionIds\": [\n    \"092f9444-851a-43fb-9503-2228dc01b1b\",\n    \"4fcafdec-eeb9-4a7f-9caf-61387102b6fa\"\n  ],\n  \"metadata\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\",\n  \"offeringId\": \"fcb1fa34-8f11-4832-80f2-464cbc7a8546\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67347eea-c03c-4e87-94ab-f2ff56a3c86b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offerings",
+                    ":offeringId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "offeringId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offeringVisibility\": \"private\",\n  \"offeringType\": \"subscription\",\n  \"billingCycle\": \"monthly\",\n  \"currency\": \"USD\",\n  \"dimensionOverrides\": [\n    {\n      \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n      \"consumptionPrice\": \"10.00\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n      \"consumptionPrice\": \"10.00\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"prepaidCredit\": \"20.00\",\n  \"minimumCharge\": \"32.00\",\n  \"topUpAmount\": \"20.00\",\n  \"topUpThreshold\": \"0.2\",\n  \"subscriptionPrice\": 20,\n  \"freeTrialLength\": \"1\",\n  \"offeringName\": \"Entperise Plan\",\n  \"dimensionIds\": [\n    \"092f9444-851a-43fb-9503-2228dc01b1b\",\n    \"4fcafdec-eeb9-4a7f-9caf-61387102b6fa\"\n  ],\n  \"metadata\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66936ff6-50ca-4f11-8284-09081e855cf0",
+              "name": "Offering Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offerings",
+                    ":offeringId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "offeringId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offeringVisibility\": \"private\",\n  \"offeringType\": \"subscription\",\n  \"billingCycle\": \"monthly\",\n  \"currency\": \"USD\",\n  \"dimensionOverrides\": [\n    {\n      \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n      \"consumptionPrice\": \"10.00\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"dimensionId\": \"6a8fb855-206c-4226-8695-daf67352e7ee\",\n      \"consumptionPrice\": \"10.00\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"prepaidCredit\": \"20.00\",\n  \"minimumCharge\": \"32.00\",\n  \"topUpAmount\": \"20.00\",\n  \"topUpThreshold\": \"0.2\",\n  \"subscriptionPrice\": 20,\n  \"freeTrialLength\": \"1\",\n  \"offeringName\": \"Entperise Plan\",\n  \"dimensionIds\": [\n    \"092f9444-851a-43fb-9503-2228dc01b1b\",\n    \"4fcafdec-eeb9-4a7f-9caf-61387102b6fa\"\n  ],\n  \"metadata\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Offering with ID: 807867e0-26ca-4831-846b-a670224db055 not found\",\n  \"error\": \"Not Found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6077f660-f3d6-43b0-90b7-2c09673a4440",
+          "name": "Delete an offering",
+          "request": {
+            "name": "Delete an offering",
+            "description": {
+              "content": "Delete an offering",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "offerings",
+                ":offeringId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "offeringId",
+                  "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "77aff6ea-c1dd-45e6-a236-0dd72f805881",
+              "name": "Offering Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offerings",
+                    ":offeringId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "offeringId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\",\n  \"offeringId\": \"539b7f74-3832-474e-a955-6d69c5df12d0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d785676a-5777-44fd-a273-83de2cc70093",
+              "name": "Offering Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offerings",
+                    ":offeringId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "offeringId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Offering with ID: 807867e0-26ca-4831-846b-a670224db055 not found\",\n  \"error\": \"Not Found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fbc3bb73-37fc-4051-bf82-636cea128d31",
+              "name": "Conflict - Can't delete Offering",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "offerings",
+                    ":offeringId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "offeringId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Cannot delete offering when they are attached to customers, remove customers from offerings before deleting. Current customerIds using the offering:: 80ddb121-e3d2-4d28-891d-704532c6649d\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.prod.paigo.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2a79730a-31c5-4e87-9b5a-56b92b5ffdb9",
+    "name": "Paigo Customers Offerings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nFor developer documentation of the platform, please visit https://docs.paigo.tech.\n\n## Authentication\nPaigo API supports **bearer token** as the authentication method.\nSteps to set up authentication:\n1. Sign up with Paigo platform and get **client id** and **client secret**.\n2. Make a POST request to the auth endpoint `https://auth.paigo.tech/oauth/token` with the following body:\n```json\n{\n        audience: 'https://qnonyh1pc7.execute-api.us-east-1.amazonaws.com',\n        grant_type: 'client_credentials',\n        client_id: <your client id>,\n        client_secret: <your client secret>\n}\n```\nAdditionally verify that the following headers are set by the client you are using: \n```json\n{\n    \"Content-Type\": \"application/json\"\n}\n```\n\n3. Use the access token in the response to make requests to the Paigo API. Here is an example of the response:  \n```json   \n{\n            access_token: <your access token>,\n            expires_in: 86400,\n            token_type: 'Bearer'  \n}\n```\n4. To use Paigo API, add in the header of your request:\n```json\n{\n        Authorization: \"Bearer <your access token>\"\n}\n```\n\n## API Endpoints\nPaigo API has the following endpoint:\n- Production Environment API: `https://api.prod.paigo.tech`\n        ",
+      "type": "text/plain"
+    }
+  }
+}

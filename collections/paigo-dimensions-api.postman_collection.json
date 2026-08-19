@@ -1,0 +1,1000 @@
+{
+  "item": [
+    {
+      "id": "03d4d9ac-427e-4436-93e2-f07de13bcb09",
+      "name": "Dimensions",
+      "description": {
+        "content": "Manage dimensions in Paigo.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9b5bb1a6-98f1-4595-b614-7fa1f9e7cdc4",
+          "name": "Get all dimensions",
+          "request": {
+            "name": "Get all dimensions",
+            "description": {
+              "content": "List all dimensions created in this account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dimensions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a91d94c1-38f9-4e35-a01a-d2e47b4ac3a7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\",\n  \"data\": [\n    {\n      \"dimensionName\": \"string\",\n      \"consumptionUnit\": {\n        \"unit\": \"count-based\",\n        \"type\": \"count\"\n      },\n      \"usageIncrement\": \"24\",\n      \"dimensionId\": \"8a7b5f91-3b85-4cf4-8585-dcdf17f49004\",\n      \"rounding\": \"round\",\n      \"usageEntitlement\": 1000000,\n      \"aggregationInterval\": \"hour\",\n      \"aggregationMethod\": \"sum\",\n      \"measurement\": {\n        \"measurementMode\": \"infrastructureBased\",\n        \"measurementConfiguration\": {\n          \"iamRoleArn\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"cloudPlatform\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"region\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"resourceType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"externalId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"measurementId\": \"de388932-a7e1-11ed-afa1-0242ac120002\",\n        \"measurementName\": \"EBS Usage\"\n      },\n      \"overageAllowed\": \"false\",\n      \"consumptionPrice\": \"20.00\",\n      \"sampleType\": \"gauge\",\n      \"paymentSchedule\": \"upfront\",\n      \"metadata\": {},\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": {},\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": {},\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"dimensionName\": \"string\",\n      \"consumptionUnit\": {\n        \"unit\": \"count-based\",\n        \"type\": \"count\"\n      },\n      \"usageIncrement\": \"24\",\n      \"dimensionId\": \"8a7b5f91-3b85-4cf4-8585-dcdf17f49004\",\n      \"rounding\": \"ceiling\",\n      \"usageEntitlement\": 1000000,\n      \"aggregationInterval\": \"hour\",\n      \"aggregationMethod\": \"sum\",\n      \"measurement\": {\n        \"measurementMode\": \"infrastructureBased\",\n        \"measurementConfiguration\": {\n          \"iamRoleArn\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"cloudPlatform\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"region\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"resourceType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"externalId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"measurementId\": \"de388932-a7e1-11ed-afa1-0242ac120002\",\n        \"measurementName\": \"EBS Usage\"\n      },\n      \"overageAllowed\": \"false\",\n      \"consumptionPrice\": \"20.00\",\n      \"sampleType\": \"gauge\",\n      \"paymentSchedule\": \"upfront\",\n      \"metadata\": {},\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": {},\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": {},\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3caddeef-9545-42c1-b8c0-cc5f6a397268",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d8c10e5-4684-438f-b13d-5a83f8d5f7a9",
+          "name": "Create a dimension",
+          "request": {
+            "name": "Create a dimension",
+            "description": {
+              "content": "Create a dimension\n<br><br>\n<a href=\"https://docs.paigo.tech/model-pricing-and-package/pricing-modeling-guide/single-dimension-pay-as-you-go-pricing\">See an example dimension for pay as you go pricing here</a>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dimensions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dimensionName\": \"<string>\",\n  \"consumptionUnit\": {\n    \"unit\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"usageIncrement\": \"<string>\",\n  \"rounding\": \"<string>\",\n  \"usageEntitlement\": \"<number>\",\n  \"aggregationInterval\": \"hour\",\n  \"aggregationMethod\": \"max\",\n  \"measurementId\": \"<string>\",\n  \"overageAllowed\": \"<string>\",\n  \"consumptionPrice\": \"<string>\",\n  \"sampleType\": \"<string>\",\n  \"paymentSchedule\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"tiers\": [\n    {\n      \"upperBound\": \"<string>\",\n      \"tierPosition\": \"<string>\",\n      \"tierName\": \"<string>\",\n      \"unitPrice\": \"<string>\"\n    },\n    {\n      \"upperBound\": \"<string>\",\n      \"tierPosition\": \"<string>\",\n      \"tierName\": \"<string>\",\n      \"unitPrice\": \"<string>\"\n    }\n  ],\n  \"tiersGroupByMetadata\": [\n    {\n      \"metadataGroups\": \"<object>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"<string>\",\n          \"tierPosition\": \"<string>\",\n          \"tierName\": \"<string>\",\n          \"unitPrice\": \"<string>\"\n        },\n        {\n          \"upperBound\": \"<string>\",\n          \"tierPosition\": \"<string>\",\n          \"tierName\": \"<string>\",\n          \"unitPrice\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"metadataGroups\": \"<object>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"<string>\",\n          \"tierPosition\": \"<string>\",\n          \"tierName\": \"<string>\",\n          \"unitPrice\": \"<string>\"\n        },\n        {\n          \"upperBound\": \"<string>\",\n          \"tierPosition\": \"<string>\",\n          \"tierName\": \"<string>\",\n          \"unitPrice\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "28cdd5e6-4c60-455a-9fe2-2b23f83ff28b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dimensionName\": \"<string>\",\n  \"consumptionUnit\": {\n    \"unit\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"usageIncrement\": \"24\",\n  \"rounding\": \"<string>\",\n  \"usageEntitlement\": 1000000,\n  \"aggregationInterval\": \"hour\",\n  \"aggregationMethod\": \"sum\",\n  \"measurementId\": \"5f7d1e3a-3b2d-4b0a-8b9a-5b9b5c9b5c9b\",\n  \"overageAllowed\": \"<string>\",\n  \"consumptionPrice\": \"20.00\",\n  \"sampleType\": \"gauge\",\n  \"paymentSchedule\": \"upfront\",\n  \"metadata\": \"<object>\",\n  \"tiers\": [\n    {\n      \"upperBound\": \"100\",\n      \"tierPosition\": \"1\",\n      \"tierName\": \"Tier 1\",\n      \"unitPrice\": \"10\"\n    },\n    {\n      \"upperBound\": \"100\",\n      \"tierPosition\": \"1\",\n      \"tierName\": \"Tier 1\",\n      \"unitPrice\": \"10\"\n    }\n  ],\n  \"tiersGroupByMetadata\": [\n    {\n      \"metadataGroups\": \"<object>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ]\n    },\n    {\n      \"metadataGroups\": \"<object>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\",\n  \"dimensionId\": \"fcb1fa34-8f11-4832-80f2-464cbc7a8546\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0bff73b3-1a77-4ee6-91f0-981f8b98bffb",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dimensionName\": \"<string>\",\n  \"consumptionUnit\": {\n    \"unit\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"usageIncrement\": \"24\",\n  \"rounding\": \"<string>\",\n  \"usageEntitlement\": 1000000,\n  \"aggregationInterval\": \"hour\",\n  \"aggregationMethod\": \"sum\",\n  \"measurementId\": \"5f7d1e3a-3b2d-4b0a-8b9a-5b9b5c9b5c9b\",\n  \"overageAllowed\": \"<string>\",\n  \"consumptionPrice\": \"20.00\",\n  \"sampleType\": \"gauge\",\n  \"paymentSchedule\": \"upfront\",\n  \"metadata\": \"<object>\",\n  \"tiers\": [\n    {\n      \"upperBound\": \"100\",\n      \"tierPosition\": \"1\",\n      \"tierName\": \"Tier 1\",\n      \"unitPrice\": \"10\"\n    },\n    {\n      \"upperBound\": \"100\",\n      \"tierPosition\": \"1\",\n      \"tierName\": \"Tier 1\",\n      \"unitPrice\": \"10\"\n    }\n  ],\n  \"tiersGroupByMetadata\": [\n    {\n      \"metadataGroups\": \"<object>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ]\n    },\n    {\n      \"metadataGroups\": \"<object>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "638f2ee8-e5f6-4de0-a1c2-474705c5541f",
+          "name": "Get a dimension by ID",
+          "request": {
+            "name": "Get a dimension by ID",
+            "description": {
+              "content": "Fine a dimension",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dimensions",
+                ":dimensionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dimensionId",
+                  "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d2f4613f-261c-43fc-8b84-85e2e0434322",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions",
+                    ":dimensionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dimensionId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\",\n  \"data\": [\n    {\n      \"dimensionName\": \"string\",\n      \"consumptionUnit\": {\n        \"unit\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"usageIncrement\": \"24\",\n      \"dimensionId\": \"8a7b5f91-3b85-4cf4-8585-dcdf17f49004\",\n      \"rounding\": \"floor\",\n      \"usageEntitlement\": 1000000,\n      \"aggregationInterval\": \"hour\",\n      \"aggregationMethod\": \"sum\",\n      \"measurement\": {\n        \"measurementMode\": \"infrastructureBased\",\n        \"measurementConfiguration\": {\n          \"iamRoleArn\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"cloudPlatform\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"region\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"resourceType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"externalId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"measurementId\": \"de388932-a7e1-11ed-afa1-0242ac120002\",\n        \"measurementName\": \"EBS Usage\"\n      },\n      \"overageAllowed\": \"true\",\n      \"consumptionPrice\": \"20.00\",\n      \"sampleType\": \"gauge\",\n      \"paymentSchedule\": \"upfront\",\n      \"metadata\": {},\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"dimensionName\": \"string\",\n      \"consumptionUnit\": {\n        \"unit\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"usageIncrement\": \"24\",\n      \"dimensionId\": \"8a7b5f91-3b85-4cf4-8585-dcdf17f49004\",\n      \"rounding\": \"ceiling\",\n      \"usageEntitlement\": 1000000,\n      \"aggregationInterval\": \"hour\",\n      \"aggregationMethod\": \"sum\",\n      \"measurement\": {\n        \"measurementMode\": \"infrastructureBased\",\n        \"measurementConfiguration\": {\n          \"iamRoleArn\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"cloudPlatform\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"region\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"resourceType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"externalId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"measurementId\": \"de388932-a7e1-11ed-afa1-0242ac120002\",\n        \"measurementName\": \"EBS Usage\"\n      },\n      \"overageAllowed\": \"false\",\n      \"consumptionPrice\": \"20.00\",\n      \"sampleType\": \"gauge\",\n      \"paymentSchedule\": \"upfront\",\n      \"metadata\": {},\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ],\n      \"tiersGroupByMetadata\": [\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"metadataGroups\": \"<object>\",\n          \"tiers\": [\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"upperBound\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierPosition\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tierName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unitPrice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e4726a5-5017-425c-a73c-dbe7b1af488e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions",
+                    ":dimensionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dimensionId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbbd812f-0308-4c61-b324-0bf5a319e040",
+              "name": "Dimension Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions",
+                    ":dimensionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dimensionId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No Dimensions found with ID: 22372d1d-1c0c-40e0-8167-af0b4f5c82f6\",\n  \"error\": \"Not Found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fcbc5f74-2ba4-4bf5-be7a-c5f478f21275",
+          "name": "Update a dimension",
+          "request": {
+            "name": "Update a dimension",
+            "description": {
+              "content": "Update a dimension",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dimensions",
+                ":dimensionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dimensionId",
+                  "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dimensionName\": \"<string>\",\n  \"consumptionUnit\": {\n    \"unit\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"usageIncrement\": \"<string>\",\n  \"usageEntitlement\": \"<number>\",\n  \"aggregationInterval\": \"hour\",\n  \"aggregationMethod\": \"max\",\n  \"measurementId\": \"<string>\",\n  \"tiers\": [\n    {\n      \"upperBound\": \"<string>\",\n      \"tierPosition\": \"<string>\",\n      \"tierName\": \"<string>\",\n      \"unitPrice\": \"<string>\"\n    },\n    {\n      \"upperBound\": \"<string>\",\n      \"tierPosition\": \"<string>\",\n      \"tierName\": \"<string>\",\n      \"unitPrice\": \"<string>\"\n    }\n  ],\n  \"rounding\": \"<string>\",\n  \"overageAllowed\": \"<string>\",\n  \"consumptionPrice\": \"<string>\",\n  \"sampleType\": \"<string>\",\n  \"paymentSchedule\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"tiersGroupByMetadata\": [\n    {\n      \"metadataGroups\": \"<object>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"<string>\",\n          \"tierPosition\": \"<string>\",\n          \"tierName\": \"<string>\",\n          \"unitPrice\": \"<string>\"\n        },\n        {\n          \"upperBound\": \"<string>\",\n          \"tierPosition\": \"<string>\",\n          \"tierName\": \"<string>\",\n          \"unitPrice\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"metadataGroups\": \"<object>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"<string>\",\n          \"tierPosition\": \"<string>\",\n          \"tierName\": \"<string>\",\n          \"unitPrice\": \"<string>\"\n        },\n        {\n          \"upperBound\": \"<string>\",\n          \"tierPosition\": \"<string>\",\n          \"tierName\": \"<string>\",\n          \"unitPrice\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc11c578-0a0f-4c2b-a8b1-adcb748ecf25",
+              "name": "Dimension Updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions",
+                    ":dimensionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dimensionId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dimensionName\": \"<string>\",\n  \"consumptionUnit\": {\n    \"unit\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"usageIncrement\": \"24\",\n  \"usageEntitlement\": 1000000,\n  \"aggregationInterval\": \"hour\",\n  \"aggregationMethod\": \"sum\",\n  \"measurementId\": \"5f7d1e3a-3b2d-4b0a-8b9a-5b9b5c9b5c9b\",\n  \"tiers\": [\n    {\n      \"upperBound\": \"100\",\n      \"tierPosition\": \"1\",\n      \"tierName\": \"Tier 1\",\n      \"unitPrice\": \"10\"\n    },\n    {\n      \"upperBound\": \"100\",\n      \"tierPosition\": \"1\",\n      \"tierName\": \"Tier 1\",\n      \"unitPrice\": \"10\"\n    }\n  ],\n  \"rounding\": \"<string>\",\n  \"overageAllowed\": \"<string>\",\n  \"consumptionPrice\": \"20.00\",\n  \"sampleType\": \"gauge\",\n  \"paymentSchedule\": \"upfront\",\n  \"metadata\": \"<object>\",\n  \"tiersGroupByMetadata\": [\n    {\n      \"metadataGroups\": \"<object>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ]\n    },\n    {\n      \"metadataGroups\": \"<object>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\",\n  \"dimensionId\": \"fcb1fa34-8f11-4832-80f2-464cbc7a8546\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9fe1831a-debb-40a2-838d-b1a749a5603f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions",
+                    ":dimensionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dimensionId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dimensionName\": \"<string>\",\n  \"consumptionUnit\": {\n    \"unit\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"usageIncrement\": \"24\",\n  \"usageEntitlement\": 1000000,\n  \"aggregationInterval\": \"hour\",\n  \"aggregationMethod\": \"sum\",\n  \"measurementId\": \"5f7d1e3a-3b2d-4b0a-8b9a-5b9b5c9b5c9b\",\n  \"tiers\": [\n    {\n      \"upperBound\": \"100\",\n      \"tierPosition\": \"1\",\n      \"tierName\": \"Tier 1\",\n      \"unitPrice\": \"10\"\n    },\n    {\n      \"upperBound\": \"100\",\n      \"tierPosition\": \"1\",\n      \"tierName\": \"Tier 1\",\n      \"unitPrice\": \"10\"\n    }\n  ],\n  \"rounding\": \"<string>\",\n  \"overageAllowed\": \"<string>\",\n  \"consumptionPrice\": \"20.00\",\n  \"sampleType\": \"gauge\",\n  \"paymentSchedule\": \"upfront\",\n  \"metadata\": \"<object>\",\n  \"tiersGroupByMetadata\": [\n    {\n      \"metadataGroups\": \"<object>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ]\n    },\n    {\n      \"metadataGroups\": \"<object>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a5c352d-8bbc-4b2c-83e7-8b4c3c6109c2",
+              "name": "Dimension Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions",
+                    ":dimensionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dimensionId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dimensionName\": \"<string>\",\n  \"consumptionUnit\": {\n    \"unit\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"usageIncrement\": \"24\",\n  \"usageEntitlement\": 1000000,\n  \"aggregationInterval\": \"hour\",\n  \"aggregationMethod\": \"sum\",\n  \"measurementId\": \"5f7d1e3a-3b2d-4b0a-8b9a-5b9b5c9b5c9b\",\n  \"tiers\": [\n    {\n      \"upperBound\": \"100\",\n      \"tierPosition\": \"1\",\n      \"tierName\": \"Tier 1\",\n      \"unitPrice\": \"10\"\n    },\n    {\n      \"upperBound\": \"100\",\n      \"tierPosition\": \"1\",\n      \"tierName\": \"Tier 1\",\n      \"unitPrice\": \"10\"\n    }\n  ],\n  \"rounding\": \"<string>\",\n  \"overageAllowed\": \"<string>\",\n  \"consumptionPrice\": \"20.00\",\n  \"sampleType\": \"gauge\",\n  \"paymentSchedule\": \"upfront\",\n  \"metadata\": \"<object>\",\n  \"tiersGroupByMetadata\": [\n    {\n      \"metadataGroups\": \"<object>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ]\n    },\n    {\n      \"metadataGroups\": \"<object>\",\n      \"tiers\": [\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        },\n        {\n          \"upperBound\": \"100\",\n          \"tierPosition\": \"1\",\n          \"tierName\": \"Tier 1\",\n          \"unitPrice\": \"10\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No Dimensions found with ID: 22372d1d-1c0c-40e0-8167-af0b4f5c82f6\",\n  \"error\": \"Not Found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1923267b-2592-46ea-aec4-46269e50b6ae",
+          "name": "Delete a dimension",
+          "request": {
+            "name": "Delete a dimension",
+            "description": {
+              "content": "Delete a dimension",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dimensions",
+                ":dimensionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dimensionId",
+                  "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b86a2a63-39b0-4c18-a6ff-99cbed7c60af",
+              "name": "Dimension Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions",
+                    ":dimensionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dimensionId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a365757d-5be5-455f-8c8f-9db59c877135",
+              "name": "Dimension Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions",
+                    ":dimensionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dimensionId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No Dimensions found with ID: 22372d1d-1c0c-40e0-8167-af0b4f5c82f6\",\n  \"error\": \"Not Found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58de62d3-4fe7-417b-89f7-2c79b0932be1",
+              "name": "Conflict - Can't delete dimension",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dimensions",
+                    ":dimensionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dimensionId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Cannot Delete Dimensions when they are attached to Offerings, remove dimensions from offerings before deleting. Current OfferingIds using the dimension: 693f9f08-202e-4377-b415-9767a59ce4cd\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.prod.paigo.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2c216560-73a0-473b-b1df-57d801595994",
+    "name": "Paigo Customers Dimensions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nFor developer documentation of the platform, please visit https://docs.paigo.tech.\n\n## Authentication\nPaigo API supports **bearer token** as the authentication method.\nSteps to set up authentication:\n1. Sign up with Paigo platform and get **client id** and **client secret**.\n2. Make a POST request to the auth endpoint `https://auth.paigo.tech/oauth/token` with the following body:\n```json\n{\n        audience: 'https://qnonyh1pc7.execute-api.us-east-1.amazonaws.com',\n        grant_type: 'client_credentials',\n        client_id: <your client id>,\n        client_secret: <your client secret>\n}\n```\nAdditionally verify that the following headers are set by the client you are using: \n```json\n{\n    \"Content-Type\": \"application/json\"\n}\n```\n\n3. Use the access token in the response to make requests to the Paigo API. Here is an example of the response:  \n```json   \n{\n            access_token: <your access token>,\n            expires_in: 86400,\n            token_type: 'Bearer'  \n}\n```\n4. To use Paigo API, add in the header of your request:\n```json\n{\n        Authorization: \"Bearer <your access token>\"\n}\n```\n\n## API Endpoints\nPaigo API has the following endpoint:\n- Production Environment API: `https://api.prod.paigo.tech`\n        ",
+      "type": "text/plain"
+    }
+  }
+}

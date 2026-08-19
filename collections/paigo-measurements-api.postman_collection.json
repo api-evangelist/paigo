@@ -1,0 +1,1000 @@
+{
+  "item": [
+    {
+      "id": "853d573e-162f-48c6-b61b-94f03e6892ac",
+      "name": "Measurements",
+      "description": {
+        "content": "Manage measurements in Paigo. <br><br> See <a href=\"https://docs.paigo.tech/measure-usage-and-collect-data/measure-and-collect-usage-data-at-production-scale\">Measure and Collect Usage Data at Production Scale</a> for more information.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1d6c45d1-f91b-487d-9808-10d94ecf3fa3",
+          "name": "Get all measurements",
+          "request": {
+            "name": "Get all measurements",
+            "description": {
+              "content": "List all measurements created",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "measurements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3b2cfb3b-551e-48db-9190-14502a3a66c9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "measurements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\",\n  \"data\": [\n    {\n      \"measurementMode\": \"infrastructureBased\",\n      \"measurementConfiguration\": {\n        \"iamRoleArn\": \"arn:aws:iam::214826386939:role/paigo-scraper\",\n        \"cloudPlatform\": \"aws\",\n        \"region\": \"us-east-1\",\n        \"resourceType\": \"ebs\",\n        \"externalId\": \"123456789\"\n      },\n      \"measurementId\": \"de388932-a7e1-11ed-afa1-0242ac120002\",\n      \"measurementName\": \"EBS Usage\"\n    },\n    {\n      \"measurementMode\": \"infrastructureBased\",\n      \"measurementConfiguration\": {\n        \"iamRoleArn\": \"arn:aws:iam::214826386939:role/paigo-scraper\",\n        \"cloudPlatform\": \"aws\",\n        \"region\": \"us-east-1\",\n        \"resourceType\": \"ebs\",\n        \"externalId\": \"123456789\"\n      },\n      \"measurementId\": \"de388932-a7e1-11ed-afa1-0242ac120002\",\n      \"measurementName\": \"EBS Usage\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e5111b2-5d9a-4d55-9a84-503565999824",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "measurements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9ae489b-cfc2-47d2-bfbe-b93c181e85c0",
+          "name": "Create a measurement",
+          "request": {
+            "name": "Create a measurement",
+            "description": {
+              "content": "Create a measurement",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "measurements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"measurementMode\": \"<string>\",\n  \"measurementConfiguration\": {\n    \"iamRoleArn\": \"<string>\",\n    \"cloudPlatform\": \"<string>\",\n    \"region\": \"<string>\",\n    \"resourceType\": \"<string>\",\n    \"externalId\": \"<string>\"\n  },\n  \"measurementName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3199201c-ec58-415b-aae7-e0ed1ee75344",
+              "name": "Measurement Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "measurements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"measurementMode\": \"infrastructureBased\",\n  \"measurementConfiguration\": {\n    \"iamRoleArn\": \"arn:aws:iam::214826386939:role/paigo-scraper\",\n    \"cloudPlatform\": \"aws\",\n    \"region\": \"us-east-1\",\n    \"resourceType\": \"ebs\",\n    \"externalId\": \"123456789\"\n  },\n  \"measurementName\": \"EBS Usage\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\",\n  \"measurementId\": \"a65ae317-e940-44cc-b570-cc74d1897c36\",\n  \"externalId\": \"1234567890abc\",\n  \"iamRoleArn\": \"arn:aws:iam::123456789012:role/paigo-datastore-role\",\n  \"ingestion\": \"s3://paigo-datastore-dump-bucket/\",\n  \"dlq\": \"s3://paigo-datastore-dlq-bucket/\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54a5c818-73aa-4025-8541-b9512ab2abf4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "measurements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"measurementMode\": \"infrastructureBased\",\n  \"measurementConfiguration\": {\n    \"iamRoleArn\": \"arn:aws:iam::214826386939:role/paigo-scraper\",\n    \"cloudPlatform\": \"aws\",\n    \"region\": \"us-east-1\",\n    \"resourceType\": \"ebs\",\n    \"externalId\": \"123456789\"\n  },\n  \"measurementName\": \"EBS Usage\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ca3993b-40e7-4a60-a6c1-aae1a9ce562d",
+          "name": "Get a measurement by ID",
+          "request": {
+            "name": "Get a measurement by ID",
+            "description": {
+              "content": "Find a measurement",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "measurements",
+                ":measurementId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "measurementId",
+                  "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `a65ae317-e940-44cc-b570-cc74d1897c36`"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "82a482ce-b85a-435b-86fb-6fc2a6aedc29",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "measurements",
+                    ":measurementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "measurementId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `a65ae317-e940-44cc-b570-cc74d1897c36`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\",\n  \"data\": [\n    {\n      \"measurementMode\": \"infrastructureBased\",\n      \"measurementConfiguration\": {\n        \"iamRoleArn\": \"arn:aws:iam::214826386939:role/paigo-scraper\",\n        \"cloudPlatform\": \"aws\",\n        \"region\": \"us-east-1\",\n        \"resourceType\": \"ebs\",\n        \"externalId\": \"123456789\"\n      },\n      \"measurementId\": \"de388932-a7e1-11ed-afa1-0242ac120002\",\n      \"measurementName\": \"EBS Usage\"\n    },\n    {\n      \"measurementMode\": \"infrastructureBased\",\n      \"measurementConfiguration\": {\n        \"iamRoleArn\": \"arn:aws:iam::214826386939:role/paigo-scraper\",\n        \"cloudPlatform\": \"aws\",\n        \"region\": \"us-east-1\",\n        \"resourceType\": \"ebs\",\n        \"externalId\": \"123456789\"\n      },\n      \"measurementId\": \"de388932-a7e1-11ed-afa1-0242ac120002\",\n      \"measurementName\": \"EBS Usage\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0cd77315-509f-4a8e-bb8d-b6b0a1fda91f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "measurements",
+                    ":measurementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "measurementId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `a65ae317-e940-44cc-b570-cc74d1897c36`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "885b3dbf-7d93-4641-9e72-3db777cb0a8e",
+              "name": "Measurement Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "measurements",
+                    ":measurementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "measurementId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `a65ae317-e940-44cc-b570-cc74d1897c36`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Measurement with ID: 807867e0-26ca-4831-846b-a670224db055 not found\",\n  \"error\": \"Not Found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e76d931e-9069-495e-b012-784f8b3f238c",
+          "name": "Update a measurement",
+          "request": {
+            "name": "Update a measurement",
+            "description": {
+              "content": "Update a measurement",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "measurements",
+                ":measurementId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "measurementId",
+                  "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `a65ae317-e940-44cc-b570-cc74d1897c36`"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"measurementMode\": \"<string>\",\n  \"measurementName\": \"<string>\",\n  \"measurementConfiguration\": {\n    \"iamRoleArn\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"cloudPlatform\": \"<string>\",\n    \"region\": \"<string>\",\n    \"resourceType\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f7a6a977-6506-4ac1-ba21-633c7ab670b0",
+              "name": "Measurement Updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "measurements",
+                    ":measurementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "measurementId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `a65ae317-e940-44cc-b570-cc74d1897c36`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"measurementMode\": \"<string>\",\n  \"measurementName\": \"<string>\",\n  \"measurementConfiguration\": {\n    \"iamRoleArn\": \"arn:aws:iam::214826386939:role/paigo-scraper\",\n    \"externalId\": \"123456789\",\n    \"cloudPlatform\": \"aws\",\n    \"region\": \"us-east-1\",\n    \"resourceType\": \"ebs\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\",\n  \"measurementId\": \"a65ae317-e940-44cc-b570-cc74d1897c36\",\n  \"externalId\": \"1234567890abc\",\n  \"iamRoleArn\": \"arn:aws:iam::123456789012:role/paigo-datastore-role\",\n  \"ingestion\": \"s3://paigo-datastore-dump-bucket/\",\n  \"dlq\": \"s3://paigo-datastore-dlq-bucket/\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63351e84-88ee-4059-8a22-f7f12b53d7e2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "measurements",
+                    ":measurementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "measurementId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `a65ae317-e940-44cc-b570-cc74d1897c36`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"measurementMode\": \"<string>\",\n  \"measurementName\": \"<string>\",\n  \"measurementConfiguration\": {\n    \"iamRoleArn\": \"arn:aws:iam::214826386939:role/paigo-scraper\",\n    \"externalId\": \"123456789\",\n    \"cloudPlatform\": \"aws\",\n    \"region\": \"us-east-1\",\n    \"resourceType\": \"ebs\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77703a2b-8cef-4b82-b311-f602bef94370",
+              "name": "Measurement Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "measurements",
+                    ":measurementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "measurementId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `a65ae317-e940-44cc-b570-cc74d1897c36`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"measurementMode\": \"<string>\",\n  \"measurementName\": \"<string>\",\n  \"measurementConfiguration\": {\n    \"iamRoleArn\": \"arn:aws:iam::214826386939:role/paigo-scraper\",\n    \"externalId\": \"123456789\",\n    \"cloudPlatform\": \"aws\",\n    \"region\": \"us-east-1\",\n    \"resourceType\": \"ebs\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Measurement with ID: 807867e0-26ca-4831-846b-a670224db055 not found\",\n  \"error\": \"Not Found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1de972f2-1ff3-416d-9e26-afca6e995661",
+          "name": "Delete a measurement",
+          "request": {
+            "name": "Delete a measurement",
+            "description": {
+              "content": "Delete a measurement",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "measurements",
+                ":measurementId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "measurementId",
+                  "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `a65ae317-e940-44cc-b570-cc74d1897c36`"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "18390a84-2dcf-4e2d-ae52-ec9783b5efd1",
+              "name": "Measurement deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "measurements",
+                    ":measurementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "measurementId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `a65ae317-e940-44cc-b570-cc74d1897c36`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\",\n  \"measurementId\": \"193b6967-1783-434f-85cb-a6fc4e1e385b\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7150678-6e63-4f09-8cbb-81390ad3f2ed",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "measurements",
+                    ":measurementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "measurementId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `a65ae317-e940-44cc-b570-cc74d1897c36`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3386bdd-5c09-40b3-8d83-2087afda6957",
+              "name": "Measurement Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "measurements",
+                    ":measurementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "measurementId",
+                      "description": "(Required) The unique identifier assigned by Paigo.<br><br> Example: `a65ae317-e940-44cc-b570-cc74d1897c36`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Measurement with ID: 807867e0-26ca-4831-846b-a670224db055 not found\",\n  \"error\": \"Not Found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.prod.paigo.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "52f08495-c9a9-4e66-b881-91ad81df9b54",
+    "name": "Paigo Customers Measurements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nFor developer documentation of the platform, please visit https://docs.paigo.tech.\n\n## Authentication\nPaigo API supports **bearer token** as the authentication method.\nSteps to set up authentication:\n1. Sign up with Paigo platform and get **client id** and **client secret**.\n2. Make a POST request to the auth endpoint `https://auth.paigo.tech/oauth/token` with the following body:\n```json\n{\n        audience: 'https://qnonyh1pc7.execute-api.us-east-1.amazonaws.com',\n        grant_type: 'client_credentials',\n        client_id: <your client id>,\n        client_secret: <your client secret>\n}\n```\nAdditionally verify that the following headers are set by the client you are using: \n```json\n{\n    \"Content-Type\": \"application/json\"\n}\n```\n\n3. Use the access token in the response to make requests to the Paigo API. Here is an example of the response:  \n```json   \n{\n            access_token: <your access token>,\n            expires_in: 86400,\n            token_type: 'Bearer'  \n}\n```\n4. To use Paigo API, add in the header of your request:\n```json\n{\n        Authorization: \"Bearer <your access token>\"\n}\n```\n\n## API Endpoints\nPaigo API has the following endpoint:\n- Production Environment API: `https://api.prod.paigo.tech`\n        ",
+      "type": "text/plain"
+    }
+  }
+}

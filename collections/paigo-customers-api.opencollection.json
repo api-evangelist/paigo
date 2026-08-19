@@ -1,0 +1,528 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paigo Customers API",
+    "version": "v1.10"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all Customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.paigo.tech/customers",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List all customers created in this account"
+        },
+        {
+          "info": {
+            "name": "Create a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.paigo.tech/customers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a customer"
+        },
+        {
+          "info": {
+            "name": "Assign a child to a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.paigo.tech/customers/:customerId/children/:childId",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Assign a child to a customer"
+        },
+        {
+          "info": {
+            "name": "Update a child to a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.prod.paigo.tech/customers/:customerId/children/:childId",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update child relationship"
+        },
+        {
+          "info": {
+            "name": "Remove a child from a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.prod.paigo.tech/customers/:customerId/children/:childId",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Remove a child from parent"
+        },
+        {
+          "info": {
+            "name": "Get a customer by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.paigo.tech/customers/:customerId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `f8e8c18c-0a59-40f4-bf72-356090366355`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Find one customer"
+        },
+        {
+          "info": {
+            "name": "Update a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.prod.paigo.tech/customers/:customerId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `f8e8c18c-0a59-40f4-bf72-356090366355`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a customer"
+        },
+        {
+          "info": {
+            "name": "Delete a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.prod.paigo.tech/customers/:customerId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `f8e8c18c-0a59-40f4-bf72-356090366355`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a customer"
+        },
+        {
+          "info": {
+            "name": "Get a refund for customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.paigo.tech/customers/:customerId/refunds",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get customer refunds\n<br><br>\n<b>NOTE:</b> This endpoint currently only supports Stripe for a refund channel. Customers with manual payments will cause an 400 error response."
+        },
+        {
+          "info": {
+            "name": "Create a refund for customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.paigo.tech/customers/:customerId/refunds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create Customer Refund\n<br><br>\n<b>NOTE:</b> This endpoint currently only supports Stripe for a refund channel. Customers with manual payments will cause an 400 error response."
+        },
+        {
+          "info": {
+            "name": "Get a Customer Enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.paigo.tech/customers/:customerId/enrollment",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `f8e8c18c-0a59-40f4-bf72-356090366355`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a Customer Enrollment"
+        },
+        {
+          "info": {
+            "name": "Update Customer Offering Enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.prod.paigo.tech/customers/:customerId/enrollment",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `f8e8c18c-0a59-40f4-bf72-356090366355`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update Customer Enrollment"
+        },
+        {
+          "info": {
+            "name": "Get payments for customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.paigo.tech/customers/:customerId/payments",
+            "params": [
+              {
+                "name": "invoiceId",
+                "value": "476b84a0-bba7-4e05-9040-59cffdff493a",
+                "type": "query",
+                "description": "The Paigo invoiceId associated with the stripe payment. Can be undefined.\nThis operation instructs paigo to search for payments with the given invoiceId in the metadata of the payment intent.\n<br><br>\nExample: `\"476b84a0-bba7-4e05-9040-59cffdff493a\"`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get customer payments\n<br><br>\n<b>NOTE:</b> This endpoint currently only supports Stripe for a payment channel. Customers with manual payments will cause an 400 error response."
+        },
+        {
+          "info": {
+            "name": "Get Stripe Portal for customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.paigo.tech/customers/:customerId/stripePortal",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Update free trial",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.prod.paigo.tech/customers/:customerId/freeTrial",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `f8e8c18c-0a59-40f4-bf72-356090366355`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a free trial of a customer"
+        },
+        {
+          "info": {
+            "name": "Get usage data for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.paigo.tech/customers/:customerId/usage",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `f8e8c18c-0a59-40f4-bf72-356090366355`"
+              },
+              {
+                "name": "aggregationInterval",
+                "value": "",
+                "type": "query",
+                "description": "The aggregation interval to use for the query.\n<br><br>\nDefault: the aggregation interval defined in the dimension definition."
+              },
+              {
+                "name": "ignoreEnrollmentDate",
+                "value": "",
+                "type": "query",
+                "description": "If the current offering enrollment date should be ignored for the response data. Enables looking at usage prior to the enrollment date.\n<br><br>\nDefault: `false`"
+              },
+              {
+                "name": "aggregationPurpose",
+                "value": "",
+                "type": "query",
+                "description": "The aggregation purpose to use for the query. Enum: `\"billing\"`, `\"metering\"`\n<br><br>\nDefault: \"billing\""
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time of the time range to query.\nThe time range is inclusive of the start time and exclusive of the end time.\nThe end time must be after the start time.\nThe end time must be before the current time.\nThe end time must be in <a href=\"https://ijmacd.github.io/rfc3339-iso8601/\">RFC3339</a> format.\n<br><br>\nExample: `\"2020-01-01T00:00:00Z\"`"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "The end time of the time range to query.\nThe time range is inclusive of the start time and exclusive of the end time.\nThe end time must be after the start time.\nThe end time must be before the current time.\nThe end time must be in <a href=\"https://ijmacd.github.io/rfc3339-iso8601/\">RFC3339</a> format.\n<br><br>\nExample: `\"2020-01-01T00:00:00Z\"`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get usage data for a customer"
+        },
+        {
+          "info": {
+            "name": "Get a customer auth token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.paigo.tech/customers/:customerId/token",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `248fc14e-9934-4d3c-a39f-ce43cbb3f7b2`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a token to allow SaaS customers to view their billing data in paigo securely"
+        },
+        {
+          "info": {
+            "name": "Get customer credit ledger",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.paigo.tech/customers/:customerId/transactions",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `f8e8c18c-0a59-40f4-bf72-356090366355`"
+              }
+            ]
+          },
+          "docs": "Get the ledger of wallet transactions applied to a customer"
+        },
+        {
+          "info": {
+            "name": "Create a wallet transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.paigo.tech/customers/:customerId/transactions",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Commit a transaction to the ledger for a customer. This will update thier credit balances"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

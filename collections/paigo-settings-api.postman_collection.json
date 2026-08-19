@@ -1,0 +1,372 @@
+{
+  "item": [
+    {
+      "id": "65206397-b65a-40c3-8133-3440e8db81d0",
+      "name": "Settings",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2d1007d1-2697-4e84-9c9f-5c991b43f0ff",
+          "name": "Update Business Profile Settings",
+          "request": {
+            "name": "Update Business Profile Settings",
+            "description": {
+              "content": "Update Business Info and Logo.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "settings",
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sendInvoiceEmail\": \"<string>\",\n  \"businessName\": \"<string>\",\n  \"addressLine1\": \"<string>\",\n  \"addressLine2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"country\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"supportEmail\": \"<string>\",\n  \"redirectionUrl\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0a63b4a0-45fb-402b-839c-cdd0e24f3afe",
+              "name": "Updated Business Profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "settings",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sendInvoiceEmail\": \"<string>\",\n  \"businessName\": \"My Smart Business Name\",\n  \"addressLine1\": \"123 Success Street\",\n  \"addressLine2\": \"Suite 100\",\n  \"city\": \"San Francisco\",\n  \"state\": \"CA\",\n  \"country\": \"USA\",\n  \"postalCode\": \"94188\",\n  \"supportEmail\": \"support@mybusiness.com\",\n  \"redirectionUrl\": \"https://mybusiness.com/redirect\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\",\n  \"data\": [\n    {\n      \"accountState\": \"sandbox\",\n      \"invoiceApproval\": \"automatic\",\n      \"invoiceGeneration\": \"perTransaction\",\n      \"sendInvoiceEmail\": \"false\",\n      \"freeDimensionOnInvoice\": \"hide\",\n      \"businessName\": \"string\",\n      \"defaultCurrency\": \"USD\",\n      \"taxRate\": \"string\",\n      \"addressLine1\": \"string\",\n      \"addressLine2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"country\": \"string\",\n      \"postalCode\": \"string\",\n      \"supportEmail\": \"string\",\n      \"vatId\": \"string\",\n      \"redirectionUrl\": \"string\",\n      \"invoiceEmailConfiguration\": {\n        \"reminders\": {\n          \"enabled\": true,\n          \"beforeDueReminders\": {\n            \"description\": \"The number of days before the due date to send reminders.\\n<br><br>\\nExample: `{\\\"first\\\": \\\"1\\\", \\\"second\\\": \\\"3\\\", \\\"third\\\": \\\"7\\\"}`\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"afterDueReminders\": {\n            \"description\": \"The number of days after the due date to send reminders.\\n<br><br>\\nExample: `{\\\"first\\\": \\\"1\\\", \\\"second\\\": \\\"3\\\", \\\"third\\\": \\\"7\\\"}`\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"invoicePaymentTerm\": \"30\",\n      \"customFields\": \"string\",\n      \"taxJarApiKey\": \"string\",\n      \"logoUrl\": \"string\",\n      \"taxCategory\": \"string\",\n      \"stripeAccountId\": \"string\",\n      \"generatePDFPaymentLink\": true,\n      \"taxCalculationType\": \"\",\n      \"cloudIAM\": {\n        \"iamRoleArn\": \"string\",\n        \"externalId\": \"string\"\n      },\n      \"pages\": {\n        \"extended\": {},\n        \"invoice\": {\n          \"enabled\": false,\n          \"text\": \"string\"\n        },\n        \"payment\": {\n          \"enabled\": true,\n          \"text\": \"string\"\n        },\n        \"offering\": {\n          \"offerings\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"appearance\": {\n            \"pricingTable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"border\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"background\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"radius\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"paigoBranding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"enabled\": false,\n          \"text\": \"string\"\n        }\n      },\n      \"computeCostSource\": \"none\",\n      \"storageCostSource\": \"ebs\",\n      \"archiveCostSource\": \"ebs\"\n    },\n    {\n      \"accountState\": \"sandbox\",\n      \"invoiceApproval\": \"automatic\",\n      \"invoiceGeneration\": \"perTransaction\",\n      \"sendInvoiceEmail\": \"true\",\n      \"freeDimensionOnInvoice\": \"hide\",\n      \"businessName\": \"string\",\n      \"defaultCurrency\": \"CNY\",\n      \"taxRate\": \"string\",\n      \"addressLine1\": \"string\",\n      \"addressLine2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"country\": \"string\",\n      \"postalCode\": \"string\",\n      \"supportEmail\": \"string\",\n      \"vatId\": \"string\",\n      \"redirectionUrl\": \"string\",\n      \"invoiceEmailConfiguration\": {\n        \"reminders\": {\n          \"enabled\": true,\n          \"beforeDueReminders\": {\n            \"description\": \"The number of days before the due date to send reminders.\\n<br><br>\\nExample: `{\\\"first\\\": \\\"1\\\", \\\"second\\\": \\\"3\\\", \\\"third\\\": \\\"7\\\"}`\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"afterDueReminders\": {\n            \"description\": \"The number of days after the due date to send reminders.\\n<br><br>\\nExample: `{\\\"first\\\": \\\"1\\\", \\\"second\\\": \\\"3\\\", \\\"third\\\": \\\"7\\\"}`\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"invoicePaymentTerm\": \"30\",\n      \"customFields\": \"string\",\n      \"taxJarApiKey\": \"string\",\n      \"logoUrl\": \"string\",\n      \"taxCategory\": \"string\",\n      \"stripeAccountId\": \"string\",\n      \"generatePDFPaymentLink\": true,\n      \"taxCalculationType\": \"manual\",\n      \"cloudIAM\": {\n        \"iamRoleArn\": \"string\",\n        \"externalId\": \"string\"\n      },\n      \"pages\": {\n        \"extended\": {},\n        \"invoice\": {\n          \"enabled\": false,\n          \"text\": \"string\"\n        },\n        \"payment\": {\n          \"enabled\": false,\n          \"text\": \"string\"\n        },\n        \"offering\": {\n          \"offerings\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"appearance\": {\n            \"pricingTable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"border\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"background\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"radius\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"paigoBranding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"enabled\": true,\n          \"text\": \"string\"\n        }\n      },\n      \"computeCostSource\": \"none\",\n      \"storageCostSource\": \"ebs\",\n      \"archiveCostSource\": \"ebs\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc3ff2f6-428a-45d2-8622-38dc278aa07b",
+          "name": "Get Business Profile Settings",
+          "request": {
+            "name": "Get Business Profile Settings",
+            "description": {
+              "content": "Get Business Info.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "settings",
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b82c3b20-11a0-42b0-a6dc-7e25c95dde0c",
+              "name": "Get Business Profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "settings",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"businessName\": \"My Smart Business Name\",\n  \"addressLine1\": \"123 Success Street\",\n  \"addressLine2\": \"Suite 100\",\n  \"city\": \"San Francisco\",\n  \"state\": \"CA\",\n  \"country\": \"USA\",\n  \"postalCode\": \"94188\",\n  \"supportEmail\": \"support@mybusiness.com\",\n  \"sendInvoiceEmail\": \"true\",\n  \"stripeAccountId\": \"acct_1J2k3l4m5n6o7p8q9r0s\",\n  \"redirectionUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8eb38a25-2ded-45d4-ba06-a98a7d6cb834",
+          "name": "Upload Invoice Image",
+          "request": {
+            "name": "Upload Invoice Image",
+            "description": {
+              "content": "Upload Business Logo, file format supported: png,jpg,jpeg; max file size supported: 30Mb.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "settings",
+                "invoiceImage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4d0c0a5f-795c-4c18-839c-4426d2cd52c3",
+              "name": "A message describing the upload success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "settings",
+                    "invoiceImage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9758e0c9-8c2e-425e-b9e3-5dc74f8ba9f1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "settings",
+                    "invoiceImage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.prod.paigo.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6d83f3d0-17af-473f-99c3-8d3dc7b7cff3",
+    "name": "Paigo Customers Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nFor developer documentation of the platform, please visit https://docs.paigo.tech.\n\n## Authentication\nPaigo API supports **bearer token** as the authentication method.\nSteps to set up authentication:\n1. Sign up with Paigo platform and get **client id** and **client secret**.\n2. Make a POST request to the auth endpoint `https://auth.paigo.tech/oauth/token` with the following body:\n```json\n{\n        audience: 'https://qnonyh1pc7.execute-api.us-east-1.amazonaws.com',\n        grant_type: 'client_credentials',\n        client_id: <your client id>,\n        client_secret: <your client secret>\n}\n```\nAdditionally verify that the following headers are set by the client you are using: \n```json\n{\n    \"Content-Type\": \"application/json\"\n}\n```\n\n3. Use the access token in the response to make requests to the Paigo API. Here is an example of the response:  \n```json   \n{\n            access_token: <your access token>,\n            expires_in: 86400,\n            token_type: 'Bearer'  \n}\n```\n4. To use Paigo API, add in the header of your request:\n```json\n{\n        Authorization: \"Bearer <your access token>\"\n}\n```\n\n## API Endpoints\nPaigo API has the following endpoint:\n- Production Environment API: `https://api.prod.paigo.tech`\n        ",
+      "type": "text/plain"
+    }
+  }
+}

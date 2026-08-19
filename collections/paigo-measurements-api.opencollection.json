@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paigo Customers Measurements API",
+    "version": "v1.10"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Measurements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all measurements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.paigo.tech/measurements",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List all measurements created"
+        },
+        {
+          "info": {
+            "name": "Create a measurement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.paigo.tech/measurements",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a measurement"
+        },
+        {
+          "info": {
+            "name": "Get a measurement by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.paigo.tech/measurements/:measurementId",
+            "params": [
+              {
+                "name": "measurementId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `a65ae317-e940-44cc-b570-cc74d1897c36`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Find a measurement"
+        },
+        {
+          "info": {
+            "name": "Update a measurement",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.prod.paigo.tech/measurements/:measurementId",
+            "params": [
+              {
+                "name": "measurementId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `a65ae317-e940-44cc-b570-cc74d1897c36`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a measurement"
+        },
+        {
+          "info": {
+            "name": "Delete a measurement",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.prod.paigo.tech/measurements/:measurementId",
+            "params": [
+              {
+                "name": "measurementId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `a65ae317-e940-44cc-b570-cc74d1897c36`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a measurement"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

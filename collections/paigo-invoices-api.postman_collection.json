@@ -1,0 +1,373 @@
+{
+  "item": [
+    {
+      "id": "7219286d-4ab3-48bf-bdba-e268a2a5f9ab",
+      "name": "Invoices",
+      "description": {
+        "content": "Manage invoices in Paigo.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f64fefe1-c0fc-4eba-b8af-e699006cd067",
+          "name": "Get an Invoice by ID",
+          "request": {
+            "name": "Get an Invoice by ID",
+            "description": {
+              "content": "Find an Invoice\n<br><br> Download links for invoices are valid for 7 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":invoiceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "download",
+                  "value": "<string>",
+                  "description": "Get a download link for the invoice in the response"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoiceId",
+                  "description": "(Required) The invoice ID assigned by Paigo"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5fc78cfd-06c7-48e7-a0f1-3edd35db3415",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "download",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) The invoice ID assigned by Paigo"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\",\n  \"data\": [\n    {\n      \"invoiceStatus\": \"Draft\",\n      \"invoicePaymentTerm\": \"\",\n      \"invoiceDate\": \"2021-01-01T00:00:00.000Z\",\n      \"totalAmountWithoutTax\": 100,\n      \"currency\": \"USD\",\n      \"invoiceCommunicationHistory\": [\n        [],\n        []\n      ],\n      \"lineItems\": [\n        {\n          \"name\": \"Paigo Pro\",\n          \"quantity\": 1,\n          \"unitCost\": 100,\n          \"description\": \"Paigo Pro subscription\"\n        },\n        {\n          \"name\": \"Paigo Pro\",\n          \"quantity\": 1,\n          \"unitCost\": 100,\n          \"description\": \"Paigo Pro subscription\"\n        }\n      ],\n      \"refunds\": [\n        {\n          \"amountRefunded\": \"100.00\",\n          \"amount\": \"100.00\",\n          \"chargeId\": \"ch_1J5J1n2eZvKYlo2C0q2Q2Q2Q2\",\n          \"metadata\": {},\n          \"currency\": \"usd\",\n          \"status\": \"succeeded\",\n          \"created\": \"2021-08-02T20:00:00.000Z\"\n        },\n        {\n          \"amountRefunded\": \"100.00\",\n          \"amount\": \"100.00\",\n          \"chargeId\": \"ch_1J5J1n2eZvKYlo2C0q2Q2Q2Q2\",\n          \"metadata\": {},\n          \"currency\": \"usd\",\n          \"status\": \"succeeded\",\n          \"created\": \"2021-08-02T20:00:00.000Z\"\n        }\n      ],\n      \"payments\": [\n        {\n          \"type\": \"Credit\",\n          \"transactionAmount\": \"100.00\",\n          \"timestamp\": \"2021-01-01T00:00:00.000Z\",\n          \"metadata\": {}\n        },\n        {\n          \"type\": \"Credit\",\n          \"transactionAmount\": \"100.00\",\n          \"timestamp\": \"2021-01-01T00:00:00.000Z\",\n          \"metadata\": {}\n        }\n      ],\n      \"customerId\": \"e962aefe-6134-4f28-8967-a11cfe7f0bf2\",\n      \"taxAmount\": 10,\n      \"amountPaid\": 110,\n      \"invoiceUrl\": \"https://my-cool-bucket.s3.amazonaws.com/invoices/123MyCoolCorp980/2021-01-01/123MyCoolCorp980-2021-01-01-1234567890.pdf\",\n      \"paymentLink\": \"https://example.com/redirect\",\n      \"invoiceType\": \"TOPUP\"\n    },\n    {\n      \"invoiceStatus\": \"Draft\",\n      \"invoicePaymentTerm\": \"30\",\n      \"invoiceDate\": \"2021-01-01T00:00:00.000Z\",\n      \"totalAmountWithoutTax\": 100,\n      \"currency\": \"USD\",\n      \"invoiceCommunicationHistory\": [\n        [],\n        []\n      ],\n      \"lineItems\": [\n        {\n          \"name\": \"Paigo Pro\",\n          \"quantity\": 1,\n          \"unitCost\": 100,\n          \"description\": \"Paigo Pro subscription\"\n        },\n        {\n          \"name\": \"Paigo Pro\",\n          \"quantity\": 1,\n          \"unitCost\": 100,\n          \"description\": \"Paigo Pro subscription\"\n        }\n      ],\n      \"refunds\": [\n        {\n          \"amountRefunded\": \"100.00\",\n          \"amount\": \"100.00\",\n          \"chargeId\": \"ch_1J5J1n2eZvKYlo2C0q2Q2Q2Q2\",\n          \"metadata\": {},\n          \"currency\": \"usd\",\n          \"status\": \"succeeded\",\n          \"created\": \"2021-08-02T20:00:00.000Z\"\n        },\n        {\n          \"amountRefunded\": \"100.00\",\n          \"amount\": \"100.00\",\n          \"chargeId\": \"ch_1J5J1n2eZvKYlo2C0q2Q2Q2Q2\",\n          \"metadata\": {},\n          \"currency\": \"usd\",\n          \"status\": \"succeeded\",\n          \"created\": \"2021-08-02T20:00:00.000Z\"\n        }\n      ],\n      \"payments\": [\n        {\n          \"type\": \"Credit\",\n          \"transactionAmount\": \"100.00\",\n          \"timestamp\": \"2021-01-01T00:00:00.000Z\",\n          \"metadata\": {}\n        },\n        {\n          \"type\": \"Credit\",\n          \"transactionAmount\": \"100.00\",\n          \"timestamp\": \"2021-01-01T00:00:00.000Z\",\n          \"metadata\": {}\n        }\n      ],\n      \"customerId\": \"e962aefe-6134-4f28-8967-a11cfe7f0bf2\",\n      \"taxAmount\": 10,\n      \"amountPaid\": 110,\n      \"invoiceUrl\": \"https://my-cool-bucket.s3.amazonaws.com/invoices/123MyCoolCorp980/2021-01-01/123MyCoolCorp980-2021-01-01-1234567890.pdf\",\n      \"paymentLink\": \"https://example.com/redirect\",\n      \"invoiceType\": \"TOPUP\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "842df432-c7ca-41c9-95d0-60d36bc8dd56",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "download",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) The invoice ID assigned by Paigo"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This is a sample API message. The exact message may vary based on the API behavior\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c54608a-bef7-47dc-8ba5-fd269d7ab3e0",
+              "name": "Invoice Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "download",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) The invoice ID assigned by Paigo"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invoice with ID: 7c71590b-3368-4d53-b9cb-5203605b4946 not found\",\n  \"error\": \"Not Found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d49ab3f7-74f5-42cd-88a6-c778296974fe",
+          "name": "Create",
+          "request": {
+            "name": "Create",
+            "description": {},
+            "url": {
+              "path": [
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://auth.paigo.tech/oauth/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"<string>\",\n  \"items\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"invoiceDate\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"invoicePaymentTerm\": \"<string>\",\n  \"storePaymentAsCredit\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "954bb238-a573-437e-a824-14c714a6dd94",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"Khols\",\n  \"items\": [\n    {\n      \"name\": \"Paigo Pro\",\n      \"quantity\": 1,\n      \"unitCost\": 100.09\n    }\n  ],\n  \"invoiceDate\": \"2020-09-18T17:34:02.666Z\",\n  \"currency\": \"EUR\",\n  \"invoicePaymentTerm\": \"30\",\n  \"storePaymentAsCredit\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.prod.paigo.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5c647176-97d4-483e-878e-90c813bed606",
+    "name": "Paigo Customers Invoices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nFor developer documentation of the platform, please visit https://docs.paigo.tech.\n\n## Authentication\nPaigo API supports **bearer token** as the authentication method.\nSteps to set up authentication:\n1. Sign up with Paigo platform and get **client id** and **client secret**.\n2. Make a POST request to the auth endpoint `https://auth.paigo.tech/oauth/token` with the following body:\n```json\n{\n        audience: 'https://qnonyh1pc7.execute-api.us-east-1.amazonaws.com',\n        grant_type: 'client_credentials',\n        client_id: <your client id>,\n        client_secret: <your client secret>\n}\n```\nAdditionally verify that the following headers are set by the client you are using: \n```json\n{\n    \"Content-Type\": \"application/json\"\n}\n```\n\n3. Use the access token in the response to make requests to the Paigo API. Here is an example of the response:  \n```json   \n{\n            access_token: <your access token>,\n            expires_in: 86400,\n            token_type: 'Bearer'  \n}\n```\n4. To use Paigo API, add in the header of your request:\n```json\n{\n        Authorization: \"Bearer <your access token>\"\n}\n```\n\n## API Endpoints\nPaigo API has the following endpoint:\n- Production Environment API: `https://api.prod.paigo.tech`\n        ",
+      "type": "text/plain"
+    }
+  }
+}

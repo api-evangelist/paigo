@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paigo Customers Dimensions API",
+    "version": "v1.10"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dimensions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all dimensions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.paigo.tech/dimensions",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List all dimensions created in this account"
+        },
+        {
+          "info": {
+            "name": "Create a dimension",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.paigo.tech/dimensions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a dimension\n<br><br>\n<a href=\"https://docs.paigo.tech/model-pricing-and-package/pricing-modeling-guide/single-dimension-pay-as-you-go-pricing\">See an example dimension for pay as you go pricing here</a>"
+        },
+        {
+          "info": {
+            "name": "Get a dimension by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.paigo.tech/dimensions/:dimensionId",
+            "params": [
+              {
+                "name": "dimensionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fine a dimension"
+        },
+        {
+          "info": {
+            "name": "Update a dimension",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.prod.paigo.tech/dimensions/:dimensionId",
+            "params": [
+              {
+                "name": "dimensionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a dimension"
+        },
+        {
+          "info": {
+            "name": "Delete a dimension",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.prod.paigo.tech/dimensions/:dimensionId",
+            "params": [
+              {
+                "name": "dimensionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier assigned by Paigo.<br><br> Example: `22372d1d-1c0c-40e0-8167-af0b4f5c82f6`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://auth.paigo.tech/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a dimension"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
