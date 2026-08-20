@@ -31,6 +31,16 @@ tags:
   - Metering
   - Invoicing
   - Pricing
+  - Software-as-a-Service
+  - Subscription
+  - Developer Tools
+  - FinOps
+tags_raw:
+  - Billing
+  - Usage-Based Billing
+  - Metering
+  - Invoicing
+  - Pricing
   - SaaS
   - Subscriptions
   - Developer Tools
@@ -142,6 +152,8 @@ apis:
   humanURL: https://docs.paigo.tech/
   baseURL: https://api.prod.paigo.tech
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
