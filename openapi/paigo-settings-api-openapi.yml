@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Paigo Customers Settings API
-  description: "\nFor developer documentation of the platform, please visit https://docs.paigo.tech.\n\n## Authentication\nPaigo API supports **bearer token** as the authentication method.\nSteps to set up authentication:\n1. Sign up with Paigo platform and get **client id** and **client secret**.\n2. Make a POST request to the auth endpoint `https://auth.paigo.tech/oauth/token` with the following body:\n```json\n{\n        audience: 'https://qnonyh1pc7.execute-api.us-east-1.amazonaws.com',\n        grant_type: 'client_credentials',\n        client_id: <your client id>,\n        client_secret: <your client secret>\n}\n```\nAdditionally verify that the following headers are set by the client you are using: \n```json\n{\n    \"Content-Type\": \"application/json\"\n}\n```\n\n3. Use the access token in the response to make requests to the Paigo API. Here is an example of the response:  \n```json   \n{\n            access_token: <your access token>,\n            expires_in: 86400,\n            token_type: 'Bearer'  \n}\n```\n4. To use Paigo API, add in the header of your request:\n```json\n{\n        Authorization: \"Bearer <your access token>\"\n}\n```\n\n## API Endpoints\nPaigo API has the following endpoint:\n- Production Environment API: `https://api.prod.paigo.tech`\n        "
+  title: Paigo Settings API
+  description: For developer documentation of the platform, please visit https://docs.paigo.tech.
   version: v1.10
   contact: {}
 servers:
@@ -13,7 +13,7 @@ paths:
   /settings/profile:
     put:
       operationId: Update Business Profile Settings
-      summary: ''
+      summary: Update business profile settings
       description: Update Business Info and Logo.
       parameters: []
       requestBody:
@@ -33,9 +33,10 @@ paths:
       - Settings
       security:
       - bearer: []
+      x-summary-source: derived
     get:
       operationId: Get Business Profile Settings
-      summary: ''
+      summary: Get business profile settings
       description: Get Business Info.
       parameters: []
       responses:
@@ -49,10 +50,11 @@ paths:
       - Settings
       security:
       - bearer: []
+      x-summary-source: derived
   /settings/invoiceImage:
     post:
       operationId: Upload Invoice Image
-      summary: ''
+      summary: Upload invoice image
       description: 'Upload Business Logo, file format supported: png,jpg,jpeg; max file size supported: 30Mb.'
       parameters: []
       responses:
@@ -72,70 +74,23 @@ paths:
       - Settings
       security:
       - bearer: []
+      x-summary-source: derived
 components:
   schemas:
-    PortalOfferingPageDto:
+    ReadSettingsResponse:
       type: object
       properties:
-        title:
+        message:
           type: string
-        subtitle:
-          type: string
-        price:
-          type: string
-        featured:
-          $ref: '#/components/schemas/FeaturedOfferingPortalDto'
-        cta:
-          $ref: '#/components/schemas/CTAOfferingPortalDto'
-        description:
-          type: string
-        features:
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+        data:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/ReadSettingsResponseData'
       required:
-      - cta
-      - features
-    InvoiceReminders:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        beforeDueReminders:
-          description: 'The number of days before the due date to send reminders.
-
-            <br><br>
-
-            Example: `{"first": "1", "second": "3", "third": "7"}`'
-          allOf:
-          - $ref: '#/components/schemas/InvoiceReminderSchedule'
-        afterDueReminders:
-          description: 'The number of days after the due date to send reminders.
-
-            <br><br>
-
-            Example: `{"first": "1", "second": "3", "third": "7"}`'
-          allOf:
-          - $ref: '#/components/schemas/InvoiceReminderSchedule'
-    PricingTableOfferingPortalDto:
-      type: object
-      properties:
-        ctaBorder:
-          type: string
-        ctaBackground:
-          type: string
-        ctaText:
-          type: string
-        featureListColor:
-          type: string
-        pricePlanBackground:
-          type: string
-        highlightedPrice:
-          type: string
-        featureListIcon:
-          type: string
-        showLogo:
-          type: boolean
+      - message
+      - data
     ReadSettingsResponseData:
       type: object
       properties:
@@ -287,15 +242,83 @@ components:
           enum:
           - ebs
           - none
-    BasicResponseDTO:
+    InvoiceEmailConfiguration:
       type: object
       properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
+        reminders:
+          $ref: '#/components/schemas/InvoiceReminders'
       required:
-      - message
+      - reminders
+    InvoiceReminderSchedule:
+      type: object
+      properties:
+        first:
+          type: string
+        second:
+          type: string
+        third:
+          type: string
+    InvoicePortalPageSettings:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        text:
+          type: string
+    PricingTableOfferingPortalDto:
+      type: object
+      properties:
+        ctaBorder:
+          type: string
+        ctaBackground:
+          type: string
+        ctaText:
+          type: string
+        featureListColor:
+          type: string
+        pricePlanBackground:
+          type: string
+        highlightedPrice:
+          type: string
+        featureListIcon:
+          type: string
+        showLogo:
+          type: boolean
+    AppearanceOfferingPortalDto:
+      type: object
+      properties:
+        border:
+          type: string
+        background:
+          type: string
+        accent:
+          type: string
+        radius:
+          type: string
+        paigoBranding:
+          type: string
+        pricingTable:
+          $ref: '#/components/schemas/PricingTableOfferingPortalDto'
+      required:
+      - pricingTable
+    PortalPages:
+      type: object
+      properties:
+        invoice:
+          $ref: '#/components/schemas/InvoicePortalPageSettings'
+        payment:
+          $ref: '#/components/schemas/PaymentPortalPageSettings'
+        offering:
+          $ref: '#/components/schemas/OfferingPortalPageSettings'
+        extended:
+          type: object
+      required:
+      - extended
+    FeaturedOfferingPortalDto:
+      type: object
+      properties:
+        text:
+          type: string
     OfferingPortalPageSettings:
       type: object
       properties:
@@ -399,11 +422,15 @@ components:
         redirectionUrl:
           type: string
           description: A URL to redirect to after relevant connection, or payment actions.
-    FeaturedOfferingPortalDto:
+    CloudIAM:
       type: object
       properties:
-        text:
+        iamRoleArn:
           type: string
+        externalId:
+          type: string
+      required:
+      - iamRoleArn
     PaymentPortalPageSettings:
       type: object
       properties:
@@ -411,27 +438,27 @@ components:
           type: boolean
         text:
           type: string
-    ReadSettingsResponse:
+    InvoiceReminders:
       type: object
       properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReadSettingsResponseData'
-      required:
-      - message
-      - data
-    InvoiceEmailConfiguration:
-      type: object
-      properties:
-        reminders:
-          $ref: '#/components/schemas/InvoiceReminders'
-      required:
-      - reminders
+        enabled:
+          type: boolean
+        beforeDueReminders:
+          description: 'The number of days before the due date to send reminders.
+
+            <br><br>
+
+            Example: `{"first": "1", "second": "3", "third": "7"}`'
+          allOf:
+          - $ref: '#/components/schemas/InvoiceReminderSchedule'
+        afterDueReminders:
+          description: 'The number of days after the due date to send reminders.
+
+            <br><br>
+
+            Example: `{"first": "1", "second": "3", "third": "7"}`'
+          allOf:
+          - $ref: '#/components/schemas/InvoiceReminderSchedule'
     CTAOfferingPortalDto:
       type: object
       properties:
@@ -441,13 +468,28 @@ components:
           type: string
         externalLink:
           type: string
-    InvoicePortalPageSettings:
+    PortalOfferingPageDto:
       type: object
       properties:
-        enabled:
-          type: boolean
-        text:
+        title:
           type: string
+        subtitle:
+          type: string
+        price:
+          type: string
+        featured:
+          $ref: '#/components/schemas/FeaturedOfferingPortalDto'
+        cta:
+          $ref: '#/components/schemas/CTAOfferingPortalDto'
+        description:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+      required:
+      - cta
+      - features
     UpdateProfileDto:
       type: object
       properties:
@@ -534,54 +576,15 @@ components:
 
             Example: `"https://mybusiness.com/redirect"`'
           example: https://mybusiness.com/redirect
-    CloudIAM:
+    BasicResponseDTO:
       type: object
       properties:
-        iamRoleArn:
+        message:
           type: string
-        externalId:
-          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
       required:
-      - iamRoleArn
-    AppearanceOfferingPortalDto:
-      type: object
-      properties:
-        border:
-          type: string
-        background:
-          type: string
-        accent:
-          type: string
-        radius:
-          type: string
-        paigoBranding:
-          type: string
-        pricingTable:
-          $ref: '#/components/schemas/PricingTableOfferingPortalDto'
-      required:
-      - pricingTable
-    PortalPages:
-      type: object
-      properties:
-        invoice:
-          $ref: '#/components/schemas/InvoicePortalPageSettings'
-        payment:
-          $ref: '#/components/schemas/PaymentPortalPageSettings'
-        offering:
-          $ref: '#/components/schemas/OfferingPortalPageSettings'
-        extended:
-          type: object
-      required:
-      - extended
-    InvoiceReminderSchedule:
-      type: object
-      properties:
-        first:
-          type: string
-        second:
-          type: string
-        third:
-          type: string
+      - message
   securitySchemes:
     bearer:
       scheme: bearer

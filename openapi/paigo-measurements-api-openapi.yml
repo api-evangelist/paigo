@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Paigo Customers Measurements API
-  description: "\nFor developer documentation of the platform, please visit https://docs.paigo.tech.\n\n## Authentication\nPaigo API supports **bearer token** as the authentication method.\nSteps to set up authentication:\n1. Sign up with Paigo platform and get **client id** and **client secret**.\n2. Make a POST request to the auth endpoint `https://auth.paigo.tech/oauth/token` with the following body:\n```json\n{\n        audience: 'https://qnonyh1pc7.execute-api.us-east-1.amazonaws.com',\n        grant_type: 'client_credentials',\n        client_id: <your client id>,\n        client_secret: <your client secret>\n}\n```\nAdditionally verify that the following headers are set by the client you are using: \n```json\n{\n    \"Content-Type\": \"application/json\"\n}\n```\n\n3. Use the access token in the response to make requests to the Paigo API. Here is an example of the response:  \n```json   \n{\n            access_token: <your access token>,\n            expires_in: 86400,\n            token_type: 'Bearer'  \n}\n```\n4. To use Paigo API, add in the header of your request:\n```json\n{\n        Authorization: \"Bearer <your access token>\"\n}\n```\n\n## API Endpoints\nPaigo API has the following endpoint:\n- Production Environment API: `https://api.prod.paigo.tech`\n        "
+  title: Paigo Measurements API
+  description: For developer documentation of the platform, please visit https://docs.paigo.tech.
   version: v1.10
   contact: {}
 servers:
@@ -9,12 +9,15 @@ servers:
   description: Product Environment API
 tags:
 - name: Measurements
-  description: Manage measurements in Paigo. <br><br> See <a href="https://docs.paigo.tech/measure-usage-and-collect-data/measure-and-collect-usage-data-at-production-scale">Measure and Collect Usage Data at Production Scale</a> for more information.
+  description: 'Manage measurements in Paigo.
+
+
+    See Measure and Collect Usage Data at Production Scale for more information.'
 paths:
   /measurements:
     get:
       operationId: Get all measurements
-      summary: ''
+      summary: Get all measurements
       description: List all measurements created
       parameters: []
       responses:
@@ -34,10 +37,10 @@ paths:
       - Measurements
       security:
       - bearer: []
+      x-summary-source: derived
     post:
       operationId: Create a measurement
-      summary: ''
-      description: Create a measurement
+      summary: Create a measurement
       parameters: []
       requestBody:
         required: true
@@ -62,10 +65,11 @@ paths:
       - Measurements
       security:
       - bearer: []
+      x-summary-source: derived
   /measurements/{measurementId}:
     get:
       operationId: Get a measurement by ID
-      summary: ''
+      summary: Get a measurement by ID
       description: Find a measurement
       parameters:
       - name: measurementId
@@ -121,10 +125,10 @@ paths:
       - Measurements
       security:
       - bearer: []
+      x-summary-source: derived
     put:
       operationId: Update a measurement
-      summary: ''
-      description: Update a measurement
+      summary: Update a measurement
       parameters:
       - name: measurementId
         required: true
@@ -185,10 +189,10 @@ paths:
       - Measurements
       security:
       - bearer: []
+      x-summary-source: derived
     delete:
       operationId: Delete a measurement
-      summary: ''
-      description: Delete a measurement
+      summary: Delete a measurement
       parameters:
       - name: measurementId
         required: true
@@ -243,76 +247,113 @@ paths:
       - Measurements
       security:
       - bearer: []
+      x-summary-source: derived
 components:
   schemas:
-    DeleteMeasurementConfigResponse:
+    CreateMeasurementConfigurationResponse:
       type: object
       properties:
         message:
           type: string
           description: A human readable message describing the outcome of the operation
           example: This is a sample API message. The exact message may vary based on the API behavior
-        measurementId:
+        externalId:
           type: string
-          description: 'The unique identifier assigned by Paigo
+          description: 'The externalId to be used with the IAM role.
 
             <br><br>
 
-            Example: `"193b6967-1783-434f-85cb-a6fc4e1e385b"`'
-          example: 193b6967-1783-434f-85cb-a6fc4e1e385b
+            Example: `"1234567890abc"`'
+          example: 1234567890abc
+          externalDocs:
+            description: Read more about why externalIds are important
+            url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
+        measurementId:
+          type: string
+          description: 'Unique identifier assigned by Paigo
+
+            <br><br>
+
+            Example: `"a65ae317-e940-44cc-b570-cc74d1897c36"`'
+          example: a65ae317-e940-44cc-b570-cc74d1897c36
+        iamRoleArn:
+          type: string
+          description: 'The IAM role which can be assumed to pass data on a Paigo-hosted datastore.
+
+            <br><br>
+
+            Example: `"arn:aws:iam::123456789012:role/paigo-datastore-role"`'
+          example: arn:aws:iam::123456789012:role/paigo-datastore-role
+        ingestion:
+          type: string
+          description: 'The URL of the ingestion endpoint associated with the datastore measurement
+
+            <br><br>
+
+            Example: `"s3://paigo-datastore-dump-bucket/"`'
+          example: s3://paigo-datastore-dump-bucket/
+        dlq:
+          type: string
+          description: 'The URL of the DLQ endpoint associated with the datastore measurement
+
+            <br><br>
+
+            Example: `"s3://paigo-datastore-dlq-bucket/"`'
+          example: s3://paigo-datastore-dlq-bucket/
       required:
       - message
       - measurementId
-    UpdateMeasurementConfigDto:
+    InfrastructureAccessInformation:
       type: object
       properties:
-        measurementMode:
+        iamRoleArn:
           type: string
-          enum:
-          - infrastructureBased
-          - agentBased
-          - datastoreBased
-          example: infrastructure
-        measurementConfiguration:
-          description: Configuration for the measurement method.
-          oneOf:
-          - $ref: '#/components/schemas/UpdateInfrastructureAccessInformation'
-          - $ref: '#/components/schemas/UpdateAgentAccessInformation'
-          - $ref: '#/components/schemas/UpdateDatastoreAccessInformation'
-        measurementName:
-          type: string
-          description: A friendly, human-readable name of the measurement.
-      required:
-      - measurementMode
-      - measurementName
-    CreateMeasurementConfigDto:
-      type: object
-      properties:
-        measurementMode:
-          type: string
-          enum:
-          - infrastructureBased
-          - agentBased
-          - datastoreBased
-          example: infrastructureBased
-          description: The measurement method. See <a href="https://docs.paigo.tech/measure-usage-and-collect-data/measure-and-collect-usage-data-at-production-scale">Measure and Collect Usage Data at Production Scale</a> for more information. <br><br> Example `"agentBased"`
-        measurementConfiguration:
-          description: Configuration for the measurement method.
-          oneOf:
-          - $ref: '#/components/schemas/InfrastructureAccessInformation'
-          - $ref: '#/components/schemas/AgentAccessInformation'
-          - $ref: '#/components/schemas/DatastoreAccessInformation'
-        measurementName:
-          type: string
-          description: 'The human readable name of the measurement
+          description: 'The IAM role created by SaaS business and can be by Paigo AWS account to measure usage.
 
             <br><br>
 
-            Example `"EBS Usage"`'
-          example: EBS Usage
+            Example `"arn:aws:iam::214826386939:role/paigo-scraper"`'
+          example: arn:aws:iam::214826386939:role/paigo-scraper
+        externalId:
+          type: string
+          description: 'The Optional ExternalId associated with the IAM role.
+
+            <br><br>
+
+            Example `"123456789"`'
+          example: '123456789'
+          externalDocs:
+            description: Read more about why externalIds are important
+            url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
+        cloudPlatform:
+          type: string
+          enum:
+          - aws
+          example: aws
+          description: Cloud infrastructure platform <br><br> Example `"aws"`
+        region:
+          type: string
+          description: 'Supported region of the infrastructure
+
+
+            Example `"us-east-1"`'
+          example: us-east-1
+        resourceType:
+          type: string
+          enum:
+          - ebssnapshot
+          - ebs
+          - k8spod
+          - ec2
+          - ec2egress
+          - usageData
+          example: ebs
+          description: Underlying resource type which Paigo measures usage for. <br><br> Example `"ec2"`
       required:
-      - measurementMode
-      - measurementConfiguration
+      - iamRoleArn
+      - cloudPlatform
+      - region
+      - resourceType
     BasicResponseDTO:
       type: object
       properties:
@@ -322,6 +363,134 @@ components:
           example: This is a sample API message. The exact message may vary based on the API behavior
       required:
       - message
+    DatastoreAccessInformationResponse:
+      type: object
+      properties:
+        platform:
+          description: Underlying resource type which paigo connects to. <br><br> Example `"s3"`
+          enum:
+          - s3
+          - kafka
+          type: string
+          examples:
+          - s3
+        consumerDeploymentParameters:
+          description: The access information and configuration for deploying a datastore consumer by Paigo. Use this field in a case where Paigo is deploying a consumer and you want to provide the access information for the datastore.
+          oneOf:
+          - $ref: '#/components/schemas/KafkaDeploymentParametersDto'
+        ingestion:
+          type: string
+          description: The Ingestion endpioint for data to be dropped off at.
+        dlq:
+          type: string
+          description: The DLQ endpoint for data which has failed to be processed.
+        iamRoleArn:
+          type: string
+          description: The IAM role associated with the endpoints for access management
+        externalId:
+          type: string
+          description: The externalId associated with the endpoints
+        region:
+          type: string
+          description: The region associated with the endpoints, defaults to `us-east-1`
+        accountId:
+          type: string
+          description: 'The Unqiue ID for your cloud account.
+
+            <br><br>
+
+            Example `"623673123435"`'
+          example: '623673123435'
+      required:
+      - platform
+      - ingestion
+      - dlq
+    KafkaDeploymentParametersDto:
+      type: object
+      properties:
+        securityMechanism:
+          type: string
+          externalDocs:
+            url: https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_plain.html#sasl-plain-overview
+          example: PLAIN
+          description: 'The security protocol to use when connecting to the Kafka cluster. Defaults to `PLAIN`. Note this is not PLAINTEXT. PLAIN is the SASL_PLAIN protocol. <br><br> Example: `"PLAIN"`'
+        username:
+          type: string
+          description: 'The username to use when connecting to the Kafka cluster. <br><br> Example: `"admin"`'
+          example: admin
+        password:
+          type: string
+          description: 'The password to use when connecting to the Kafka cluster. <br><br> Example: `"hunter2"`'
+          example: hunter2
+        bootstrapServerEndpoint:
+          type: string
+          description: 'The endpoint of the Kafka cluster to connect to. <br><br> Example: `"kafka.paigo.tech"`'
+          example: kafka.paigo.tech
+        topic:
+          type: string
+          description: 'The topic to subscribe to. <br><br> Example: `"test-topic"`'
+          example: '"test-topic"'
+        dlqTopic:
+          type: string
+          description: 'The DLQ topic to write to when a message fails to be processed. <br><br> Example: `"dlq-topic"`'
+          example: '"dlq-topic"'
+      required:
+      - securityMechanism
+      - username
+      - password
+      - bootstrapServerEndpoint
+      - topic
+      - dlqTopic
+    AgentAccessInformation:
+      type: object
+      properties:
+        iamRoleArn:
+          type: string
+          description: 'The IAM role created by SaaS business and can be by Paigo AWS account to measure usage.
+
+            <br><br>
+
+            Example `"arn:aws:iam::214826386939:role/paigo-scraper"`'
+          example: arn:aws:iam::214826386939:role/paigo-scraper
+        externalId:
+          type: string
+          description: 'The Optional ExternalId associated with the IAM role.
+
+            <br><br>
+
+            Example `"123456789"`'
+          example: '123456789'
+          externalDocs:
+            description: Read more about why externalIds are important
+            url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
+        hostingPlatform:
+          type: string
+          enum:
+          - k8spod
+          example: k8spod
+          description: Hosting platform of SaaS application
+      required:
+      - iamRoleArn
+      - hostingPlatform
+    ReadMeasurementConfigResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The human readable message from the Read Measurement API
+          example: This is a sample API message. The exact message may vary based on the API behavior
+          examples:
+          - Found Measurements
+          - No Measurements Found
+        data:
+          description: Array of measurements
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/ReadMeasurementResponseData'
+      required:
+      - message
+      - data
     UpdateDatastoreAccessInformation:
       type: object
       properties:
@@ -391,42 +560,62 @@ components:
           - usageData
           example: ebs
           description: Underlying resource type which Paigo measures usage for. <br><br> Example `"ec2"`
-    KafkaDeploymentParametersDto:
+    UpdateAgentAccessInformation:
       type: object
       properties:
-        securityMechanism:
+        iamRoleArn:
           type: string
+          description: 'The IAM role created by SaaS business and can be by Paigo AWS account to measure usage.
+
+            <br><br>
+
+            Example `"arn:aws:iam::214826386939:role/paigo-scraper"`'
+          example: arn:aws:iam::214826386939:role/paigo-scraper
+        externalId:
+          type: string
+          description: 'The Optional ExternalId associated with the IAM role.
+
+            <br><br>
+
+            Example `"123456789"`'
+          example: '123456789'
           externalDocs:
-            url: https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_plain.html#sasl-plain-overview
-          example: PLAIN
-          description: 'The security protocol to use when connecting to the Kafka cluster. Defaults to `PLAIN`. Note this is not PLAINTEXT. PLAIN is the SASL_PLAIN protocol. <br><br> Example: `"PLAIN"`'
-        username:
+            description: Read more about why externalIds are important
+            url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
+        hostingPlatform:
           type: string
-          description: 'The username to use when connecting to the Kafka cluster. <br><br> Example: `"admin"`'
-          example: admin
-        password:
+          enum:
+          - k8spod
+          example: k8spod
+          description: Hosting platform of SaaS application
+    CreateMeasurementConfigDto:
+      type: object
+      properties:
+        measurementMode:
           type: string
-          description: 'The password to use when connecting to the Kafka cluster. <br><br> Example: `"hunter2"`'
-          example: hunter2
-        bootstrapServerEndpoint:
+          enum:
+          - infrastructureBased
+          - agentBased
+          - datastoreBased
+          example: infrastructureBased
+          description: The measurement method. See <a href="https://docs.paigo.tech/measure-usage-and-collect-data/measure-and-collect-usage-data-at-production-scale">Measure and Collect Usage Data at Production Scale</a> for more information. <br><br> Example `"agentBased"`
+        measurementConfiguration:
+          description: Configuration for the measurement method.
+          oneOf:
+          - $ref: '#/components/schemas/InfrastructureAccessInformation'
+          - $ref: '#/components/schemas/AgentAccessInformation'
+          - $ref: '#/components/schemas/DatastoreAccessInformation'
+        measurementName:
           type: string
-          description: 'The endpoint of the Kafka cluster to connect to. <br><br> Example: `"kafka.paigo.tech"`'
-          example: kafka.paigo.tech
-        topic:
-          type: string
-          description: 'The topic to subscribe to. <br><br> Example: `"test-topic"`'
-          example: '"test-topic"'
-        dlqTopic:
-          type: string
-          description: 'The DLQ topic to write to when a message fails to be processed. <br><br> Example: `"dlq-topic"`'
-          example: '"dlq-topic"'
+          description: 'The human readable name of the measurement
+
+            <br><br>
+
+            Example `"EBS Usage"`'
+          example: EBS Usage
       required:
-      - securityMechanism
-      - username
-      - password
-      - bootstrapServerEndpoint
-      - topic
-      - dlqTopic
+      - measurementMode
+      - measurementConfiguration
     ReadMeasurementResponseData:
       type: object
       properties:
@@ -464,84 +653,21 @@ components:
       - measurementMode
       - measurementConfiguration
       - measurementId
-    UpdateAgentAccessInformation:
-      type: object
-      properties:
-        iamRoleArn:
-          type: string
-          description: 'The IAM role created by SaaS business and can be by Paigo AWS account to measure usage.
-
-            <br><br>
-
-            Example `"arn:aws:iam::214826386939:role/paigo-scraper"`'
-          example: arn:aws:iam::214826386939:role/paigo-scraper
-        externalId:
-          type: string
-          description: 'The Optional ExternalId associated with the IAM role.
-
-            <br><br>
-
-            Example `"123456789"`'
-          example: '123456789'
-          externalDocs:
-            description: Read more about why externalIds are important
-            url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
-        hostingPlatform:
-          type: string
-          enum:
-          - k8spod
-          example: k8spod
-          description: Hosting platform of SaaS application
-    CreateMeasurementConfigurationResponse:
+    DeleteMeasurementConfigResponse:
       type: object
       properties:
         message:
           type: string
           description: A human readable message describing the outcome of the operation
           example: This is a sample API message. The exact message may vary based on the API behavior
-        externalId:
-          type: string
-          description: 'The externalId to be used with the IAM role.
-
-            <br><br>
-
-            Example: `"1234567890abc"`'
-          example: 1234567890abc
-          externalDocs:
-            description: Read more about why externalIds are important
-            url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
         measurementId:
           type: string
-          description: 'Unique identifier assigned by Paigo
+          description: 'The unique identifier assigned by Paigo
 
             <br><br>
 
-            Example: `"a65ae317-e940-44cc-b570-cc74d1897c36"`'
-          example: a65ae317-e940-44cc-b570-cc74d1897c36
-        iamRoleArn:
-          type: string
-          description: 'The IAM role which can be assumed to pass data on a Paigo-hosted datastore.
-
-            <br><br>
-
-            Example: `"arn:aws:iam::123456789012:role/paigo-datastore-role"`'
-          example: arn:aws:iam::123456789012:role/paigo-datastore-role
-        ingestion:
-          type: string
-          description: 'The URL of the ingestion endpoint associated with the datastore measurement
-
-            <br><br>
-
-            Example: `"s3://paigo-datastore-dump-bucket/"`'
-          example: s3://paigo-datastore-dump-bucket/
-        dlq:
-          type: string
-          description: 'The URL of the DLQ endpoint associated with the datastore measurement
-
-            <br><br>
-
-            Example: `"s3://paigo-datastore-dlq-bucket/"`'
-          example: s3://paigo-datastore-dlq-bucket/
+            Example: `"193b6967-1783-434f-85cb-a6fc4e1e385b"`'
+          example: 193b6967-1783-434f-85cb-a6fc4e1e385b
       required:
       - message
       - measurementId
@@ -570,149 +696,28 @@ components:
           example: '623673123435'
       required:
       - platform
-    InfrastructureAccessInformation:
+    UpdateMeasurementConfigDto:
       type: object
       properties:
-        iamRoleArn:
-          type: string
-          description: 'The IAM role created by SaaS business and can be by Paigo AWS account to measure usage.
-
-            <br><br>
-
-            Example `"arn:aws:iam::214826386939:role/paigo-scraper"`'
-          example: arn:aws:iam::214826386939:role/paigo-scraper
-        externalId:
-          type: string
-          description: 'The Optional ExternalId associated with the IAM role.
-
-            <br><br>
-
-            Example `"123456789"`'
-          example: '123456789'
-          externalDocs:
-            description: Read more about why externalIds are important
-            url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
-        cloudPlatform:
+        measurementMode:
           type: string
           enum:
-          - aws
-          example: aws
-          description: Cloud infrastructure platform <br><br> Example `"aws"`
-        region:
-          type: string
-          description: 'Supported region of the infrastructure
-
-
-            Example `"us-east-1"`'
-          example: us-east-1
-        resourceType:
-          type: string
-          enum:
-          - ebssnapshot
-          - ebs
-          - k8spod
-          - ec2
-          - ec2egress
-          - usageData
-          example: ebs
-          description: Underlying resource type which Paigo measures usage for. <br><br> Example `"ec2"`
-      required:
-      - iamRoleArn
-      - cloudPlatform
-      - region
-      - resourceType
-    DatastoreAccessInformationResponse:
-      type: object
-      properties:
-        platform:
-          description: Underlying resource type which paigo connects to. <br><br> Example `"s3"`
-          enum:
-          - s3
-          - kafka
-          type: string
-          examples:
-          - s3
-        consumerDeploymentParameters:
-          description: The access information and configuration for deploying a datastore consumer by Paigo. Use this field in a case where Paigo is deploying a consumer and you want to provide the access information for the datastore.
+          - infrastructureBased
+          - agentBased
+          - datastoreBased
+          example: infrastructure
+        measurementConfiguration:
+          description: Configuration for the measurement method.
           oneOf:
-          - $ref: '#/components/schemas/KafkaDeploymentParametersDto'
-        ingestion:
+          - $ref: '#/components/schemas/UpdateInfrastructureAccessInformation'
+          - $ref: '#/components/schemas/UpdateAgentAccessInformation'
+          - $ref: '#/components/schemas/UpdateDatastoreAccessInformation'
+        measurementName:
           type: string
-          description: The Ingestion endpioint for data to be dropped off at.
-        dlq:
-          type: string
-          description: The DLQ endpoint for data which has failed to be processed.
-        iamRoleArn:
-          type: string
-          description: The IAM role associated with the endpoints for access management
-        externalId:
-          type: string
-          description: The externalId associated with the endpoints
-        region:
-          type: string
-          description: The region associated with the endpoints, defaults to `us-east-1`
-        accountId:
-          type: string
-          description: 'The Unqiue ID for your cloud account.
-
-            <br><br>
-
-            Example `"623673123435"`'
-          example: '623673123435'
+          description: A friendly, human-readable name of the measurement.
       required:
-      - platform
-      - ingestion
-      - dlq
-    ReadMeasurementConfigResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: The human readable message from the Read Measurement API
-          example: This is a sample API message. The exact message may vary based on the API behavior
-          examples:
-          - Found Measurements
-          - No Measurements Found
-        data:
-          description: Array of measurements
-          minItems: 0
-          type: array
-          items:
-            $ref: '#/components/schemas/ReadMeasurementResponseData'
-      required:
-      - message
-      - data
-    AgentAccessInformation:
-      type: object
-      properties:
-        iamRoleArn:
-          type: string
-          description: 'The IAM role created by SaaS business and can be by Paigo AWS account to measure usage.
-
-            <br><br>
-
-            Example `"arn:aws:iam::214826386939:role/paigo-scraper"`'
-          example: arn:aws:iam::214826386939:role/paigo-scraper
-        externalId:
-          type: string
-          description: 'The Optional ExternalId associated with the IAM role.
-
-            <br><br>
-
-            Example `"123456789"`'
-          example: '123456789'
-          externalDocs:
-            description: Read more about why externalIds are important
-            url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
-        hostingPlatform:
-          type: string
-          enum:
-          - k8spod
-          example: k8spod
-          description: Hosting platform of SaaS application
-      required:
-      - iamRoleArn
-      - hostingPlatform
+      - measurementMode
+      - measurementName
   securitySchemes:
     bearer:
       scheme: bearer

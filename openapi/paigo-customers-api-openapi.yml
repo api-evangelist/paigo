@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   title: Paigo Customers API
-  description: "\nFor developer documentation of the platform, please visit https://docs.paigo.tech.\n\n## Authentication\nPaigo API supports **bearer token** as the authentication method.\nSteps to set up authentication:\n1. Sign up with Paigo platform and get **client id** and **client secret**.\n2. Make a POST request to the auth endpoint `https://auth.paigo.tech/oauth/token` with the following body:\n```json\n{\n        audience: 'https://qnonyh1pc7.execute-api.us-east-1.amazonaws.com',\n        grant_type: 'client_credentials',\n        client_id: <your client id>,\n        client_secret: <your client secret>\n}\n```\nAdditionally verify that the following headers are set by the client you are using: \n```json\n{\n    \"Content-Type\": \"application/json\"\n}\n```\n\n3. Use the access token in the response to make requests to the Paigo API. Here is an example of the response:  \n```json   \n{\n            access_token: <your access token>,\n            expires_in: 86400,\n            token_type: 'Bearer'  \n}\n```\n4. To use Paigo API, add in the header of your request:\n```json\n{\n        Authorization: \"Bearer <your access token>\"\n}\n```\n\n## API Endpoints\nPaigo API has the following endpoint:\n- Production Environment API: `https://api.prod.paigo.tech`\n        "
+  description: For developer documentation of the platform, please visit https://docs.paigo.tech.
   version: v1.10
   contact: {}
 servers:
@@ -14,7 +14,7 @@ paths:
   /customers:
     get:
       operationId: Get all Customers
-      summary: ''
+      summary: Get all customers
       description: List all customers created in this account
       parameters: []
       responses:
@@ -34,10 +34,10 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
     post:
       operationId: Create a customer
-      summary: ''
-      description: Create a customer
+      summary: Create a customer
       parameters: []
       requestBody:
         required: true
@@ -62,11 +62,11 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
   /customers/{customerId}/children/{childId}:
     post:
       operationId: Assign a child to a customer
-      summary: ''
-      description: Assign a child to a customer
+      summary: Assign a child to a customer
       parameters: []
       requestBody:
         required: true
@@ -91,9 +91,10 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
     delete:
       operationId: Remove a child from a customer
-      summary: ''
+      summary: Remove a child from a customer
       description: Remove a child from parent
       parameters: []
       responses:
@@ -113,9 +114,10 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
     put:
       operationId: Update a child to a customer
-      summary: ''
+      summary: Update a child to a customer
       description: Update child relationship
       parameters: []
       requestBody:
@@ -141,10 +143,11 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
   /customers/{customerId}:
     get:
       operationId: Get a customer by ID
-      summary: ''
+      summary: Get a customer by ID
       description: Find one customer
       parameters:
       - name: customerId
@@ -200,10 +203,10 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
     put:
       operationId: Update a customer
-      summary: ''
-      description: Update a customer
+      summary: Update a customer
       parameters:
       - name: customerId
         required: true
@@ -264,10 +267,10 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
     delete:
       operationId: Delete a customer
-      summary: ''
-      description: Delete a customer
+      summary: Delete a customer
       parameters:
       - name: customerId
         required: true
@@ -316,15 +319,15 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
   /customers/{customerId}/refunds:
     post:
       operationId: Create a refund for customer
-      summary: ''
+      summary: Create a refund for customer
       description: 'Create Customer Refund
 
-        <br><br>
 
-        <b>NOTE:</b> This endpoint currently only supports Stripe for a refund channel. Customers with manual payments will cause an 400 error response.'
+        NOTE: This endpoint currently only supports Stripe for a refund channel. Customers with manual payments will cause an 400 error response.'
       parameters: []
       requestBody:
         required: true
@@ -349,14 +352,14 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
     get:
       operationId: Get a refund for customer
-      summary: ''
+      summary: Get a refund for customer
       description: 'Get customer refunds
 
-        <br><br>
 
-        <b>NOTE:</b> This endpoint currently only supports Stripe for a refund channel. Customers with manual payments will cause an 400 error response.'
+        NOTE: This endpoint currently only supports Stripe for a refund channel. Customers with manual payments will cause an 400 error response.'
       parameters: []
       responses:
         '200':
@@ -375,10 +378,11 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
   /customers/{customerId}/enrollment:
     get:
       operationId: Get a Customer Enrollment
-      summary: ''
+      summary: Get a customer enrollment
       description: Get a Customer Enrollment
       parameters:
       - name: customerId
@@ -434,9 +438,10 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
     put:
       operationId: Update Customer Offering Enrollment
-      summary: ''
+      summary: Update customer offering enrollment
       description: Update Customer Enrollment
       parameters:
       - name: customerId
@@ -498,15 +503,15 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
   /customers/{customerId}/payments:
     get:
       operationId: Get payments for customer
-      summary: ''
+      summary: Get payments for customer
       description: 'Get customer payments
 
-        <br><br>
 
-        <b>NOTE:</b> This endpoint currently only supports Stripe for a payment channel. Customers with manual payments will cause an 400 error response.'
+        NOTE: This endpoint currently only supports Stripe for a payment channel. Customers with manual payments will cause an 400 error response.'
       parameters:
       - name: invoiceId
         required: false
@@ -541,10 +546,11 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
   /customers/{customerId}/stripePortal:
     get:
       operationId: Get Stripe Portal for customer
-      summary: ''
+      summary: Get stripe portal for customer
       parameters: []
       responses:
         '200':
@@ -563,10 +569,11 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
   /customers/{customerId}/freeTrial:
     put:
       operationId: Update free trial
-      summary: ''
+      summary: Update free trial
       description: Update a free trial of a customer
       parameters:
       - name: customerId
@@ -628,11 +635,11 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
   /customers/{customerId}/usage:
     get:
       operationId: Get usage data for a customer
-      summary: ''
-      description: Get usage data for a customer
+      summary: Get usage data for a customer
       parameters:
       - name: customerId
         required: true
@@ -737,10 +744,11 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
   /customers/{customerId}/token:
     get:
       operationId: Get a customer auth token
-      summary: ''
+      summary: Get a customer auth token
       description: Get a token to allow SaaS customers to view their billing data in paigo securely
       parameters:
       - name: customerId
@@ -790,10 +798,11 @@ paths:
       - Customers
       security:
       - bearer: []
+      x-summary-source: derived
   /customers/{customerId}/transactions:
     post:
       operationId: Create a wallet transaction
-      summary: ''
+      summary: Create a wallet transaction
       description: Commit a transaction to the ledger for a customer. This will update thier credit balances
       parameters:
       - name: customerId
@@ -816,9 +825,10 @@ paths:
                 $ref: '#/components/schemas/BasicResponseDTO'
       tags:
       - Customers
+      x-summary-source: derived
     get:
       operationId: Get customer credit ledger
-      summary: ''
+      summary: Get customer credit ledger
       description: Get the ledger of wallet transactions applied to a customer
       parameters:
       - name: customerId
@@ -848,8 +858,361 @@ paths:
                 $ref: '#/components/schemas/NotFoundException'
       tags:
       - Customers
+      x-summary-source: derived
 components:
   schemas:
+    DatabasedConsumptionUnit:
+      type: object
+      properties:
+        unit:
+          enum:
+          - byte
+          - kilobyte
+          - megabyte
+          - gigabyte
+          - kibibyte
+          - mebibyte
+          - gibibyte
+          type: string
+          description: A unit of data for a dimension of type data-based
+          examples:
+          - byte
+          - kilobyte
+          - megabyte
+          - gigabyte
+        type:
+          type: string
+          enum:
+          - data
+          description: A string that indicates the type of consumption unit
+      required:
+      - unit
+      - type
+    DeleteCustomerResponseDto:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+        customerId:
+          type: string
+          description: 'Unique identifier assigned by Paigo
+
+            <br><br>
+
+            Example: `"e345f409-daca-4144-91d2-0a0f87c96581"`'
+          example: e345f409-daca-4144-91d2-0a0f87c96581
+      required:
+      - message
+      - customerId
+    CreateCustomerRefundResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+      required:
+      - message
+    CreditLedgerResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReadTransactionLedger'
+            minimum: 0
+      required:
+      - message
+      - data
+    StripeRefundChannelOptions:
+      type: object
+      properties:
+        paymentIntentId:
+          type: string
+          description: 'The paymentIntentId on stripe for the customer. Either paymentIntentId or chargeId is required.
+
+            <br><br>
+
+            Example: `"pi_1Gszkg2eZvKYlo2C6ZLlAL7u"`'
+          example: pi_1Gszkg2eZvKYlo2C6ZLlAL7u
+    InvoiceLineItem:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'The name of the line item as it appears on the invoice.
+
+            <br><br>
+
+            Example: `"Paigo Pro"`'
+          example: Paigo Pro
+        quantity:
+          type: number
+          description: 'The quantity of the line item.
+
+            <br><br>
+
+            Example: `1`'
+          example: 1
+          minimum: 0
+        unitCost:
+          type: number
+          description: 'The unit cost of the line item.
+
+            <br><br>
+
+            Example: `100.00`'
+          example: 100
+        description:
+          type: string
+          description: 'The description of the line item.
+
+            <br><br>
+
+            Example: `"Paigo Pro subscription"`'
+          example: Paigo Pro subscription
+      required:
+      - name
+      - quantity
+      - unitCost
+    AgentAccessInformation:
+      type: object
+      properties:
+        iamRoleArn:
+          type: string
+          description: 'The IAM role created by SaaS business and can be by Paigo AWS account to measure usage.
+
+            <br><br>
+
+            Example `"arn:aws:iam::214826386939:role/paigo-scraper"`'
+          example: arn:aws:iam::214826386939:role/paigo-scraper
+        externalId:
+          type: string
+          description: 'The Optional ExternalId associated with the IAM role.
+
+            <br><br>
+
+            Example `"123456789"`'
+          example: '123456789'
+          externalDocs:
+            description: Read more about why externalIds are important
+            url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
+        hostingPlatform:
+          type: string
+          enum:
+          - k8spod
+          example: k8spod
+          description: Hosting platform of SaaS application
+      required:
+      - iamRoleArn
+      - hostingPlatform
+    UpdateCustomerEnrollmentDto:
+      type: object
+      properties:
+        overrides:
+          description: Overrides for the offering. Applies Customer specific overrides to the offering. Such as a discount or free trial or dimension specific overrides.
+          allOf:
+          - $ref: '#/components/schemas/CustomOverrides'
+        offeringId:
+          type: string
+          description: 'Unique identifier for an offering assigned by Paigo. Including a new `"offeringId"` will "enroll" the customer in the specified offering. This may generate an invoice, in cases where relevant. Such as if the `"offeringType"` is a subscription offering. <br><br>
+
+            To unenroll customers from an offering. Pass in `null`. This will remove the offering from the customer. This may generate an invoice, in cases where relevant. Such as if the `"offeringType"` is a usage-based offering. <br><br>
+
+            Including the same `"offeringId" ` multiple times in a row will not change the state of the customer, nor generate an invoice. If an `"offeringId"` is not included, the customer will remain enrolled in the same offering. Including a new `"offeringId"` while a customer is enrolled in an offering, is considered a change of plan or "upgrade". In specific cases of upgrades some credit might be issued for the remainder of their plan. <br><br>
+
+            <br><br>
+
+            Example: `539b7f74-3832-474e-a955-6d69c5df12d0`'
+          example: 539b7f74-3832-474e-a955-6d69c5df12d0
+        removePriorOffering:
+          type: boolean
+          description: 'An optional flag to remove the prior offering from the customer. If set to `true`, the customer will be removed from all of their prior offerings. This may generate an invoice, in cases where relevant. Such as if the `"offeringType"` is a usage-based offering. If set to `false`, the customer will remain enrolled in the same offering.
+
+            <br><br>
+
+            Example: `true`'
+          example: true
+        unenrollOffering:
+          type: string
+          description: 'Used to specifically unenroll a customer from a singular offering. This may generate an invoice, in cases where relevant. Such as if the
+
+            `"offeringType"` is a usage-based offering. Cannot be used in conjunction with `removePriorOffering` or enrolling a customer in a new
+
+            offering with the`offeringId` field. A 400 error will be returned if this is the case.
+
+            <br><br>
+
+            Example: `"177735fe-5d06-49a7-a8fb-f5da11773345"`'
+          example: 177735fe-5d06-49a7-a8fb-f5da11773345
+        usage:
+          description: 'Optionally, usage can be initally applied for a customer when they are enrolling in an offering.
+
+            This is used for dimensions which have a paymentSchedule of `upfront` and need to have some usage for the intial enrollment.
+
+            For example, a customer purchases 3 seats then on the enrollment a usage `recordValue` of 3 must be sent in for the time of purchase.
+
+            Multiple usage records can be sent in, regardless of dimension. If usage records are sent in for a dimension that is not on the current offering, they will be loaded into paigo,
+
+            but ignored on the invoice. Additionally, records must be unique in the sense that they cannot have the same dimensionId. Duplicates will cause the request to be rejected.
+
+            <br><br>
+
+            Example: `[{ "dimensionId": "539b7f74-3832-474e-a955-6d69c5df12d0", "recordValue": 3, timestamp: "2021-01-01T00:00:00Z" }]`'
+          example: '[{ "dimensionId": "539b7f74-3832-474e-a955-6d69c5df12d0", "recordValue": 3, timestamp: "2021-01-01T00:00:00Z" }]'
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageForCustomerEnrollment'
+    GetCustomerStripePortalResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+        portalUrl:
+          type: string
+          description: 'URL to a short-lived Stripe hosted portal session.
+
+            Customers can be redirected to this URL to enter payment information.
+
+            Example: `"https://billing.paigo.com/stripe-portal?customerId=cus_xxxxxxxxxxxxxx"`'
+          example: https://billing.paigo.com/stripe-portal?customerId=cus_xxxxxxxxxxxxxx
+      required:
+      - message
+    ReadMeasurementResponseData:
+      type: object
+      properties:
+        measurementMode:
+          type: string
+          enum:
+          - infrastructureBased
+          - agentBased
+          - datastoreBased
+          example: infrastructureBased
+          description: The measurement method. See <a href="https://docs.paigo.tech/measure-usage-and-collect-data/measure-and-collect-usage-data-at-production-scale">Measure and Collect Usage Data at Production Scale</a> for more information. <br><br> Example `"agentBased"`
+        measurementConfiguration:
+          description: Configuration for the measurement method.
+          oneOf:
+          - $ref: '#/components/schemas/InfrastructureAccessInformation'
+          - $ref: '#/components/schemas/AgentAccessInformation'
+          - $ref: '#/components/schemas/DatastoreAccessInformationResponse'
+        measurementName:
+          type: string
+          description: 'The human readable name of the measurement
+
+            <br><br>
+
+            Example `"EBS Usage"`'
+          example: EBS Usage
+        measurementId:
+          type: string
+          description: 'Unique identifier assigned by Paigo.
+
+            <br><br>
+
+            Example `"de388932-a7e1-11ed-afa1-0242ac120002"`'
+          example: de388932-a7e1-11ed-afa1-0242ac120002
+      required:
+      - measurementMode
+      - measurementConfiguration
+      - measurementId
+    DimensionOverridesDto:
+      type: object
+      properties:
+        dimensionId:
+          type: string
+          description: 'The Id of the dimension that is being overridden.
+
+            <br><br>
+
+            Example: `"6a8fb855-206c-4226-8695-daf67352e7ee"`'
+          example: 6a8fb855-206c-4226-8695-daf67352e7ee
+        consumptionPrice:
+          type: string
+          description: 'The price of the dimension. Must be a valid number.
+
+            <br><br>
+
+            Example: `"10.00"`'
+          example: '10.00'
+        tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/DimensionTierDto'
+        tiersGroupByMetadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/DimensionTiersGroupByMetadataDto'
+      required:
+      - dimensionId
+    InvoiceCommunicationHistory:
+      type: object
+      properties:
+        time:
+          type: string
+          description: 'The RFC 3339 time of communication that was sent to the customer.
+
+            <br><br>
+
+            Example: `"2022-01-01T00:00:00.000Z"`'
+          example: '2022-01-01T00:00:00.000Z'
+        type:
+          type: string
+          description: 'The type of communication that was sent to the customer.
+
+            <br><br>
+
+            Example: `INVOICE_EMAIL`'
+          example: INVOICE_EMAIL
+          enum:
+          - REMINDER_EMAIL
+          - INVOICE_EMAIL
+        metadata:
+          type: object
+          description: 'The metadata of the communication that was sent to the customer.
+
+            <br><br>
+
+            Example: `{"subject": "Invoice for January 2022"}`'
+    DimensionTiersGroupByMetadataDto:
+      type: object
+      properties:
+        metadataGroups:
+          type: object
+          description: 'The metadata groups to group the tiers by. A collection of key value pairs. metadata groups are used alongside the usage passed in to define more accurately how to break up price and usage for a dimension.
+
+            <br><br>
+
+            Example: `{ "instanceType": "t3.medium", "region": "us-east-1", "deployment": "production"}`'
+        tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/DimensionTierDto'
+      required:
+      - metadataGroups
+      - tiers
+    FindCustomerRefundsResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+        data:
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/StripeRefundResponseDto'
+      required:
+      - message
+      - data
     CountBasedConsumptionUnit:
       type: object
       properties:
@@ -868,117 +1231,39 @@ components:
       required:
       - unit
       - type
-    Address:
+    FindCustomerPaymentsResponse:
       type: object
       properties:
-        countryCode:
+        message:
           type: string
-          description: 'Two-letter country code
-
-            <br><br>
-
-            Example: <br>
-
-            - `''US''`<br>
-
-            - `''DE''`<br>'
-          example: US
-        postalCode:
-          type: string
-          description: 'The postal code of the address. Typically, this is the country-specific.
-
-            <br><br>
-
-            Example: `"90210"`'
-          example: '90210'
-        city:
-          type: string
-          description: 'The city of the address
-
-            <br><br>
-
-            Example: `"Beverly Hills"`'
-          example: Beverly Hills
-        streetLineOne:
-          type: string
-          description: 'The first line of the street address
-
-            <br><br>
-
-            Example: `"1234 Main St"`'
-          example: 1234 Main St
-        streetLineTwo:
-          type: string
-          description: 'The second line of the street address
-
-            <br><br>
-
-            Example: `"Apt 1"`'
-          example: Apt 1
-        state:
-          type: string
-          description: 'Two-letter state code
-
-            <br><br>
-
-            Example: <br>
-
-            - `''NY''`
-
-            - `''CA''`'
-          example: NY
-      required:
-      - countryCode
-      - postalCode
-      - city
-      - streetLineOne
-      - state
-    AggregatedUsageResponse:
-      type: object
-      properties:
-        offeringId:
-          type: string
-          description: The unique identifier of the offering.
-        dimensionId:
-          type: string
-          description: The unique identifier of a dimension.
-        usage:
-          description: Array of usage records group by aggregation time interval
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+        data:
+          minItems: 0
           type: array
           items:
-            $ref: '#/components/schemas/UsageResponseDocument'
+            $ref: '#/components/schemas/StripeRefundResponseDto'
       required:
-      - dimensionId
-      - usage
-    TimeBasedConsumptionUnit:
+      - message
+      - data
+    CustomOverrides:
       type: object
       properties:
-        unit:
-          enum:
-          - second
-          - minute
-          - hour
-          - day
-          type: string
-          description: A unit of time for a dimension of type time-based
-          examples:
-          - second
-          - minute
-          - hour
-          - day
-        type:
-          type: string
-          enum:
-          - time
-          description: A string that indicates the type of consumption unit
-      required:
-      - unit
-      - type
-    UpdateFreeTrialDto:
-      type: object
-      properties:
-        offeringId:
-          type: string
+        discount:
+          description: 'A discount to be applied to the billing invoices associated with the customer/offering. Optional. Applies to the total invoice.
+
+            If `null` is passed in to the discount object, the discount will be removed from the customer. This does not generate an enrollment / unenrollment event'
+          allOf:
+          - $ref: '#/components/schemas/CustomerContractDiscount'
+        dimensionOverrides:
+          description: 'Applies custom overrides to dimensions associated with the offering. These effect the price of each dimension on the offering. Each dimension override must
+
+            have a unique dimensionId. Dimensions not included in the overrides will be defaulted based on their defined price. Dimensions overrides cannot change the "structure" of the price.
+
+            Meaning a tiered dimension cannot be changed to just have a consumption price and vice versa.'
+          type: array
+          items:
+            $ref: '#/components/schemas/DimensionOverridesDto'
         freeTrialEndDate:
           type: string
           description: 'The end date of the free trial. Must be in the future and must be an RFC3339 date string.
@@ -987,317 +1272,6 @@ components:
 
             Example: `"2021-01-01T00:00:00Z"`'
           example: '2021-01-01T00:00:00Z'
-        freeTrialStartDate:
-          type: string
-          description: 'The start date of the free trial. Must be in the future and must be an RFC3339 date string. Optional to set, determines the free trial start date for a customer.
-
-            This is used during billing calculations to determine the proration amount for their free trial invoice.
-
-            <br><br>
-
-            Example: `"2021-01-01T00:00:00Z"`'
-          example: '2017-01-01T00:00:00Z'
-      required:
-      - freeTrialEndDate
-    CreateCreditDto:
-      type: object
-      properties:
-        transactionAmount:
-          type: string
-          description: 'The amount to credit the customer. Can be positive or negative. Customers cannot have a negative balance set via the API.
-
-            <br><br>
-
-            Example: `"100.00"`'
-          examples:
-          - '100.00'
-          - '100'
-          minimum: -1000000000
-          maximum: 1000000000
-        timestamp:
-          type: string
-          description: 'The timestamp of the credit. Optional. Will be set to right now UTC if not provided.
-
-            <br><br>
-
-            Example: `"2021-01-01T00:00:00.000Z"`'
-          example: '2021-01-01T00:00:00.000Z'
-        metadata:
-          type: object
-          description: 'The metadata to attach to the credit. Optional
-
-            <br><br>
-
-            Example: `{"key": "value"}`'
-      required:
-      - transactionAmount
-    ReadAllCustomerResponseDTO:
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-        data:
-          description: Array of customers.
-          minItems: 0
-          type: array
-          items:
-            $ref: '#/components/schemas/ReadAllCustomersResponseData'
-      required:
-      - message
-      - data
-    StripePaymentChannelOptions:
-      type: object
-      properties:
-        stripeCustomerId:
-          type: string
-          description: 'The unique identifier for the customer in Stripe
-
-            <br><br>
-
-            Example: `"cus_xxxxxxxxxxxxxx"`'
-    CreateCustomerResponseDto:
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-        customerId:
-          type: string
-          description: 'The unique identifier assigned by Paigo
-
-            <br><br>
-
-            Example: `"e345f409-daca-4144-91d2-0a0f87c96581"`'
-          example: e345f409-daca-4144-91d2-0a0f87c96581
-        portalUrl:
-          type: string
-          description: 'URL to a short-lived Stripe hosted portal session.
-
-            Customers can be redirected to this URL to enter payment information.
-
-            Example: `"https://billing.paigo.com/stripe-portal?customerId=cus_xxxxxxxxxxxxxx"`'
-          example: https://billing.paigo.com/stripe-portal?customerId=cus_xxxxxxxxxxxxxx
-      required:
-      - message
-      - customerId
-    DatastoreAccessInformationResponse:
-      type: object
-      properties:
-        platform:
-          description: Underlying resource type which paigo connects to. <br><br> Example `"s3"`
-          enum:
-          - s3
-          - kafka
-          type: string
-          examples:
-          - s3
-        consumerDeploymentParameters:
-          description: The access information and configuration for deploying a datastore consumer by Paigo. Use this field in a case where Paigo is deploying a consumer and you want to provide the access information for the datastore.
-          oneOf:
-          - $ref: '#/components/schemas/KafkaDeploymentParametersDto'
-        ingestion:
-          type: string
-          description: The Ingestion endpioint for data to be dropped off at.
-        dlq:
-          type: string
-          description: The DLQ endpoint for data which has failed to be processed.
-        iamRoleArn:
-          type: string
-          description: The IAM role associated with the endpoints for access management
-        externalId:
-          type: string
-          description: The externalId associated with the endpoints
-        region:
-          type: string
-          description: The region associated with the endpoints, defaults to `us-east-1`
-        accountId:
-          type: string
-          description: 'The Unqiue ID for your cloud account.
-
-            <br><br>
-
-            Example `"623673123435"`'
-          example: '623673123435'
-      required:
-      - platform
-      - ingestion
-      - dlq
-    ReadOfferingResponseData:
-      type: object
-      properties:
-        offeringVisibility:
-          description: 'The visibility of the offering, specifically if its private or public.
-
-            Public offerings are designed to be shared among customers.
-
-            Private offerings are typically used for enterprise deals which contain discounts or prepaid credits.
-
-            <br><br>
-
-            Example: `"private"`'
-          example: private
-          enum:
-          - private
-          - public
-          type: string
-          default: public
-        offeringType:
-          type: string
-          description: 'The type of offering.
-
-            <br>  • `usage-based` - The offering is a pure usage-based offering, or pay-as-you-go. Customers on this plan will be billed precisely based on consumption.
-
-            <br>  • `subscription` - The offering is a fixed subscription. Customer will be billed on a fixed price.
-
-
-            Example `"subscription"`'
-          enum:
-          - usage-based
-          - subscription
-          default: usage-based
-          example: subscription
-          externalDocs:
-            description: Read more about the different offering types
-            url: https://docs.paigo.tech/model-pricing-and-package/pricing-modeling-guide
-        billingCycle:
-          description: 'The time frame when an automatic bill should be sent leave empty for no automated billing
-
-            <br><br>
-
-
-            Example `"monthly"`'
-          example: monthly
-          enum:
-          - monthly
-          - annualToDate
-          - topUp
-          type: string
-          default: monthly
-        currency:
-          description: 'The supported currency for the offering. USD is currently supported. Customers can override the currency for their account.
-
-            However all offerings are denoted in USD.
-
-            <br><br>
-
-            Example `"USD"`'
-          example: USD
-          enum:
-          - USD
-          - EUR
-          - CNY
-          type: string
-        dimensionOverrides:
-          description: Overrides for the offering. Applies specific overrides to the dimensions associated with the offering. These effect the price of each dimension on the offering.
-          type: array
-          items:
-            $ref: '#/components/schemas/DimensionOverridesDto'
-        offeringId:
-          type: string
-          description: 'Unique identifier assigned by Paigo.
-
-            <br><br>
-
-            Example: `539b7f74-3832-474e-a955-6d69c5df12d0`'
-          example: 539b7f74-3832-474e-a955-6d69c5df12d0
-        dimensions:
-          description: The list of dimensions attached to the offering.
-          type: array
-          items:
-            $ref: '#/components/schemas/ReadDimensionResponseData'
-        prepaidCredit:
-          type: string
-          description: 'Prepaid credit amount to be deducted as part of the bill payments. Only numerical string is allowed.
-
-            <br><br>Example: `"20.00"` for $20.00.'
-          example: '20.00'
-        minimumCharge:
-          type: string
-          nullable: true
-          description: 'A minimum charge to be billed to the customer in the event that the customer''s bill is less than the minimum charge. Only on usage based offerings. Only numerical strings are allowed, must be greater than zero.
-
-            <br><br>Example: `"32.00"` for $32.00.'
-          example: '32.00'
-        topUpAmount:
-          type: string
-          description: 'The amount to top up the account by. Only positive number string is allowed. Required if `billingCycle` is `topUp`.
-
-            <br><br>
-
-            Example: `"20.00"` for $20.00.'
-          example: '20.00'
-        topUpThreshold:
-          type: string
-          description: 'The threshold at which the account should be topped up. Only positive number string is allowed. Between 0 and 1.
-
-            If not provided the default value will be 0.2 or 20%. Meaning that when the account balance reaches 20% of the the top up amount, the account will be
-
-            topped up, and the end customer charged.
-
-            <br><br>
-
-            Example: `"0.2"` for 20%.'
-          example: '0.2'
-        subscriptionPrice:
-          type: number
-          description: 'The price of the subscription.
-
-            Only positive number string is allowed.
-
-            Only required if `offeringType` is `subscription`.
-
-            <br><br>
-
-
-            Example: `20.00` for $20.00.'
-          example: 20
-        freeTrialLength:
-          type: string
-          description: 'The length of time for a free trial. This is a number of days.
-
-            Only positive number string is allowed.
-
-            <br><br>
-
-
-            Example: `"1"` for 1 day or 1 billing cycle depending on the offeringType.'
-          example: '1'
-        offeringName:
-          type: string
-          description: 'A friendly, human-readable name for the offering.
-
-            <br><br>
-
-            Example `"Entperise Plan"`'
-          example: Entperise Plan
-        metadata:
-          type: object
-          description: 'An optional key-value map of additional metadata to associate with the offerings.
-
-            such as environment, purpose, owner, developer, contract number,
-
-            or any arbitrary data to be associated with this usage record. Additionally, if `null` is passed for any value in the metadata object it will be removed.
-
-            To entirely remove the metadata object, pass null to the metadata field.
-
-            <br><br>
-
-            Example `{"environment": "staging", "purpose": "proof-of-concept", "owner": "John Doe", "workspaceId": null}`
-
-            <br><br>
-
-            In the above example, the `workspaceId` metadata key will be removed from the dimension. To remove all fields pass the following.
-
-            <br><br>
-
-            Example `"metadata": null`'
-      required:
-      - offeringId
-      - dimensions
-      - offeringName
     CreateCustomerDto:
       type: object
       properties:
@@ -1452,23 +1426,135 @@ components:
       - customerName
       - email
       - paymentChannel
-    GetCustomerStripePortalResponse:
+    DatastoreAccessInformationResponse:
+      type: object
+      properties:
+        platform:
+          description: Underlying resource type which paigo connects to. <br><br> Example `"s3"`
+          enum:
+          - s3
+          - kafka
+          type: string
+          examples:
+          - s3
+        consumerDeploymentParameters:
+          description: The access information and configuration for deploying a datastore consumer by Paigo. Use this field in a case where Paigo is deploying a consumer and you want to provide the access information for the datastore.
+          oneOf:
+          - $ref: '#/components/schemas/KafkaDeploymentParametersDto'
+        ingestion:
+          type: string
+          description: The Ingestion endpioint for data to be dropped off at.
+        dlq:
+          type: string
+          description: The DLQ endpoint for data which has failed to be processed.
+        iamRoleArn:
+          type: string
+          description: The IAM role associated with the endpoints for access management
+        externalId:
+          type: string
+          description: The externalId associated with the endpoints
+        region:
+          type: string
+          description: The region associated with the endpoints, defaults to `us-east-1`
+        accountId:
+          type: string
+          description: 'The Unqiue ID for your cloud account.
+
+            <br><br>
+
+            Example `"623673123435"`'
+          example: '623673123435'
+      required:
+      - platform
+      - ingestion
+      - dlq
+    KafkaDeploymentParametersDto:
+      type: object
+      properties:
+        securityMechanism:
+          type: string
+          externalDocs:
+            url: https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_plain.html#sasl-plain-overview
+          example: PLAIN
+          description: 'The security protocol to use when connecting to the Kafka cluster. Defaults to `PLAIN`. Note this is not PLAINTEXT. PLAIN is the SASL_PLAIN protocol. <br><br> Example: `"PLAIN"`'
+        username:
+          type: string
+          description: 'The username to use when connecting to the Kafka cluster. <br><br> Example: `"admin"`'
+          example: admin
+        password:
+          type: string
+          description: 'The password to use when connecting to the Kafka cluster. <br><br> Example: `"hunter2"`'
+          example: hunter2
+        bootstrapServerEndpoint:
+          type: string
+          description: 'The endpoint of the Kafka cluster to connect to. <br><br> Example: `"kafka.paigo.tech"`'
+          example: kafka.paigo.tech
+        topic:
+          type: string
+          description: 'The topic to subscribe to. <br><br> Example: `"test-topic"`'
+          example: '"test-topic"'
+        dlqTopic:
+          type: string
+          description: 'The DLQ topic to write to when a message fails to be processed. <br><br> Example: `"dlq-topic"`'
+          example: '"dlq-topic"'
+      required:
+      - securityMechanism
+      - username
+      - password
+      - bootstrapServerEndpoint
+      - topic
+      - dlqTopic
+    CustomerEnrollmentResponseDto:
       type: object
       properties:
         message:
           type: string
           description: A human readable message describing the outcome of the operation
           example: This is a sample API message. The exact message may vary based on the API behavior
-        portalUrl:
-          type: string
-          description: 'URL to a short-lived Stripe hosted portal session.
-
-            Customers can be redirected to this URL to enter payment information.
-
-            Example: `"https://billing.paigo.com/stripe-portal?customerId=cus_xxxxxxxxxxxxxx"`'
-          example: https://billing.paigo.com/stripe-portal?customerId=cus_xxxxxxxxxxxxxx
+        data:
+          description: The data returned from the request. Can be empty, indicated that the customer is not enrolled in any offerings.
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerEnrollmentResponseData'
+            maximum: 1
+            minimum: 0
       required:
       - message
+      - data
+    UpdateFreeTrialResponseDto:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+        customerId:
+          type: string
+          description: 'Unique identifier assigned by Paigo
+
+            <br><br>
+
+            Example: `"e345f409-daca-4144-91d2-0a0f87c96581"`'
+          example: e345f409-daca-4144-91d2-0a0f87c96581
+      required:
+      - message
+      - customerId
+    ReadCustomerResponseDTO:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+        data:
+          description: Array of customers
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/ReadCustomerResponseData'
+      required:
+      - message
+      - data
     ReadCustomerUsageData:
       type: object
       properties:
@@ -1496,39 +1582,7 @@ components:
       required:
       - message
       - data
-    UsageForCustomerEnrollment:
-      type: object
-      properties:
-        dimensionId:
-          type: string
-        recordValue:
-          type: string
-          description: 'The amount of the usage on this record.
-
-            Numerical values are represented as strings to avoid precision loss.
-
-            <br><br>
-
-            Example: `"0.87"`'
-        metadata:
-          type: object
-          description: 'An optional key-value map of additional metadata to associate with this usage record.
-
-            Additional metadata to be stored on the usage record,
-
-            such as environment, purpose, owner, developer, contract number,
-
-            or any arbitrary data to be associated with this usage record.
-
-            Metadata can be used for analytics purpose.
-
-            <br><br>
-
-            Example `{"environment": "staging", "purpose": "proof-of-concept", "owner": "John Doe"}`'
-      required:
-      - dimensionId
-      - recordValue
-    FindCustomerPaymentsResponse:
+    ReadAllCustomerResponseDTO:
       type: object
       properties:
         message:
@@ -1536,13 +1590,445 @@ components:
           description: A human readable message describing the outcome of the operation
           example: This is a sample API message. The exact message may vary based on the API behavior
         data:
+          description: Array of customers.
           minItems: 0
           type: array
           items:
-            $ref: '#/components/schemas/StripeRefundResponseDto'
+            $ref: '#/components/schemas/ReadAllCustomersResponseData'
       required:
       - message
       - data
+    UsageResponseDocument:
+      type: object
+      properties:
+        value:
+          type: string
+          description: 'The usage record value for the given dimension and time interval.
+
+            Numerical values are represented as strings to avoid precision loss.
+
+            <br><br>
+
+            Example `"0.67"`'
+          example: '0.67'
+        startTime:
+          type: string
+          description: 'The start time of the time interval in ISO8601 format.
+
+            <br><br>
+
+            Example `"2021-01-01T00:00:00.000Z"`'
+          example: '2021-01-01T00:00:00.000Z'
+        endTime:
+          type: string
+          description: 'The end time of the time interval in ISO8601 format.
+
+            <br><br>
+
+            Example `"2021-01-01T00:00:00.000Z"`'
+          example: '2021-01-01T00:00:00.000Z'
+        metadataGroup:
+          type: object
+          description: 'An optional key-value map of additional metadata to associate with this usage record.
+
+            This metadata is used to group usage records together.
+
+            such as environment, purpose, owner, developer, contract number,
+
+            or any arbitrary data to be associated with this usage record.
+
+            <br><br>
+
+            Example `{"environment": "staging", "purpose": "proof-of-concept", "owner": "John Doe"}`'
+    UpdateCustomerDto:
+      type: object
+      properties:
+        currency:
+          description: 'The customer''s preferred currency. Only ISO 4217 currency codes are allowed. Overrides the currency on an offering. If not specified,
+
+            the currency on the offering will be used. If no currency is specified on the offering, the default currency of `"USD"` will be used.
+
+            Cannot be Updated if a customer has an active balance of credits
+
+            <br><br>
+
+            Example `"USD"`'
+          example: USD
+          enum:
+          - USD
+          - EUR
+          - CNY
+          type: string
+        taxExempt:
+          description: 'Whether the customer is exempt from paying taxes
+
+            <br><br>
+
+            Example: `"none"`'
+          example: none
+          enum:
+          - exempt
+          - none
+          type: string
+          default: none
+        freeTrialEndDate:
+          type: string
+          description: 'Free Trial End Date is the date time when a free trial is over for the customer. Must be in the future and a valid RFC 3999 date time.
+
+            <br><br>
+
+            Example: `"2199-02-01T11:00:00Z"`'
+          example: '2199-02-01T11:00:00Z'
+        removePriorOffering:
+          type: boolean
+          description: 'An optional flag to remove the prior offering from the customer. If set to `true`, the customer will be removed from all of their prior offerings. This may generate an invoice, in cases where relevant. Such as if the `"offeringType"` is a usage-based offering. If set to `false`, the customer will remain enrolled in the same offering.
+
+            <br><br>
+
+            Example: `true`'
+          example: true
+        unenrollOffering:
+          type: string
+          description: 'Used to specifically unenroll a customer from a singular offering. This may generate an invoice, in cases where relevant. Such as if the
+
+            `"offeringType"` is a usage-based offering. Cannot be used in conjunction with `removePriorOffering` or enrolling a customer in a new
+
+            offering with the`offeringId` field. A 400 error will be returned if this is the case.
+
+            <br><br>
+
+            Example: `"177735fe-5d06-49a7-a8fb-f5da11773345"`'
+          example: 177735fe-5d06-49a7-a8fb-f5da11773345
+        offeringId:
+          type: string
+          description: 'The unique identifier for the offering associated with a customer
+
+            <br><br>
+
+            Example: `"eea7347bd-a2d8-4390-ae09-68f9b8e4ed6c"`'
+          example: eea7347bd-a2d8-4390-ae09-68f9b8e4ed6c
+        customerName:
+          type: string
+          description: 'The friendly, human-readable name for the customer profile
+
+            <br><br>
+
+            Example: `"John Doe"`'
+          example: John Doe
+        customerVatId:
+          type: string
+          description: 'The VAT ID of the customer.
+
+            Every VAT identification number must begin with the code of the country concerned and
+
+            followed by a block of digits or characters.
+
+            <br><br>
+
+            Example `"GB VAT 123456789"`'
+          example: GB VAT 123456789
+        email:
+          type: string
+          description: 'Customer email address
+
+            <br><br>
+
+            Example: `"noreply@paigo.tech"`'
+          example: noreply@paigo.tech
+        paymentChannel:
+          type: string
+          description: 'The payment channel associated with a customer
+
+            <br><br>
+
+            Example: `"Stripe"`'
+          example: Stripe
+          enum:
+          - Stripe
+          - manual
+        paymentChannelOptions:
+          description: 'Configuration options for the payment channel.
+
+            For Stripe payment, `stripeCustomerId` is required for existing Stripe customers.
+
+            If `stripeCustomerId` is not provided, a new Stripe customer will be created.
+
+            See example below.
+
+            <br><br>
+
+            Example `{"stripeCustomerId": "cus_xxxxxxxxxxxxxx"}`'
+          allOf:
+          - $ref: '#/components/schemas/StripePaymentChannelOptions'
+        address:
+          description: The address of the customer
+          allOf:
+          - $ref: '#/components/schemas/Address'
+        metadata:
+          type: object
+          description: 'An optional key-value map of additional metadata to associate with the customer.
+
+            such as environment, purpose, owner, developer, contract number,
+
+            or any arbitrary data to be associated with this usage record. Additionally, if `null` is passed for any value in the metadata object it will be removed.
+
+            To entirely remove the metadata object, pass null to the metadata field.
+
+            <br><br>
+
+            Example `{"environment": "staging", "purpose": "proof-of-concept", "owner": "John Doe", "workspaceId": null}`
+
+            <br><br>
+
+            In the above example, the `workspaceId` metadata key will be removed from the dimension. To remove all fields pass the following.
+
+            <br><br>
+
+            Example `"metadata": null`'
+        usage:
+          description: 'Optionally, usage can be initally applied for a customer when they are enrolling in an offering.
+
+            This is used for dimensions which have a paymentSchedule of `upfront` and need to have some usage for the intial enrollment.
+
+            For example, a customer purchases 3 seats then on the enrollment a usage `recordValue` of 3 must be sent in for the time of purchase.
+
+            Multiple usage records can be sent in, regardless of dimension. If usage records are sent in for a dimension that is not on the current offering, they will be loaded into paigo,
+
+            but ignored on the invoice.
+
+            <br><br>
+
+            Example: `[{ "dimensionId": "539b7f74-3832-474e-a955-6d69c5df12d0", "customerId":"f918b6f4-2ad6-48c4-8b62-ac23adada9ae", "recordValue": 3, timestamp: "2021-01-01T00:00:00Z" }]`'
+          example: '[{ "dimensionId": "539b7f74-3832-474e-a955-6d69c5df12d0", "customerId":"f918b6f4-2ad6-48c4-8b62-ac23adada9ae", "recordValue": 3, timestamp: "2021-01-01T00:00:00Z" }]'
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageForCustomerEnrollment'
+    StripePaymentChannelOptions:
+      type: object
+      properties:
+        stripeCustomerId:
+          type: string
+          description: 'The unique identifier for the customer in Stripe
+
+            <br><br>
+
+            Example: `"cus_xxxxxxxxxxxxxx"`'
+    ReadOfferingResponseData:
+      type: object
+      properties:
+        offeringVisibility:
+          description: 'The visibility of the offering, specifically if its private or public.
+
+            Public offerings are designed to be shared among customers.
+
+            Private offerings are typically used for enterprise deals which contain discounts or prepaid credits.
+
+            <br><br>
+
+            Example: `"private"`'
+          example: private
+          enum:
+          - private
+          - public
+          type: string
+          default: public
+        offeringType:
+          type: string
+          description: 'The type of offering.
+
+            <br>  • `usage-based` - The offering is a pure usage-based offering, or pay-as-you-go. Customers on this plan will be billed precisely based on consumption.
+
+            <br>  • `subscription` - The offering is a fixed subscription. Customer will be billed on a fixed price.
+
+
+            Example `"subscription"`'
+          enum:
+          - usage-based
+          - subscription
+          default: usage-based
+          example: subscription
+          externalDocs:
+            description: Read more about the different offering types
+            url: https://docs.paigo.tech/model-pricing-and-package/pricing-modeling-guide
+        billingCycle:
+          description: 'The time frame when an automatic bill should be sent leave empty for no automated billing
+
+            <br><br>
+
+
+            Example `"monthly"`'
+          example: monthly
+          enum:
+          - monthly
+          - annualToDate
+          - topUp
+          type: string
+          default: monthly
+        currency:
+          description: 'The supported currency for the offering. USD is currently supported. Customers can override the currency for their account.
+
+            However all offerings are denoted in USD.
+
+            <br><br>
+
+            Example `"USD"`'
+          example: USD
+          enum:
+          - USD
+          - EUR
+          - CNY
+          type: string
+        dimensionOverrides:
+          description: Overrides for the offering. Applies specific overrides to the dimensions associated with the offering. These effect the price of each dimension on the offering.
+          type: array
+          items:
+            $ref: '#/components/schemas/DimensionOverridesDto'
+        offeringId:
+          type: string
+          description: 'Unique identifier assigned by Paigo.
+
+            <br><br>
+
+            Example: `539b7f74-3832-474e-a955-6d69c5df12d0`'
+          example: 539b7f74-3832-474e-a955-6d69c5df12d0
+        dimensions:
+          description: The list of dimensions attached to the offering.
+          type: array
+          items:
+            $ref: '#/components/schemas/ReadDimensionResponseData'
+        prepaidCredit:
+          type: string
+          description: 'Prepaid credit amount to be deducted as part of the bill payments. Only numerical string is allowed.
+
+            <br><br>Example: `"20.00"` for $20.00.'
+          example: '20.00'
+        minimumCharge:
+          type:
+          - string
+          - 'null'
+          description: 'A minimum charge to be billed to the customer in the event that the customer''s bill is less than the minimum charge. Only on usage based offerings. Only numerical strings are allowed, must be greater than zero.
+
+            <br><br>Example: `"32.00"` for $32.00.'
+          example: '32.00'
+        topUpAmount:
+          type: string
+          description: 'The amount to top up the account by. Only positive number string is allowed. Required if `billingCycle` is `topUp`.
+
+            <br><br>
+
+            Example: `"20.00"` for $20.00.'
+          example: '20.00'
+        topUpThreshold:
+          type: string
+          description: 'The threshold at which the account should be topped up. Only positive number string is allowed. Between 0 and 1.
+
+            If not provided the default value will be 0.2 or 20%. Meaning that when the account balance reaches 20% of the the top up amount, the account will be
+
+            topped up, and the end customer charged.
+
+            <br><br>
+
+            Example: `"0.2"` for 20%.'
+          example: '0.2'
+        subscriptionPrice:
+          type: number
+          description: 'The price of the subscription.
+
+            Only positive number string is allowed.
+
+            Only required if `offeringType` is `subscription`.
+
+            <br><br>
+
+
+            Example: `20.00` for $20.00.'
+          example: 20
+        freeTrialLength:
+          type: string
+          description: 'The length of time for a free trial. This is a number of days.
+
+            Only positive number string is allowed.
+
+            <br><br>
+
+
+            Example: `"1"` for 1 day or 1 billing cycle depending on the offeringType.'
+          example: '1'
+        offeringName:
+          type: string
+          description: 'A friendly, human-readable name for the offering.
+
+            <br><br>
+
+            Example `"Entperise Plan"`'
+          example: Entperise Plan
+        metadata:
+          type: object
+          description: 'An optional key-value map of additional metadata to associate with the offerings.
+
+            such as environment, purpose, owner, developer, contract number,
+
+            or any arbitrary data to be associated with this usage record. Additionally, if `null` is passed for any value in the metadata object it will be removed.
+
+            To entirely remove the metadata object, pass null to the metadata field.
+
+            <br><br>
+
+            Example `{"environment": "staging", "purpose": "proof-of-concept", "owner": "John Doe", "workspaceId": null}`
+
+            <br><br>
+
+            In the above example, the `workspaceId` metadata key will be removed from the dimension. To remove all fields pass the following.
+
+            <br><br>
+
+            Example `"metadata": null`'
+      required:
+      - offeringId
+      - dimensions
+      - offeringName
+    ReadPaymentDto:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'The type of payment. Currently only `Credit` and `Stripe` are supported.
+
+            <br><br>
+
+            Example: `"Credit"`'
+          example: Credit
+          enum:
+          - Stripe
+          - Credit
+        transactionAmount:
+          type: string
+          description: 'The amount associated with a specific credit transaction
+
+            <br><br>
+
+            Example: `"100.00"`'
+          example: '100.00'
+        timestamp:
+          type: string
+          description: 'The timestamp associated with a specific credit transaction. RFC3339 format.
+
+            <br><br>
+
+            Example: `"2021-01-01T00:00:00.000Z"`'
+          example: '2021-01-01T00:00:00.000Z'
+        metadata:
+          type: object
+          description: 'The metadata associated with a specific transaction. For `stripe` type responses, paymentIntentsId, currency, and status are included.
+
+            <br><br>
+
+            Example: `{"key": "value"}`'
+      required:
+      - type
+      - transactionAmount
+      - timestamp
+      - metadata
     DimensionTierDto:
       type: object
       properties:
@@ -1583,106 +2069,89 @@ components:
       required:
       - upperBound
       - tierPosition
-    BasicResponseDTO:
+    CreateCustomerResponseDto:
       type: object
       properties:
         message:
           type: string
           description: A human readable message describing the outcome of the operation
           example: This is a sample API message. The exact message may vary based on the API behavior
-      required:
-      - message
-    ReadCustomerResponseDTO:
-      type: object
-      properties:
-        message:
+        customerId:
           type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-        data:
-          description: Array of customers
-          minItems: 0
-          type: array
-          items:
-            $ref: '#/components/schemas/ReadCustomerResponseData'
+          description: 'The unique identifier assigned by Paigo
+
+            <br><br>
+
+            Example: `"e345f409-daca-4144-91d2-0a0f87c96581"`'
+          example: e345f409-daca-4144-91d2-0a0f87c96581
+        portalUrl:
+          type: string
+          description: 'URL to a short-lived Stripe hosted portal session.
+
+            Customers can be redirected to this URL to enter payment information.
+
+            Example: `"https://billing.paigo.com/stripe-portal?customerId=cus_xxxxxxxxxxxxxx"`'
+          example: https://billing.paigo.com/stripe-portal?customerId=cus_xxxxxxxxxxxxxx
       required:
       - message
-      - data
-    ReadTransactionLedger:
+      - customerId
+    CreateCreditDto:
       type: object
       properties:
         transactionAmount:
-          type: number
-          description: 'The amount associated with a specific credit transaction
+          type: string
+          description: 'The amount to credit the customer. Can be positive or negative. Customers cannot have a negative balance set via the API.
 
             <br><br>
 
-            Example: `100.00`'
-          example: 100
+            Example: `"100.00"`'
+          examples:
+          - '100.00'
+          - '100'
+          minimum: -1000000000
+          maximum: 1000000000
         timestamp:
-          format: date-time
           type: string
-          description: The timestamp associated with a specific credit transaction
+          description: 'The timestamp of the credit. Optional. Will be set to right now UTC if not provided.
+
+            <br><br>
+
+            Example: `"2021-01-01T00:00:00.000Z"`'
           example: '2021-01-01T00:00:00.000Z'
         metadata:
           type: object
-          description: The metadata associated with a specific credit transaction
+          description: 'The metadata to attach to the credit. Optional
+
+            <br><br>
+
+            Example: `{"key": "value"}`'
       required:
       - transactionAmount
-      - timestamp
-      - metadata
-    DatabasedConsumptionUnit:
+    UpdateFreeTrialDto:
       type: object
       properties:
-        unit:
-          enum:
-          - byte
-          - kilobyte
-          - megabyte
-          - gigabyte
-          - kibibyte
-          - mebibyte
-          - gibibyte
-          type: string
-          description: A unit of data for a dimension of type data-based
-          examples:
-          - byte
-          - kilobyte
-          - megabyte
-          - gigabyte
-        type:
-          type: string
-          enum:
-          - data
-          description: A string that indicates the type of consumption unit
-      required:
-      - unit
-      - type
-    UnAggregatedUsageResponse:
-      type: object
-      properties:
-        usage:
-          description: Array of usage records group by aggregation time interval
-          type: array
-          items:
-            $ref: '#/components/schemas/BasicUsageDocument'
-        dimensionId:
-          type: string
-          description: 'The unique identifier of a dimension.
-
-            <br><br>
-
-            Example `"12345678-1234-1234-1234-123456789012"`'
         offeringId:
           type: string
-          description: 'The unique identifier of the offering.
+        freeTrialEndDate:
+          type: string
+          description: 'The end date of the free trial. Must be in the future and must be an RFC3339 date string.
 
             <br><br>
 
-            Example `"12345678-1234-1234-1234-123456789012"`'
+            Example: `"2021-01-01T00:00:00Z"`'
+          example: '2021-01-01T00:00:00Z'
+        freeTrialStartDate:
+          type: string
+          description: 'The start date of the free trial. Must be in the future and must be an RFC3339 date string. Optional to set, determines the free trial start date for a customer.
+
+            This is used during billing calculations to determine the proration amount for their free trial invoice.
+
+            <br><br>
+
+            Example: `"2021-01-01T00:00:00Z"`'
+          example: '2017-01-01T00:00:00Z'
       required:
-      - usage
-      - dimensionId
+      - freeTrialEndDate
     ReadChildRowResponseData:
       type: object
       properties:
@@ -1706,279 +2175,7 @@ components:
       - childId
       - parentId
       - billParent
-    CreateChildRowDto:
-      type: object
-      properties:
-        billParent:
-          description: 'This determines if the parent should be billed for invoices of the child. Defaults to `separate`.
-
-            <br><br>
-
-            Example: `"aggregated"`'
-          example: aggregated
-          enum:
-          - aggregated
-          - separate
-          type: string
-          default: separate
-    StripeRefundChannelOptions:
-      type: object
-      properties:
-        paymentIntentId:
-          type: string
-          description: 'The paymentIntentId on stripe for the customer. Either paymentIntentId or chargeId is required.
-
-            <br><br>
-
-            Example: `"pi_1Gszkg2eZvKYlo2C6ZLlAL7u"`'
-          example: pi_1Gszkg2eZvKYlo2C6ZLlAL7u
-    CustomerEnrollmentResponseDto:
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-        data:
-          description: The data returned from the request. Can be empty, indicated that the customer is not enrolled in any offerings.
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomerEnrollmentResponseData'
-            maximum: 1
-            minimum: 0
-      required:
-      - message
-      - data
-    BasicUsageDocument:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          description: 'The timestamp of usage record in <a href="https://ijmacd.github.io/rfc3339-iso8601/">RFC3339</a>
-
-            format with a 4-digit year.
-
-            This is the time the usage occurred, or the end of the usage period.
-
-            <br><br>
-
-            Example: `"2023-02-08T19:24:10Z"`'
-          example: '2023-02-08T19:24:10Z'
-        recordValue:
-          type: string
-          description: 'The amount of the usage on this record.
-
-            Numerical values are represented as strings to avoid precision loss.
-
-            <br><br>
-
-            Example: `"0.87"`'
-          example: '0.87'
-        metadata:
-          type: object
-          description: 'An optional key-value map of additional metadata to associate with this usage record.
-
-            Additional metadata to be stored on the usage record,
-
-            such as environment, purpose, owner, developer, contract number,
-
-            or any arbitrary data to be associated with this usage record.
-
-            Metadata can be used for analytics purpose.
-
-            <br><br>
-
-            Example `{"environment": "staging", "purpose": "proof-of-concept", "owner": "John Doe"}`'
-      required:
-      - timestamp
-      - recordValue
-      - metadata
-    CreateCustomerRefundResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-      required:
-      - message
-    AgentAccessInformation:
-      type: object
-      properties:
-        iamRoleArn:
-          type: string
-          description: 'The IAM role created by SaaS business and can be by Paigo AWS account to measure usage.
-
-            <br><br>
-
-            Example `"arn:aws:iam::214826386939:role/paigo-scraper"`'
-          example: arn:aws:iam::214826386939:role/paigo-scraper
-        externalId:
-          type: string
-          description: 'The Optional ExternalId associated with the IAM role.
-
-            <br><br>
-
-            Example `"123456789"`'
-          example: '123456789'
-          externalDocs:
-            description: Read more about why externalIds are important
-            url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
-        hostingPlatform:
-          type: string
-          enum:
-          - k8spod
-          example: k8spod
-          description: Hosting platform of SaaS application
-      required:
-      - iamRoleArn
-      - hostingPlatform
-    CreditLedgerResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReadTransactionLedger'
-            minimum: 0
-      required:
-      - message
-      - data
-    CustomerEnrollmentResponseData:
-      type: object
-      properties:
-        offering:
-          description: The offering that the customer is enrolled in. The offering is a template for the customer's contract. Any customer specific changes to the offering are stored in the overrides object.
-          allOf:
-          - $ref: '#/components/schemas/ReadOfferingResponseData'
-        offeringEnrollmentDate:
-          type: string
-          description: 'The date time when a customer enrolled for an offering.
-
-            <br><br>
-
-            Example `"2020-12-30T23:59:59.999Z"`'
-          example: '2020-12-30T23:59:59.999Z'
-        overrides:
-          description: Overrides for the offering. Applies Customer specific overrides to the offering. Such as a discount or free trial.
-          allOf:
-          - $ref: '#/components/schemas/CustomOverrides'
-      required:
-      - offering
-      - offeringEnrollmentDate
-    CustomerContractDiscount:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Super Cool Discount
-          description: The name of the discount. This will appear as is on the Invoice. <br><br> Example:`"Super Cool Discount"`
-        percentage:
-          type: string
-          example: '10'
-          description: 'The percentage of the discount. This will be used to calculate the discount amount. Must be between 0 and 100 (inclusive). <br><br> Example: `"10"`'
-        endDate:
-          type: string
-          example: '2030-01-01T00:00:00Z'
-          description: 'The end date of the discount. If not provided, the discount will be applied indefinitely. The date format should be an RFC3339 string. The discount will be applied to any generated invoice that has an invoice creation date before the discount end date. <br><br> Example: `"2030-01-01T00:00:00Z"`'
-      required:
-      - name
-      - percentage
-    DimensionOverridesDto:
-      type: object
-      properties:
-        dimensionId:
-          type: string
-          description: 'The Id of the dimension that is being overridden.
-
-            <br><br>
-
-            Example: `"6a8fb855-206c-4226-8695-daf67352e7ee"`'
-          example: 6a8fb855-206c-4226-8695-daf67352e7ee
-        consumptionPrice:
-          type: string
-          description: 'The price of the dimension. Must be a valid number.
-
-            <br><br>
-
-            Example: `"10.00"`'
-          example: '10.00'
-        tiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/DimensionTierDto'
-        tiersGroupByMetadata:
-          type: array
-          items:
-            $ref: '#/components/schemas/DimensionTiersGroupByMetadataDto'
-      required:
-      - dimensionId
-    NotFoundException:
-      type: object
-      properties: {}
-    DeleteCustomerResponseDto:
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-        customerId:
-          type: string
-          description: 'Unique identifier assigned by Paigo
-
-            <br><br>
-
-            Example: `"e345f409-daca-4144-91d2-0a0f87c96581"`'
-          example: e345f409-daca-4144-91d2-0a0f87c96581
-      required:
-      - message
-      - customerId
-    InvoiceLineItem:
-      type: object
-      properties:
-        name:
-          type: string
-          description: 'The name of the line item as it appears on the invoice.
-
-            <br><br>
-
-            Example: `"Paigo Pro"`'
-          example: Paigo Pro
-        quantity:
-          type: number
-          description: 'The quantity of the line item.
-
-            <br><br>
-
-            Example: `1`'
-          example: 1
-          minimum: 0
-        unitCost:
-          type: number
-          description: 'The unit cost of the line item.
-
-            <br><br>
-
-            Example: `100.00`'
-          example: 100
-        description:
-          type: string
-          description: 'The description of the line item.
-
-            <br><br>
-
-            Example: `"Paigo Pro subscription"`'
-          example: Paigo Pro subscription
-      required:
-      - name
-      - quantity
-      - unitCost
-    ReadAllCustomersResponseData:
+    ReadCustomerResponseData:
       type: object
       properties:
         taxExempt:
@@ -2041,11 +2238,11 @@ components:
           type: string
           description: The friendly, human-readable name of the customer
         paymentChannel:
-          type: string
           description: The payment channel associated with a customer
           enum:
           - Stripe
           - manual
+          type: string
         email:
           type: string
           description: 'Customer email address
@@ -2127,7 +2324,6 @@ components:
             Example `"2020-12-28T23:59:59.999Z"`'
           example: '2020-12-28T23:59:59.999Z'
         currency:
-          type: string
           description: 'The currency of the customer
 
             <br><br>
@@ -2138,6 +2334,7 @@ components:
           - USD
           - EUR
           - CNY
+          type: string
         metadata:
           type: object
       required:
@@ -2145,155 +2342,89 @@ components:
       - customerId
       - customerName
       - paymentChannel
-    FindCustomerRefundsResponse:
+    BasicUsageDocument:
       type: object
       properties:
-        message:
+        timestamp:
           type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-        data:
-          minItems: 0
-          type: array
-          items:
-            $ref: '#/components/schemas/StripeRefundResponseDto'
-      required:
-      - message
-      - data
-    StripeRefundResponseDto:
-      type: object
-      properties:
-        amountRefunded:
-          type: string
-          description: 'The amount of the payment that was refunded. Derived from the stripe "amount_refunded" field.
+          description: 'The timestamp of usage record in <a href="https://ijmacd.github.io/rfc3339-iso8601/">RFC3339</a>
+
+            format with a 4-digit year.
+
+            This is the time the usage occurred, or the end of the usage period.
 
             <br><br>
 
-            Example: `"100.00"`'
-          example: '100.00'
-          externalDocs:
-            url: https://stripe.com/docs/api/refunds/retrieve
-            description: 'Stripe API Reference: Retrieve a Refund'
-        amount:
+            Example: `"2023-02-08T19:24:10Z"`'
+          example: '2023-02-08T19:24:10Z'
+        recordValue:
           type: string
-          description: 'The amount of the original charge. Derived from the stripe "amount" field.
+          description: 'The amount of the usage on this record.
+
+            Numerical values are represented as strings to avoid precision loss.
 
             <br><br>
 
-            Example: `"100.00"`'
-          example: '100.00'
-          externalDocs:
-            url: https://stripe.com/docs/api/refunds/retrieve
-            description: 'Stripe API Reference: Retrieve a Refund'
-        chargeId:
-          type: string
-          description: 'The id of the charge that was refunded. Pass through from Stripe API.
-
-            <br><br>
-
-            Example: `"ch_1J5J1n2eZvKYlo2C0q2Q2Q2Q2"`'
-          example: ch_1J5J1n2eZvKYlo2C0q2Q2Q2Q2
-          externalDocs:
-            url: https://stripe.com/docs/api/refunds/retrieve
-            description: 'Stripe API Reference: Retrieve a Refund'
+            Example: `"0.87"`'
+          example: '0.87'
         metadata:
           type: object
-          description: 'The metadata associated with the refund. Pass through from Stripe API. Metadata is an object of key value pairs.
+          description: 'An optional key-value map of additional metadata to associate with this usage record.
+
+            Additional metadata to be stored on the usage record,
+
+            such as environment, purpose, owner, developer, contract number,
+
+            or any arbitrary data to be associated with this usage record.
+
+            Metadata can be used for analytics purpose.
 
             <br><br>
 
-            Example: `{ "key": "value" }`'
-          externalDocs:
-            url: https://stripe.com/docs/api/refunds/retrieve
-            description: 'Stripe API Reference: Retrieve a Refund'
-        currency:
-          type: string
-          description: 'The currency associated with the refund. Pass through from Stripe API.
-
-            <br><br>
-
-            Example: `"usd"`'
-          example: usd
-          externalDocs:
-            url: https://stripe.com/docs/api/refunds/retrieve
-            description: 'Stripe API Reference: Retrieve a Refund'
-        status:
-          type: string
-          description: 'The status of the refund. Pass through from Stripe API.
-
-            <br><br>
-
-            Example: `"succeeded"`'
-          example: succeeded
-          externalDocs:
-            url: https://stripe.com/docs/api/refunds/retrieve
-            description: 'Stripe API Reference: Retrieve a Refund'
-        created:
-          type: string
-          description: 'The ISO representation of the date the refund was created. Derived from the Stripe APIs unix time.
-
-            <br><br>
-
-            Example: `"2021-08-02T20:00:00.000Z"`'
-          example: '2021-08-02T20:00:00.000Z'
+            Example `{"environment": "staging", "purpose": "proof-of-concept", "owner": "John Doe"}`'
       required:
-      - amountRefunded
-      - amount
-      - chargeId
+      - timestamp
+      - recordValue
       - metadata
-      - currency
-      - status
-    InfrastructureAccessInformation:
+    AggregatedUsageResponse:
       type: object
       properties:
-        iamRoleArn:
+        offeringId:
           type: string
-          description: 'The IAM role created by SaaS business and can be by Paigo AWS account to measure usage.
-
-            <br><br>
-
-            Example `"arn:aws:iam::214826386939:role/paigo-scraper"`'
-          example: arn:aws:iam::214826386939:role/paigo-scraper
-        externalId:
+          description: The unique identifier of the offering.
+        dimensionId:
           type: string
-          description: 'The Optional ExternalId associated with the IAM role.
-
-            <br><br>
-
-            Example `"123456789"`'
-          example: '123456789'
-          externalDocs:
-            description: Read more about why externalIds are important
-            url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
-        cloudPlatform:
-          type: string
-          enum:
-          - aws
-          example: aws
-          description: Cloud infrastructure platform <br><br> Example `"aws"`
-        region:
-          type: string
-          description: 'Supported region of the infrastructure
-
-
-            Example `"us-east-1"`'
-          example: us-east-1
-        resourceType:
-          type: string
-          enum:
-          - ebssnapshot
-          - ebs
-          - k8spod
-          - ec2
-          - ec2egress
-          - usageData
-          example: ebs
-          description: Underlying resource type which Paigo measures usage for. <br><br> Example `"ec2"`
+          description: The unique identifier of a dimension.
+        usage:
+          description: Array of usage records group by aggregation time interval
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageResponseDocument'
       required:
-      - iamRoleArn
-      - cloudPlatform
-      - region
-      - resourceType
+      - dimensionId
+      - usage
+    CustomerEnrollmentResponseData:
+      type: object
+      properties:
+        offering:
+          description: The offering that the customer is enrolled in. The offering is a template for the customer's contract. Any customer specific changes to the offering are stored in the overrides object.
+          allOf:
+          - $ref: '#/components/schemas/ReadOfferingResponseData'
+        offeringEnrollmentDate:
+          type: string
+          description: 'The date time when a customer enrolled for an offering.
+
+            <br><br>
+
+            Example `"2020-12-30T23:59:59.999Z"`'
+          example: '2020-12-30T23:59:59.999Z'
+        overrides:
+          description: Overrides for the offering. Applies Customer specific overrides to the offering. Such as a discount or free trial.
+          allOf:
+          - $ref: '#/components/schemas/CustomOverrides'
+      required:
+      - offering
+      - offeringEnrollmentDate
     ReadDimensionResponseData:
       type: object
       properties:
@@ -2509,265 +2640,61 @@ components:
       - usageIncrement
       - dimensionId
       - rounding
-    CustomOverrides:
+    CustomerAuthenticationTokenResponse:
       type: object
       properties:
-        discount:
-          description: 'A discount to be applied to the billing invoices associated with the customer/offering. Optional. Applies to the total invoice.
+        access_token:
+          type: string
+          description: 'An JWT authentication token which specific customers can use to access their billing data from Paigo.
 
-            If `null` is passed in to the discount object, the discount will be removed from the customer. This does not generate an enrollment / unenrollment event'
-          allOf:
-          - $ref: '#/components/schemas/CustomerContractDiscount'
-        dimensionOverrides:
-          description: 'Applies custom overrides to dimensions associated with the offering. These effect the price of each dimension on the offering. Each dimension override must
-
-            have a unique dimensionId. Dimensions not included in the overrides will be defaulted based on their defined price. Dimensions overrides cannot change the "structure" of the price.
-
-            Meaning a tiered dimension cannot be changed to just have a consumption price and vice versa.'
+            <br><br>'
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+          externalDocs:
+            description: Read more about JWTs
+            url: https://jwt.io/introduction/
+      required:
+      - access_token
+    UnAggregatedUsageResponse:
+      type: object
+      properties:
+        usage:
+          description: Array of usage records group by aggregation time interval
           type: array
           items:
-            $ref: '#/components/schemas/DimensionOverridesDto'
-        freeTrialEndDate:
+            $ref: '#/components/schemas/BasicUsageDocument'
+        dimensionId:
           type: string
-          description: 'The end date of the free trial. Must be in the future and must be an RFC3339 date string.
+          description: 'The unique identifier of a dimension.
 
             <br><br>
 
-            Example: `"2021-01-01T00:00:00Z"`'
-          example: '2021-01-01T00:00:00Z'
-    UpdateFreeTrialResponseDto:
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-        customerId:
-          type: string
-          description: 'Unique identifier assigned by Paigo
-
-            <br><br>
-
-            Example: `"e345f409-daca-4144-91d2-0a0f87c96581"`'
-          example: e345f409-daca-4144-91d2-0a0f87c96581
-      required:
-      - message
-      - customerId
-    UpdateCustomerDto:
-      type: object
-      properties:
-        currency:
-          description: 'The customer''s preferred currency. Only ISO 4217 currency codes are allowed. Overrides the currency on an offering. If not specified,
-
-            the currency on the offering will be used. If no currency is specified on the offering, the default currency of `"USD"` will be used.
-
-            Cannot be Updated if a customer has an active balance of credits
-
-            <br><br>
-
-            Example `"USD"`'
-          example: USD
-          enum:
-          - USD
-          - EUR
-          - CNY
-          type: string
-        taxExempt:
-          description: 'Whether the customer is exempt from paying taxes
-
-            <br><br>
-
-            Example: `"none"`'
-          example: none
-          enum:
-          - exempt
-          - none
-          type: string
-          default: none
-        freeTrialEndDate:
-          type: string
-          description: 'Free Trial End Date is the date time when a free trial is over for the customer. Must be in the future and a valid RFC 3999 date time.
-
-            <br><br>
-
-            Example: `"2199-02-01T11:00:00Z"`'
-          example: '2199-02-01T11:00:00Z'
-        removePriorOffering:
-          type: boolean
-          description: 'An optional flag to remove the prior offering from the customer. If set to `true`, the customer will be removed from all of their prior offerings. This may generate an invoice, in cases where relevant. Such as if the `"offeringType"` is a usage-based offering. If set to `false`, the customer will remain enrolled in the same offering.
-
-            <br><br>
-
-            Example: `true`'
-          example: true
-        unenrollOffering:
-          type: string
-          description: 'Used to specifically unenroll a customer from a singular offering. This may generate an invoice, in cases where relevant. Such as if the
-
-            `"offeringType"` is a usage-based offering. Cannot be used in conjunction with `removePriorOffering` or enrolling a customer in a new
-
-            offering with the`offeringId` field. A 400 error will be returned if this is the case.
-
-            <br><br>
-
-            Example: `"177735fe-5d06-49a7-a8fb-f5da11773345"`'
-          example: 177735fe-5d06-49a7-a8fb-f5da11773345
+            Example `"12345678-1234-1234-1234-123456789012"`'
         offeringId:
           type: string
-          description: 'The unique identifier for the offering associated with a customer
+          description: 'The unique identifier of the offering.
 
             <br><br>
 
-            Example: `"eea7347bd-a2d8-4390-ae09-68f9b8e4ed6c"`'
-          example: eea7347bd-a2d8-4390-ae09-68f9b8e4ed6c
-        customerName:
-          type: string
-          description: 'The friendly, human-readable name for the customer profile
-
-            <br><br>
-
-            Example: `"John Doe"`'
-          example: John Doe
-        customerVatId:
-          type: string
-          description: 'The VAT ID of the customer.
-
-            Every VAT identification number must begin with the code of the country concerned and
-
-            followed by a block of digits or characters.
-
-            <br><br>
-
-            Example `"GB VAT 123456789"`'
-          example: GB VAT 123456789
-        email:
-          type: string
-          description: 'Customer email address
-
-            <br><br>
-
-            Example: `"noreply@paigo.tech"`'
-          example: noreply@paigo.tech
-        paymentChannel:
-          type: string
-          description: 'The payment channel associated with a customer
-
-            <br><br>
-
-            Example: `"Stripe"`'
-          example: Stripe
-          enum:
-          - Stripe
-          - manual
-        paymentChannelOptions:
-          description: 'Configuration options for the payment channel.
-
-            For Stripe payment, `stripeCustomerId` is required for existing Stripe customers.
-
-            If `stripeCustomerId` is not provided, a new Stripe customer will be created.
-
-            See example below.
-
-            <br><br>
-
-            Example `{"stripeCustomerId": "cus_xxxxxxxxxxxxxx"}`'
-          allOf:
-          - $ref: '#/components/schemas/StripePaymentChannelOptions'
-        address:
-          description: The address of the customer
-          allOf:
-          - $ref: '#/components/schemas/Address'
-        metadata:
-          type: object
-          description: 'An optional key-value map of additional metadata to associate with the customer.
-
-            such as environment, purpose, owner, developer, contract number,
-
-            or any arbitrary data to be associated with this usage record. Additionally, if `null` is passed for any value in the metadata object it will be removed.
-
-            To entirely remove the metadata object, pass null to the metadata field.
-
-            <br><br>
-
-            Example `{"environment": "staging", "purpose": "proof-of-concept", "owner": "John Doe", "workspaceId": null}`
-
-            <br><br>
-
-            In the above example, the `workspaceId` metadata key will be removed from the dimension. To remove all fields pass the following.
-
-            <br><br>
-
-            Example `"metadata": null`'
-        usage:
-          description: 'Optionally, usage can be initally applied for a customer when they are enrolling in an offering.
-
-            This is used for dimensions which have a paymentSchedule of `upfront` and need to have some usage for the intial enrollment.
-
-            For example, a customer purchases 3 seats then on the enrollment a usage `recordValue` of 3 must be sent in for the time of purchase.
-
-            Multiple usage records can be sent in, regardless of dimension. If usage records are sent in for a dimension that is not on the current offering, they will be loaded into paigo,
-
-            but ignored on the invoice.
-
-            <br><br>
-
-            Example: `[{ "dimensionId": "539b7f74-3832-474e-a955-6d69c5df12d0", "customerId":"f918b6f4-2ad6-48c4-8b62-ac23adada9ae", "recordValue": 3, timestamp: "2021-01-01T00:00:00Z" }]`'
-          example: '[{ "dimensionId": "539b7f74-3832-474e-a955-6d69c5df12d0", "customerId":"f918b6f4-2ad6-48c4-8b62-ac23adada9ae", "recordValue": 3, timestamp: "2021-01-01T00:00:00Z" }]'
-          type: array
-          items:
-            $ref: '#/components/schemas/UsageForCustomerEnrollment'
-    CreateCustomerRefundDto:
+            Example `"12345678-1234-1234-1234-123456789012"`'
+      required:
+      - usage
+      - dimensionId
+    CreateChildRowDto:
       type: object
       properties:
-        reason:
-          description: 'A stripe platform specific reason enum. Not required, will be defaulted to `"requested_by_customer"`
+        billParent:
+          description: 'This determines if the parent should be billed for invoices of the child. Defaults to `separate`.
 
             <br><br>
 
-            Example `"duplicate"`'
-          example: duplicate
+            Example: `"aggregated"`'
+          example: aggregated
           enum:
-          - duplicate
-          - fraudulent
-          - requested_by_customer
+          - aggregated
+          - separate
           type: string
-          default: requested_by_customer
-          externalDocs:
-            url: https://stripe.com/docs/api/refunds/create#create_refund-reason
-        amount:
-          type: string
-          description: 'The refund amount to be delivered to the customer. Currency is determined by the currency  Only numerical string is allowed.
-
-            If no amount is specified the full amount of the payment will be refunded.
-
-            <br><br>
-
-            Example: `"10.00"` for $10.00.'
-          example: '10.00'
-        refundChannelOptions:
-          description: 'Configuration options for the refund channel.
-
-            See example below.
-
-            <br><br>
-
-            Example `{"paymentIntentId": "pi_1Gszkg2eZvKYlo2C6ZLlAL7u"}`'
-          allOf:
-          - $ref: '#/components/schemas/StripeRefundChannelOptions'
-        metadata:
-          type: object
-          description: 'An optional key-value map of additional metadata to associate with this refund.
-
-            This metadata will be passed to the final refund channel to correlate information between invoices,
-
-            customers and other platform specific keys.
-
-            <br><br>
-
-            Example `{"environment": "staging", "purpose": "Outage reported", "owner": "John Doe", "invoiceId": "123-abc-456"}`'
-      required:
-      - refundChannelOptions
-    ReadCustomerResponseData:
+          default: separate
+    ReadAllCustomersResponseData:
       type: object
       properties:
         taxExempt:
@@ -2830,11 +2757,11 @@ components:
           type: string
           description: The friendly, human-readable name of the customer
         paymentChannel:
+          type: string
           description: The payment channel associated with a customer
           enum:
           - Stripe
           - manual
-          type: string
         email:
           type: string
           description: 'Customer email address
@@ -2916,6 +2843,7 @@ components:
             Example `"2020-12-28T23:59:59.999Z"`'
           example: '2020-12-28T23:59:59.999Z'
         currency:
+          type: string
           description: 'The currency of the customer
 
             <br><br>
@@ -2926,7 +2854,6 @@ components:
           - USD
           - EUR
           - CNY
-          type: string
         metadata:
           type: object
       required:
@@ -2934,6 +2861,107 @@ components:
       - customerId
       - customerName
       - paymentChannel
+    NotFoundException:
+      type: object
+      properties: {}
+    TimeBasedConsumptionUnit:
+      type: object
+      properties:
+        unit:
+          enum:
+          - second
+          - minute
+          - hour
+          - day
+          type: string
+          description: A unit of time for a dimension of type time-based
+          examples:
+          - second
+          - minute
+          - hour
+          - day
+        type:
+          type: string
+          enum:
+          - time
+          description: A string that indicates the type of consumption unit
+      required:
+      - unit
+      - type
+    InfrastructureAccessInformation:
+      type: object
+      properties:
+        iamRoleArn:
+          type: string
+          description: 'The IAM role created by SaaS business and can be by Paigo AWS account to measure usage.
+
+            <br><br>
+
+            Example `"arn:aws:iam::214826386939:role/paigo-scraper"`'
+          example: arn:aws:iam::214826386939:role/paigo-scraper
+        externalId:
+          type: string
+          description: 'The Optional ExternalId associated with the IAM role.
+
+            <br><br>
+
+            Example `"123456789"`'
+          example: '123456789'
+          externalDocs:
+            description: Read more about why externalIds are important
+            url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
+        cloudPlatform:
+          type: string
+          enum:
+          - aws
+          example: aws
+          description: Cloud infrastructure platform <br><br> Example `"aws"`
+        region:
+          type: string
+          description: 'Supported region of the infrastructure
+
+
+            Example `"us-east-1"`'
+          example: us-east-1
+        resourceType:
+          type: string
+          enum:
+          - ebssnapshot
+          - ebs
+          - k8spod
+          - ec2
+          - ec2egress
+          - usageData
+          example: ebs
+          description: Underlying resource type which Paigo measures usage for. <br><br> Example `"ec2"`
+      required:
+      - iamRoleArn
+      - cloudPlatform
+      - region
+      - resourceType
+    ReadTransactionLedger:
+      type: object
+      properties:
+        transactionAmount:
+          type: number
+          description: 'The amount associated with a specific credit transaction
+
+            <br><br>
+
+            Example: `100.00`'
+          example: 100
+        timestamp:
+          format: date-time
+          type: string
+          description: The timestamp associated with a specific credit transaction
+          example: '2021-01-01T00:00:00.000Z'
+        metadata:
+          type: object
+          description: The metadata associated with a specific credit transaction
+      required:
+      - transactionAmount
+      - timestamp
+      - metadata
     CustomerInvoiceMetadata:
       type: object
       properties:
@@ -3076,280 +3104,264 @@ components:
       - lineItems
       - refunds
       - payments
-    KafkaDeploymentParametersDto:
+    CustomerContractDiscount:
       type: object
       properties:
-        securityMechanism:
+        name:
           type: string
-          externalDocs:
-            url: https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_plain.html#sasl-plain-overview
-          example: PLAIN
-          description: 'The security protocol to use when connecting to the Kafka cluster. Defaults to `PLAIN`. Note this is not PLAINTEXT. PLAIN is the SASL_PLAIN protocol. <br><br> Example: `"PLAIN"`'
-        username:
+          example: Super Cool Discount
+          description: The name of the discount. This will appear as is on the Invoice. <br><br> Example:`"Super Cool Discount"`
+        percentage:
           type: string
-          description: 'The username to use when connecting to the Kafka cluster. <br><br> Example: `"admin"`'
-          example: admin
-        password:
+          example: '10'
+          description: 'The percentage of the discount. This will be used to calculate the discount amount. Must be between 0 and 100 (inclusive). <br><br> Example: `"10"`'
+        endDate:
           type: string
-          description: 'The password to use when connecting to the Kafka cluster. <br><br> Example: `"hunter2"`'
-          example: hunter2
-        bootstrapServerEndpoint:
-          type: string
-          description: 'The endpoint of the Kafka cluster to connect to. <br><br> Example: `"kafka.paigo.tech"`'
-          example: kafka.paigo.tech
-        topic:
-          type: string
-          description: 'The topic to subscribe to. <br><br> Example: `"test-topic"`'
-          example: '"test-topic"'
-        dlqTopic:
-          type: string
-          description: 'The DLQ topic to write to when a message fails to be processed. <br><br> Example: `"dlq-topic"`'
-          example: '"dlq-topic"'
+          example: '2030-01-01T00:00:00Z'
+          description: 'The end date of the discount. If not provided, the discount will be applied indefinitely. The date format should be an RFC3339 string. The discount will be applied to any generated invoice that has an invoice creation date before the discount end date. <br><br> Example: `"2030-01-01T00:00:00Z"`'
       required:
-      - securityMechanism
-      - username
-      - password
-      - bootstrapServerEndpoint
-      - topic
-      - dlqTopic
-    UpdateCustomerEnrollmentDto:
+      - name
+      - percentage
+    Address:
       type: object
       properties:
-        overrides:
-          description: Overrides for the offering. Applies Customer specific overrides to the offering. Such as a discount or free trial or dimension specific overrides.
-          allOf:
-          - $ref: '#/components/schemas/CustomOverrides'
-        offeringId:
+        countryCode:
           type: string
-          description: 'Unique identifier for an offering assigned by Paigo. Including a new `"offeringId"` will "enroll" the customer in the specified offering. This may generate an invoice, in cases where relevant. Such as if the `"offeringType"` is a subscription offering. <br><br>
-
-            To unenroll customers from an offering. Pass in `null`. This will remove the offering from the customer. This may generate an invoice, in cases where relevant. Such as if the `"offeringType"` is a usage-based offering. <br><br>
-
-            Including the same `"offeringId" ` multiple times in a row will not change the state of the customer, nor generate an invoice. If an `"offeringId"` is not included, the customer will remain enrolled in the same offering. Including a new `"offeringId"` while a customer is enrolled in an offering, is considered a change of plan or "upgrade". In specific cases of upgrades some credit might be issued for the remainder of their plan. <br><br>
+          description: 'Two-letter country code
 
             <br><br>
 
-            Example: `539b7f74-3832-474e-a955-6d69c5df12d0`'
-          example: 539b7f74-3832-474e-a955-6d69c5df12d0
-        removePriorOffering:
-          type: boolean
-          description: 'An optional flag to remove the prior offering from the customer. If set to `true`, the customer will be removed from all of their prior offerings. This may generate an invoice, in cases where relevant. Such as if the `"offeringType"` is a usage-based offering. If set to `false`, the customer will remain enrolled in the same offering.
+            Example: <br>
 
-            <br><br>
+            - `''US''`<br>
 
-            Example: `true`'
-          example: true
-        unenrollOffering:
+            - `''DE''`<br>'
+          example: US
+        postalCode:
           type: string
-          description: 'Used to specifically unenroll a customer from a singular offering. This may generate an invoice, in cases where relevant. Such as if the
-
-            `"offeringType"` is a usage-based offering. Cannot be used in conjunction with `removePriorOffering` or enrolling a customer in a new
-
-            offering with the`offeringId` field. A 400 error will be returned if this is the case.
+          description: 'The postal code of the address. Typically, this is the country-specific.
 
             <br><br>
 
-            Example: `"177735fe-5d06-49a7-a8fb-f5da11773345"`'
-          example: 177735fe-5d06-49a7-a8fb-f5da11773345
-        usage:
-          description: 'Optionally, usage can be initally applied for a customer when they are enrolling in an offering.
-
-            This is used for dimensions which have a paymentSchedule of `upfront` and need to have some usage for the intial enrollment.
-
-            For example, a customer purchases 3 seats then on the enrollment a usage `recordValue` of 3 must be sent in for the time of purchase.
-
-            Multiple usage records can be sent in, regardless of dimension. If usage records are sent in for a dimension that is not on the current offering, they will be loaded into paigo,
-
-            but ignored on the invoice. Additionally, records must be unique in the sense that they cannot have the same dimensionId. Duplicates will cause the request to be rejected.
+            Example: `"90210"`'
+          example: '90210'
+        city:
+          type: string
+          description: 'The city of the address
 
             <br><br>
 
-            Example: `[{ "dimensionId": "539b7f74-3832-474e-a955-6d69c5df12d0", "recordValue": 3, timestamp: "2021-01-01T00:00:00Z" }]`'
-          example: '[{ "dimensionId": "539b7f74-3832-474e-a955-6d69c5df12d0", "recordValue": 3, timestamp: "2021-01-01T00:00:00Z" }]'
-          type: array
-          items:
-            $ref: '#/components/schemas/UsageForCustomerEnrollment'
-    ReadPaymentDto:
+            Example: `"Beverly Hills"`'
+          example: Beverly Hills
+        streetLineOne:
+          type: string
+          description: 'The first line of the street address
+
+            <br><br>
+
+            Example: `"1234 Main St"`'
+          example: 1234 Main St
+        streetLineTwo:
+          type: string
+          description: 'The second line of the street address
+
+            <br><br>
+
+            Example: `"Apt 1"`'
+          example: Apt 1
+        state:
+          type: string
+          description: 'Two-letter state code
+
+            <br><br>
+
+            Example: <br>
+
+            - `''NY''`
+
+            - `''CA''`'
+          example: NY
+      required:
+      - countryCode
+      - postalCode
+      - city
+      - streetLineOne
+      - state
+    CreateCustomerRefundDto:
       type: object
       properties:
-        type:
-          type: string
-          description: 'The type of payment. Currently only `Credit` and `Stripe` are supported.
+        reason:
+          description: 'A stripe platform specific reason enum. Not required, will be defaulted to `"requested_by_customer"`
 
             <br><br>
 
-            Example: `"Credit"`'
-          example: Credit
+            Example `"duplicate"`'
+          example: duplicate
           enum:
-          - Stripe
-          - Credit
-        transactionAmount:
+          - duplicate
+          - fraudulent
+          - requested_by_customer
           type: string
-          description: 'The amount associated with a specific credit transaction
+          default: requested_by_customer
+          externalDocs:
+            url: https://stripe.com/docs/api/refunds/create#create_refund-reason
+        amount:
+          type: string
+          description: 'The refund amount to be delivered to the customer. Currency is determined by the currency  Only numerical string is allowed.
+
+            If no amount is specified the full amount of the payment will be refunded.
+
+            <br><br>
+
+            Example: `"10.00"` for $10.00.'
+          example: '10.00'
+        refundChannelOptions:
+          description: 'Configuration options for the refund channel.
+
+            See example below.
+
+            <br><br>
+
+            Example `{"paymentIntentId": "pi_1Gszkg2eZvKYlo2C6ZLlAL7u"}`'
+          allOf:
+          - $ref: '#/components/schemas/StripeRefundChannelOptions'
+        metadata:
+          type: object
+          description: 'An optional key-value map of additional metadata to associate with this refund.
+
+            This metadata will be passed to the final refund channel to correlate information between invoices,
+
+            customers and other platform specific keys.
+
+            <br><br>
+
+            Example `{"environment": "staging", "purpose": "Outage reported", "owner": "John Doe", "invoiceId": "123-abc-456"}`'
+      required:
+      - refundChannelOptions
+    StripeRefundResponseDto:
+      type: object
+      properties:
+        amountRefunded:
+          type: string
+          description: 'The amount of the payment that was refunded. Derived from the stripe "amount_refunded" field.
 
             <br><br>
 
             Example: `"100.00"`'
           example: '100.00'
-        timestamp:
+          externalDocs:
+            url: https://stripe.com/docs/api/refunds/retrieve
+            description: 'Stripe API Reference: Retrieve a Refund'
+        amount:
           type: string
-          description: 'The timestamp associated with a specific credit transaction. RFC3339 format.
+          description: 'The amount of the original charge. Derived from the stripe "amount" field.
 
             <br><br>
 
-            Example: `"2021-01-01T00:00:00.000Z"`'
-          example: '2021-01-01T00:00:00.000Z'
+            Example: `"100.00"`'
+          example: '100.00'
+          externalDocs:
+            url: https://stripe.com/docs/api/refunds/retrieve
+            description: 'Stripe API Reference: Retrieve a Refund'
+        chargeId:
+          type: string
+          description: 'The id of the charge that was refunded. Pass through from Stripe API.
+
+            <br><br>
+
+            Example: `"ch_1J5J1n2eZvKYlo2C0q2Q2Q2Q2"`'
+          example: ch_1J5J1n2eZvKYlo2C0q2Q2Q2Q2
+          externalDocs:
+            url: https://stripe.com/docs/api/refunds/retrieve
+            description: 'Stripe API Reference: Retrieve a Refund'
         metadata:
           type: object
-          description: 'The metadata associated with a specific transaction. For `stripe` type responses, paymentIntentsId, currency, and status are included.
+          description: 'The metadata associated with the refund. Pass through from Stripe API. Metadata is an object of key value pairs.
 
             <br><br>
 
-            Example: `{"key": "value"}`'
+            Example: `{ "key": "value" }`'
+          externalDocs:
+            url: https://stripe.com/docs/api/refunds/retrieve
+            description: 'Stripe API Reference: Retrieve a Refund'
+        currency:
+          type: string
+          description: 'The currency associated with the refund. Pass through from Stripe API.
+
+            <br><br>
+
+            Example: `"usd"`'
+          example: usd
+          externalDocs:
+            url: https://stripe.com/docs/api/refunds/retrieve
+            description: 'Stripe API Reference: Retrieve a Refund'
+        status:
+          type: string
+          description: 'The status of the refund. Pass through from Stripe API.
+
+            <br><br>
+
+            Example: `"succeeded"`'
+          example: succeeded
+          externalDocs:
+            url: https://stripe.com/docs/api/refunds/retrieve
+            description: 'Stripe API Reference: Retrieve a Refund'
+        created:
+          type: string
+          description: 'The ISO representation of the date the refund was created. Derived from the Stripe APIs unix time.
+
+            <br><br>
+
+            Example: `"2021-08-02T20:00:00.000Z"`'
+          example: '2021-08-02T20:00:00.000Z'
       required:
-      - type
-      - transactionAmount
-      - timestamp
+      - amountRefunded
+      - amount
+      - chargeId
       - metadata
-    ReadMeasurementResponseData:
+      - currency
+      - status
+    UsageForCustomerEnrollment:
       type: object
       properties:
-        measurementMode:
+        dimensionId:
           type: string
-          enum:
-          - infrastructureBased
-          - agentBased
-          - datastoreBased
-          example: infrastructureBased
-          description: The measurement method. See <a href="https://docs.paigo.tech/measure-usage-and-collect-data/measure-and-collect-usage-data-at-production-scale">Measure and Collect Usage Data at Production Scale</a> for more information. <br><br> Example `"agentBased"`
-        measurementConfiguration:
-          description: Configuration for the measurement method.
-          oneOf:
-          - $ref: '#/components/schemas/InfrastructureAccessInformation'
-          - $ref: '#/components/schemas/AgentAccessInformation'
-          - $ref: '#/components/schemas/DatastoreAccessInformationResponse'
-        measurementName:
+        recordValue:
           type: string
-          description: 'The human readable name of the measurement
-
-            <br><br>
-
-            Example `"EBS Usage"`'
-          example: EBS Usage
-        measurementId:
-          type: string
-          description: 'Unique identifier assigned by Paigo.
-
-            <br><br>
-
-            Example `"de388932-a7e1-11ed-afa1-0242ac120002"`'
-          example: de388932-a7e1-11ed-afa1-0242ac120002
-      required:
-      - measurementMode
-      - measurementConfiguration
-      - measurementId
-    InvoiceCommunicationHistory:
-      type: object
-      properties:
-        time:
-          type: string
-          description: 'The RFC 3339 time of communication that was sent to the customer.
-
-            <br><br>
-
-            Example: `"2022-01-01T00:00:00.000Z"`'
-          example: '2022-01-01T00:00:00.000Z'
-        type:
-          type: string
-          description: 'The type of communication that was sent to the customer.
-
-            <br><br>
-
-            Example: `INVOICE_EMAIL`'
-          example: INVOICE_EMAIL
-          enum:
-          - REMINDER_EMAIL
-          - INVOICE_EMAIL
-        metadata:
-          type: object
-          description: 'The metadata of the communication that was sent to the customer.
-
-            <br><br>
-
-            Example: `{"subject": "Invoice for January 2022"}`'
-    UsageResponseDocument:
-      type: object
-      properties:
-        value:
-          type: string
-          description: 'The usage record value for the given dimension and time interval.
+          description: 'The amount of the usage on this record.
 
             Numerical values are represented as strings to avoid precision loss.
 
             <br><br>
 
-            Example `"0.67"`'
-          example: '0.67'
-        startTime:
-          type: string
-          description: 'The start time of the time interval in ISO8601 format.
-
-            <br><br>
-
-            Example `"2021-01-01T00:00:00.000Z"`'
-          example: '2021-01-01T00:00:00.000Z'
-        endTime:
-          type: string
-          description: 'The end time of the time interval in ISO8601 format.
-
-            <br><br>
-
-            Example `"2021-01-01T00:00:00.000Z"`'
-          example: '2021-01-01T00:00:00.000Z'
-        metadataGroup:
+            Example: `"0.87"`'
+        metadata:
           type: object
           description: 'An optional key-value map of additional metadata to associate with this usage record.
 
-            This metadata is used to group usage records together.
+            Additional metadata to be stored on the usage record,
 
             such as environment, purpose, owner, developer, contract number,
 
             or any arbitrary data to be associated with this usage record.
 
+            Metadata can be used for analytics purpose.
+
             <br><br>
 
             Example `{"environment": "staging", "purpose": "proof-of-concept", "owner": "John Doe"}`'
-    DimensionTiersGroupByMetadataDto:
-      type: object
-      properties:
-        metadataGroups:
-          type: object
-          description: 'The metadata groups to group the tiers by. A collection of key value pairs. metadata groups are used alongside the usage passed in to define more accurately how to break up price and usage for a dimension.
-
-            <br><br>
-
-            Example: `{ "instanceType": "t3.medium", "region": "us-east-1", "deployment": "production"}`'
-        tiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/DimensionTierDto'
       required:
-      - metadataGroups
-      - tiers
-    CustomerAuthenticationTokenResponse:
+      - dimensionId
+      - recordValue
+    BasicResponseDTO:
       type: object
       properties:
-        access_token:
+        message:
           type: string
-          description: 'An JWT authentication token which specific customers can use to access their billing data from Paigo.
-
-            <br><br>'
-          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-          externalDocs:
-            description: Read more about JWTs
-            url: https://jwt.io/introduction/
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
       required:
-      - access_token
+      - message
   securitySchemes:
     bearer:
       scheme: bearer

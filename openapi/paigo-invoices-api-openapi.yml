@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Paigo Customers Invoices API
-  description: "\nFor developer documentation of the platform, please visit https://docs.paigo.tech.\n\n## Authentication\nPaigo API supports **bearer token** as the authentication method.\nSteps to set up authentication:\n1. Sign up with Paigo platform and get **client id** and **client secret**.\n2. Make a POST request to the auth endpoint `https://auth.paigo.tech/oauth/token` with the following body:\n```json\n{\n        audience: 'https://qnonyh1pc7.execute-api.us-east-1.amazonaws.com',\n        grant_type: 'client_credentials',\n        client_id: <your client id>,\n        client_secret: <your client secret>\n}\n```\nAdditionally verify that the following headers are set by the client you are using: \n```json\n{\n    \"Content-Type\": \"application/json\"\n}\n```\n\n3. Use the access token in the response to make requests to the Paigo API. Here is an example of the response:  \n```json   \n{\n            access_token: <your access token>,\n            expires_in: 86400,\n            token_type: 'Bearer'  \n}\n```\n4. To use Paigo API, add in the header of your request:\n```json\n{\n        Authorization: \"Bearer <your access token>\"\n}\n```\n\n## API Endpoints\nPaigo API has the following endpoint:\n- Production Environment API: `https://api.prod.paigo.tech`\n        "
+  title: Paigo Invoices API
+  description: For developer documentation of the platform, please visit https://docs.paigo.tech.
   version: v1.10
   contact: {}
 servers:
@@ -14,10 +14,11 @@ paths:
   /invoices/{invoiceId}:
     get:
       operationId: Get an Invoice by ID
-      summary: ''
+      summary: Get an invoice by ID
       description: 'Find an Invoice
 
-        <br><br> Download links for invoices are valid for 7 days.'
+
+        Download links for invoices are valid for 7 days.'
       parameters:
       - name: invoiceId
         required: true
@@ -80,10 +81,11 @@ paths:
       - Invoices
       security:
       - bearer: []
+      x-summary-source: derived
   /invoices:
     post:
       operationId: Create
-      summary: ''
+      summary: Create
       parameters: []
       requestBody:
         required: true
@@ -102,8 +104,241 @@ paths:
       - Invoices
       security:
       - bearer: []
+      x-summary-source: derived
 components:
   schemas:
+    ReadPaymentDto:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'The type of payment. Currently only `Credit` and `Stripe` are supported.
+
+            <br><br>
+
+            Example: `"Credit"`'
+          example: Credit
+          enum:
+          - Stripe
+          - Credit
+        transactionAmount:
+          type: string
+          description: 'The amount associated with a specific credit transaction
+
+            <br><br>
+
+            Example: `"100.00"`'
+          example: '100.00'
+        timestamp:
+          type: string
+          description: 'The timestamp associated with a specific credit transaction. RFC3339 format.
+
+            <br><br>
+
+            Example: `"2021-01-01T00:00:00.000Z"`'
+          example: '2021-01-01T00:00:00.000Z'
+        metadata:
+          type: object
+          description: 'The metadata associated with a specific transaction. For `stripe` type responses, paymentIntentsId, currency, and status are included.
+
+            <br><br>
+
+            Example: `{"key": "value"}`'
+      required:
+      - type
+      - transactionAmount
+      - timestamp
+      - metadata
+    StripeRefundResponseDto:
+      type: object
+      properties:
+        amountRefunded:
+          type: string
+          description: 'The amount of the payment that was refunded. Derived from the stripe "amount_refunded" field.
+
+            <br><br>
+
+            Example: `"100.00"`'
+          example: '100.00'
+          externalDocs:
+            url: https://stripe.com/docs/api/refunds/retrieve
+            description: 'Stripe API Reference: Retrieve a Refund'
+        amount:
+          type: string
+          description: 'The amount of the original charge. Derived from the stripe "amount" field.
+
+            <br><br>
+
+            Example: `"100.00"`'
+          example: '100.00'
+          externalDocs:
+            url: https://stripe.com/docs/api/refunds/retrieve
+            description: 'Stripe API Reference: Retrieve a Refund'
+        chargeId:
+          type: string
+          description: 'The id of the charge that was refunded. Pass through from Stripe API.
+
+            <br><br>
+
+            Example: `"ch_1J5J1n2eZvKYlo2C0q2Q2Q2Q2"`'
+          example: ch_1J5J1n2eZvKYlo2C0q2Q2Q2Q2
+          externalDocs:
+            url: https://stripe.com/docs/api/refunds/retrieve
+            description: 'Stripe API Reference: Retrieve a Refund'
+        metadata:
+          type: object
+          description: 'The metadata associated with the refund. Pass through from Stripe API. Metadata is an object of key value pairs.
+
+            <br><br>
+
+            Example: `{ "key": "value" }`'
+          externalDocs:
+            url: https://stripe.com/docs/api/refunds/retrieve
+            description: 'Stripe API Reference: Retrieve a Refund'
+        currency:
+          type: string
+          description: 'The currency associated with the refund. Pass through from Stripe API.
+
+            <br><br>
+
+            Example: `"usd"`'
+          example: usd
+          externalDocs:
+            url: https://stripe.com/docs/api/refunds/retrieve
+            description: 'Stripe API Reference: Retrieve a Refund'
+        status:
+          type: string
+          description: 'The status of the refund. Pass through from Stripe API.
+
+            <br><br>
+
+            Example: `"succeeded"`'
+          example: succeeded
+          externalDocs:
+            url: https://stripe.com/docs/api/refunds/retrieve
+            description: 'Stripe API Reference: Retrieve a Refund'
+        created:
+          type: string
+          description: 'The ISO representation of the date the refund was created. Derived from the Stripe APIs unix time.
+
+            <br><br>
+
+            Example: `"2021-08-02T20:00:00.000Z"`'
+          example: '2021-08-02T20:00:00.000Z'
+      required:
+      - amountRefunded
+      - amount
+      - chargeId
+      - metadata
+      - currency
+      - status
+    InvoiceLineItem:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'The name of the line item as it appears on the invoice.
+
+            <br><br>
+
+            Example: `"Paigo Pro"`'
+          example: Paigo Pro
+        quantity:
+          type: number
+          description: 'The quantity of the line item.
+
+            <br><br>
+
+            Example: `1`'
+          example: 1
+          minimum: 0
+        unitCost:
+          type: number
+          description: 'The unit cost of the line item.
+
+            <br><br>
+
+            Example: `100.00`'
+          example: 100
+        description:
+          type: string
+          description: 'The description of the line item.
+
+            <br><br>
+
+            Example: `"Paigo Pro subscription"`'
+          example: Paigo Pro subscription
+      required:
+      - name
+      - quantity
+      - unitCost
+    CreateInvoicesDto:
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: 'The client ID assocaited with the Business Entity, this is the name for the business which will be used in the invoce
+
+            <br><br>
+
+            Example: `"Khols"`'
+          example: Khols
+        items:
+          description: 'The Itemized collection of elements to be billed. These could be instance compute hours, or number of users
+
+            <br><br>
+
+            Example: `[{ "name": "MyService", "quantity": 1, "unitCost": 100.09 }]`'
+          example:
+          - name: Paigo Pro
+            quantity: 1
+            unitCost: 100.09
+          type: array
+          items:
+            type: object
+        invoiceDate:
+          type: string
+          description: 'The date the invoice is to be generated for
+
+            <br><br>
+
+            Example: `"2020-09-18T17:34:02.666Z"`'
+          example: '2020-09-18T17:34:02.666Z'
+        currency:
+          description: 'The currency the invoice is to be generated in. If no Currency is passed in the currency used by the customer will be used.
+
+            <br><br>
+
+            Example: `"EUR"`'
+          example: EUR
+          enum:
+          - USD
+          - EUR
+          - CNY
+          type: string
+        invoicePaymentTerm:
+          description: 'The Payment Term for the invoice. This is the number of days until the invoice is considered past due. Default is "none". String `""` represents "none".
+
+            <br><br>
+
+            Example: `"30"`'
+          example: '30'
+          enum:
+          - '30'
+          - '60'
+          - ''
+          type: string
+        storePaymentAsCredit:
+          type: boolean
+          description: 'If storePaymentAsCredit is `true` then the payment on the invoice will ADD to the customers credit balance. By default it is false, meaning that the payment of an invoice inside of paigo will first, deduct from the credit balance and then charge the payment method on file.
+
+            <br><br>
+
+            Example: `true`'
+          example: true
+      required:
+      - customerId
+      - items
     ReadInvoicesResponse:
       type: object
       properties:
@@ -118,15 +353,6 @@ components:
       required:
       - message
       - data
-    BasicResponseDTO:
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-      required:
-      - message
     ReadInvoicesDto:
       type: object
       properties:
@@ -277,155 +503,6 @@ components:
       - lineItems
       - refunds
       - payments
-    ReadPaymentDto:
-      type: object
-      properties:
-        type:
-          type: string
-          description: 'The type of payment. Currently only `Credit` and `Stripe` are supported.
-
-            <br><br>
-
-            Example: `"Credit"`'
-          example: Credit
-          enum:
-          - Stripe
-          - Credit
-        transactionAmount:
-          type: string
-          description: 'The amount associated with a specific credit transaction
-
-            <br><br>
-
-            Example: `"100.00"`'
-          example: '100.00'
-        timestamp:
-          type: string
-          description: 'The timestamp associated with a specific credit transaction. RFC3339 format.
-
-            <br><br>
-
-            Example: `"2021-01-01T00:00:00.000Z"`'
-          example: '2021-01-01T00:00:00.000Z'
-        metadata:
-          type: object
-          description: 'The metadata associated with a specific transaction. For `stripe` type responses, paymentIntentsId, currency, and status are included.
-
-            <br><br>
-
-            Example: `{"key": "value"}`'
-      required:
-      - type
-      - transactionAmount
-      - timestamp
-      - metadata
-    InvoiceLineItem:
-      type: object
-      properties:
-        name:
-          type: string
-          description: 'The name of the line item as it appears on the invoice.
-
-            <br><br>
-
-            Example: `"Paigo Pro"`'
-          example: Paigo Pro
-        quantity:
-          type: number
-          description: 'The quantity of the line item.
-
-            <br><br>
-
-            Example: `1`'
-          example: 1
-          minimum: 0
-        unitCost:
-          type: number
-          description: 'The unit cost of the line item.
-
-            <br><br>
-
-            Example: `100.00`'
-          example: 100
-        description:
-          type: string
-          description: 'The description of the line item.
-
-            <br><br>
-
-            Example: `"Paigo Pro subscription"`'
-          example: Paigo Pro subscription
-      required:
-      - name
-      - quantity
-      - unitCost
-    CreateInvoicesDto:
-      type: object
-      properties:
-        customerId:
-          type: string
-          description: 'The client ID assocaited with the Business Entity, this is the name for the business which will be used in the invoce
-
-            <br><br>
-
-            Example: `"Khols"`'
-          example: Khols
-        items:
-          description: 'The Itemized collection of elements to be billed. These could be instance compute hours, or number of users
-
-            <br><br>
-
-            Example: `[{ "name": "MyService", "quantity": 1, "unitCost": 100.09 }]`'
-          example:
-          - name: Paigo Pro
-            quantity: 1
-            unitCost: 100.09
-          type: array
-          items:
-            type: object
-        invoiceDate:
-          type: string
-          description: 'The date the invoice is to be generated for
-
-            <br><br>
-
-            Example: `"2020-09-18T17:34:02.666Z"`'
-          example: '2020-09-18T17:34:02.666Z'
-        currency:
-          description: 'The currency the invoice is to be generated in. If no Currency is passed in the currency used by the customer will be used.
-
-            <br><br>
-
-            Example: `"EUR"`'
-          example: EUR
-          enum:
-          - USD
-          - EUR
-          - CNY
-          type: string
-        invoicePaymentTerm:
-          description: 'The Payment Term for the invoice. This is the number of days until the invoice is considered past due. Default is "none". String `""` represents "none".
-
-            <br><br>
-
-            Example: `"30"`'
-          example: '30'
-          enum:
-          - '30'
-          - '60'
-          - ''
-          type: string
-        storePaymentAsCredit:
-          type: boolean
-          description: 'If storePaymentAsCredit is `true` then the payment on the invoice will ADD to the customers credit balance. By default it is false, meaning that the payment of an invoice inside of paigo will first, deduct from the credit balance and then charge the payment method on file.
-
-            <br><br>
-
-            Example: `true`'
-          example: true
-      required:
-      - customerId
-      - items
     InvoiceCommunicationHistory:
       type: object
       properties:
@@ -455,89 +532,15 @@ components:
             <br><br>
 
             Example: `{"subject": "Invoice for January 2022"}`'
-    StripeRefundResponseDto:
+    BasicResponseDTO:
       type: object
       properties:
-        amountRefunded:
+        message:
           type: string
-          description: 'The amount of the payment that was refunded. Derived from the stripe "amount_refunded" field.
-
-            <br><br>
-
-            Example: `"100.00"`'
-          example: '100.00'
-          externalDocs:
-            url: https://stripe.com/docs/api/refunds/retrieve
-            description: 'Stripe API Reference: Retrieve a Refund'
-        amount:
-          type: string
-          description: 'The amount of the original charge. Derived from the stripe "amount" field.
-
-            <br><br>
-
-            Example: `"100.00"`'
-          example: '100.00'
-          externalDocs:
-            url: https://stripe.com/docs/api/refunds/retrieve
-            description: 'Stripe API Reference: Retrieve a Refund'
-        chargeId:
-          type: string
-          description: 'The id of the charge that was refunded. Pass through from Stripe API.
-
-            <br><br>
-
-            Example: `"ch_1J5J1n2eZvKYlo2C0q2Q2Q2Q2"`'
-          example: ch_1J5J1n2eZvKYlo2C0q2Q2Q2Q2
-          externalDocs:
-            url: https://stripe.com/docs/api/refunds/retrieve
-            description: 'Stripe API Reference: Retrieve a Refund'
-        metadata:
-          type: object
-          description: 'The metadata associated with the refund. Pass through from Stripe API. Metadata is an object of key value pairs.
-
-            <br><br>
-
-            Example: `{ "key": "value" }`'
-          externalDocs:
-            url: https://stripe.com/docs/api/refunds/retrieve
-            description: 'Stripe API Reference: Retrieve a Refund'
-        currency:
-          type: string
-          description: 'The currency associated with the refund. Pass through from Stripe API.
-
-            <br><br>
-
-            Example: `"usd"`'
-          example: usd
-          externalDocs:
-            url: https://stripe.com/docs/api/refunds/retrieve
-            description: 'Stripe API Reference: Retrieve a Refund'
-        status:
-          type: string
-          description: 'The status of the refund. Pass through from Stripe API.
-
-            <br><br>
-
-            Example: `"succeeded"`'
-          example: succeeded
-          externalDocs:
-            url: https://stripe.com/docs/api/refunds/retrieve
-            description: 'Stripe API Reference: Retrieve a Refund'
-        created:
-          type: string
-          description: 'The ISO representation of the date the refund was created. Derived from the Stripe APIs unix time.
-
-            <br><br>
-
-            Example: `"2021-08-02T20:00:00.000Z"`'
-          example: '2021-08-02T20:00:00.000Z'
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
       required:
-      - amountRefunded
-      - amount
-      - chargeId
-      - metadata
-      - currency
-      - status
+      - message
   securitySchemes:
     bearer:
       scheme: bearer
