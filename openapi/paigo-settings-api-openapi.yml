@@ -12,7 +12,7 @@ tags:
 paths:
   /settings/profile:
     put:
-      operationId: Update Business Profile Settings
+      operationId: UpdateBusinessProfileSettings
       summary: Update business profile settings
       description: Update Business Info and Logo.
       parameters: []
@@ -34,8 +34,10 @@ paths:
       security:
       - bearer: []
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Update Business Profile Settings
     get:
-      operationId: Get Business Profile Settings
+      operationId: GetBusinessProfileSettings
       summary: Get business profile settings
       description: Get Business Info.
       parameters: []
@@ -51,9 +53,11 @@ paths:
       security:
       - bearer: []
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Get Business Profile Settings
   /settings/invoiceImage:
     post:
-      operationId: Upload Invoice Image
+      operationId: UploadInvoiceImage
       summary: Upload invoice image
       description: 'Upload Business Logo, file format supported: png,jpg,jpeg; max file size supported: 30Mb.'
       parameters: []
@@ -75,22 +79,33 @@ paths:
       security:
       - bearer: []
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Upload Invoice Image
 components:
   schemas:
-    ReadSettingsResponse:
+    OfferingPortalPageSettings:
       type: object
       properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-        data:
+        offerings:
+          minItems: 0
           type: array
           items:
-            $ref: '#/components/schemas/ReadSettingsResponseData'
+            $ref: '#/components/schemas/PortalOfferingPageDto'
+        appearance:
+          $ref: '#/components/schemas/AppearanceOfferingPortalDto'
+        enabled:
+          type: boolean
+        text:
+          type: string
+    CloudIAM:
+      type: object
+      properties:
+        iamRoleArn:
+          type: string
+        externalId:
+          type: string
       required:
-      - message
-      - data
+      - iamRoleArn
     ReadSettingsResponseData:
       type: object
       properties:
@@ -242,6 +257,24 @@ components:
           enum:
           - ebs
           - none
+    FeaturedOfferingPortalDto:
+      type: object
+      properties:
+        text:
+          type: string
+    PortalPages:
+      type: object
+      properties:
+        invoice:
+          $ref: '#/components/schemas/InvoicePortalPageSettings'
+        payment:
+          $ref: '#/components/schemas/PaymentPortalPageSettings'
+        offering:
+          $ref: '#/components/schemas/OfferingPortalPageSettings'
+        extended:
+          type: object
+      required:
+      - extended
     InvoiceEmailConfiguration:
       type: object
       properties:
@@ -258,81 +291,20 @@ components:
           type: string
         third:
           type: string
-    InvoicePortalPageSettings:
+    ReadSettingsResponse:
       type: object
       properties:
-        enabled:
-          type: boolean
-        text:
+        message:
           type: string
-    PricingTableOfferingPortalDto:
-      type: object
-      properties:
-        ctaBorder:
-          type: string
-        ctaBackground:
-          type: string
-        ctaText:
-          type: string
-        featureListColor:
-          type: string
-        pricePlanBackground:
-          type: string
-        highlightedPrice:
-          type: string
-        featureListIcon:
-          type: string
-        showLogo:
-          type: boolean
-    AppearanceOfferingPortalDto:
-      type: object
-      properties:
-        border:
-          type: string
-        background:
-          type: string
-        accent:
-          type: string
-        radius:
-          type: string
-        paigoBranding:
-          type: string
-        pricingTable:
-          $ref: '#/components/schemas/PricingTableOfferingPortalDto'
-      required:
-      - pricingTable
-    PortalPages:
-      type: object
-      properties:
-        invoice:
-          $ref: '#/components/schemas/InvoicePortalPageSettings'
-        payment:
-          $ref: '#/components/schemas/PaymentPortalPageSettings'
-        offering:
-          $ref: '#/components/schemas/OfferingPortalPageSettings'
-        extended:
-          type: object
-      required:
-      - extended
-    FeaturedOfferingPortalDto:
-      type: object
-      properties:
-        text:
-          type: string
-    OfferingPortalPageSettings:
-      type: object
-      properties:
-        offerings:
-          minItems: 0
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+        data:
           type: array
           items:
-            $ref: '#/components/schemas/PortalOfferingPageDto'
-        appearance:
-          $ref: '#/components/schemas/AppearanceOfferingPortalDto'
-        enabled:
-          type: boolean
-        text:
-          type: string
+            $ref: '#/components/schemas/ReadSettingsResponseData'
+      required:
+      - message
+      - data
     ReadProfileResponseData:
       type: object
       properties:
@@ -422,74 +394,6 @@ components:
         redirectionUrl:
           type: string
           description: A URL to redirect to after relevant connection, or payment actions.
-    CloudIAM:
-      type: object
-      properties:
-        iamRoleArn:
-          type: string
-        externalId:
-          type: string
-      required:
-      - iamRoleArn
-    PaymentPortalPageSettings:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        text:
-          type: string
-    InvoiceReminders:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        beforeDueReminders:
-          description: 'The number of days before the due date to send reminders.
-
-            <br><br>
-
-            Example: `{"first": "1", "second": "3", "third": "7"}`'
-          allOf:
-          - $ref: '#/components/schemas/InvoiceReminderSchedule'
-        afterDueReminders:
-          description: 'The number of days after the due date to send reminders.
-
-            <br><br>
-
-            Example: `{"first": "1", "second": "3", "third": "7"}`'
-          allOf:
-          - $ref: '#/components/schemas/InvoiceReminderSchedule'
-    CTAOfferingPortalDto:
-      type: object
-      properties:
-        text:
-          type: string
-        offeringId:
-          type: string
-        externalLink:
-          type: string
-    PortalOfferingPageDto:
-      type: object
-      properties:
-        title:
-          type: string
-        subtitle:
-          type: string
-        price:
-          type: string
-        featured:
-          $ref: '#/components/schemas/FeaturedOfferingPortalDto'
-        cta:
-          $ref: '#/components/schemas/CTAOfferingPortalDto'
-        description:
-          type: string
-        features:
-          type: array
-          items:
-            type: string
-      required:
-      - cta
-      - features
     UpdateProfileDto:
       type: object
       properties:
@@ -576,6 +480,60 @@ components:
 
             Example: `"https://mybusiness.com/redirect"`'
           example: https://mybusiness.com/redirect
+    AppearanceOfferingPortalDto:
+      type: object
+      properties:
+        border:
+          type: string
+        background:
+          type: string
+        accent:
+          type: string
+        radius:
+          type: string
+        paigoBranding:
+          type: string
+        pricingTable:
+          $ref: '#/components/schemas/PricingTableOfferingPortalDto'
+      required:
+      - pricingTable
+    CTAOfferingPortalDto:
+      type: object
+      properties:
+        text:
+          type: string
+        offeringId:
+          type: string
+        externalLink:
+          type: string
+    InvoiceReminders:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        beforeDueReminders:
+          description: 'The number of days before the due date to send reminders.
+
+            <br><br>
+
+            Example: `{"first": "1", "second": "3", "third": "7"}`'
+          allOf:
+          - $ref: '#/components/schemas/InvoiceReminderSchedule'
+        afterDueReminders:
+          description: 'The number of days after the due date to send reminders.
+
+            <br><br>
+
+            Example: `{"first": "1", "second": "3", "third": "7"}`'
+          allOf:
+          - $ref: '#/components/schemas/InvoiceReminderSchedule'
+    PaymentPortalPageSettings:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        text:
+          type: string
     BasicResponseDTO:
       type: object
       properties:
@@ -585,6 +543,54 @@ components:
           example: This is a sample API message. The exact message may vary based on the API behavior
       required:
       - message
+    PricingTableOfferingPortalDto:
+      type: object
+      properties:
+        ctaBorder:
+          type: string
+        ctaBackground:
+          type: string
+        ctaText:
+          type: string
+        featureListColor:
+          type: string
+        pricePlanBackground:
+          type: string
+        highlightedPrice:
+          type: string
+        featureListIcon:
+          type: string
+        showLogo:
+          type: boolean
+    PortalOfferingPageDto:
+      type: object
+      properties:
+        title:
+          type: string
+        subtitle:
+          type: string
+        price:
+          type: string
+        featured:
+          $ref: '#/components/schemas/FeaturedOfferingPortalDto'
+        cta:
+          $ref: '#/components/schemas/CTAOfferingPortalDto'
+        description:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+      required:
+      - cta
+      - features
+    InvoicePortalPageSettings:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        text:
+          type: string
   securitySchemes:
     bearer:
       scheme: bearer
