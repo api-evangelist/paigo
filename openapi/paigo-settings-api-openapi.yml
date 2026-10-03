@@ -83,20 +83,70 @@ paths:
       x-operation-id-original: Upload Invoice Image
 components:
   schemas:
-    OfferingPortalPageSettings:
+    PaymentPortalPageSettings:
       type: object
       properties:
-        offerings:
-          minItems: 0
-          type: array
-          items:
-            $ref: '#/components/schemas/PortalOfferingPageDto'
-        appearance:
-          $ref: '#/components/schemas/AppearanceOfferingPortalDto'
         enabled:
           type: boolean
         text:
           type: string
+    PortalOfferingPageDto:
+      type: object
+      properties:
+        title:
+          type: string
+        subtitle:
+          type: string
+        price:
+          type: string
+        featured:
+          $ref: '#/components/schemas/FeaturedOfferingPortalDto'
+        cta:
+          $ref: '#/components/schemas/CTAOfferingPortalDto'
+        description:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+      required:
+      - cta
+      - features
+    ReadSettingsResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReadSettingsResponseData'
+      required:
+      - message
+      - data
+    FeaturedOfferingPortalDto:
+      type: object
+      properties:
+        text:
+          type: string
+    InvoiceEmailConfiguration:
+      type: object
+      properties:
+        reminders:
+          $ref: '#/components/schemas/InvoiceReminders'
+      required:
+      - reminders
+    BasicResponseDTO:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+      required:
+      - message
     CloudIAM:
       type: object
       properties:
@@ -106,6 +156,131 @@ components:
           type: string
       required:
       - iamRoleArn
+    InvoiceReminderSchedule:
+      type: object
+      properties:
+        first:
+          type: string
+        second:
+          type: string
+        third:
+          type: string
+    UpdateProfileDto:
+      type: object
+      properties:
+        sendInvoiceEmail:
+          description: 'Whether Paigo should send invoices to customers.
+
+            <br><br>
+
+            Example: `"true"`'
+          example: true
+          enum:
+          - 'true'
+          - 'false'
+          type: string
+        businessName:
+          type: string
+          description: 'The Name for the Business Entity using Paigo
+
+            <br><br>
+
+            Example: `"My Smart Business Name"`'
+          example: My Smart Business Name
+        addressLine1:
+          type: string
+          description: 'Street number and name (address line 1)
+
+            <br><br>
+
+            Example: `"123 Success Street"`'
+          example: 123 Success Street
+        addressLine2:
+          type: string
+          description: 'Apartment or unit and its number (address line 2)
+
+            <br><br>
+
+            Example: `"Suite 100"`'
+          example: Suite 100
+        city:
+          type: string
+          description: 'City of Business Entity''s Location
+
+            <br><br>
+
+            Example: `"San Francisco"`'
+          example: San Francisco
+        state:
+          type: string
+          description: 'State of Business Entity''s Location
+
+            <br><br>
+
+            Example: `"CA"`'
+          example: CA
+        country:
+          type: string
+          description: 'Country of Business Entity''s Location
+
+            <br><br>
+
+            Example: `"USA"`'
+          example: USA
+        postalCode:
+          type: string
+          description: 'Postal code of Business Entity''s Location
+
+            <br><br>
+
+            Example: `"94188"`'
+          example: '94188'
+        supportEmail:
+          type: string
+          description: 'Email address utilized by the Business Entity for customer support
+
+            <br><br>
+
+            Example: `"support@mybusiness.com"`'
+          example: support@mybusiness.com
+        redirectionUrl:
+          type: string
+          description: 'The URL to redirect to after relevant requests, such as completion of a connection.
+
+            <br><br>
+
+            Example: `"https://mybusiness.com/redirect"`'
+          example: https://mybusiness.com/redirect
+    CTAOfferingPortalDto:
+      type: object
+      properties:
+        text:
+          type: string
+        offeringId:
+          type: string
+        externalLink:
+          type: string
+    InvoiceReminders:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        beforeDueReminders:
+          description: 'The number of days before the due date to send reminders.
+
+            <br><br>
+
+            Example: `{"first": "1", "second": "3", "third": "7"}`'
+          allOf:
+          - $ref: '#/components/schemas/InvoiceReminderSchedule'
+        afterDueReminders:
+          description: 'The number of days after the due date to send reminders.
+
+            <br><br>
+
+            Example: `{"first": "1", "second": "3", "third": "7"}`'
+          allOf:
+          - $ref: '#/components/schemas/InvoiceReminderSchedule'
     ReadSettingsResponseData:
       type: object
       properties:
@@ -257,54 +432,6 @@ components:
           enum:
           - ebs
           - none
-    FeaturedOfferingPortalDto:
-      type: object
-      properties:
-        text:
-          type: string
-    PortalPages:
-      type: object
-      properties:
-        invoice:
-          $ref: '#/components/schemas/InvoicePortalPageSettings'
-        payment:
-          $ref: '#/components/schemas/PaymentPortalPageSettings'
-        offering:
-          $ref: '#/components/schemas/OfferingPortalPageSettings'
-        extended:
-          type: object
-      required:
-      - extended
-    InvoiceEmailConfiguration:
-      type: object
-      properties:
-        reminders:
-          $ref: '#/components/schemas/InvoiceReminders'
-      required:
-      - reminders
-    InvoiceReminderSchedule:
-      type: object
-      properties:
-        first:
-          type: string
-        second:
-          type: string
-        third:
-          type: string
-    ReadSettingsResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReadSettingsResponseData'
-      required:
-      - message
-      - data
     ReadProfileResponseData:
       type: object
       properties:
@@ -394,155 +521,13 @@ components:
         redirectionUrl:
           type: string
           description: A URL to redirect to after relevant connection, or payment actions.
-    UpdateProfileDto:
-      type: object
-      properties:
-        sendInvoiceEmail:
-          description: 'Whether Paigo should send invoices to customers.
-
-            <br><br>
-
-            Example: `"true"`'
-          example: true
-          enum:
-          - 'true'
-          - 'false'
-          type: string
-        businessName:
-          type: string
-          description: 'The Name for the Business Entity using Paigo
-
-            <br><br>
-
-            Example: `"My Smart Business Name"`'
-          example: My Smart Business Name
-        addressLine1:
-          type: string
-          description: 'Street number and name (address line 1)
-
-            <br><br>
-
-            Example: `"123 Success Street"`'
-          example: 123 Success Street
-        addressLine2:
-          type: string
-          description: 'Apartment or unit and its number (address line 2)
-
-            <br><br>
-
-            Example: `"Suite 100"`'
-          example: Suite 100
-        city:
-          type: string
-          description: 'City of Business Entity''s Location
-
-            <br><br>
-
-            Example: `"San Francisco"`'
-          example: San Francisco
-        state:
-          type: string
-          description: 'State of Business Entity''s Location
-
-            <br><br>
-
-            Example: `"CA"`'
-          example: CA
-        country:
-          type: string
-          description: 'Country of Business Entity''s Location
-
-            <br><br>
-
-            Example: `"USA"`'
-          example: USA
-        postalCode:
-          type: string
-          description: 'Postal code of Business Entity''s Location
-
-            <br><br>
-
-            Example: `"94188"`'
-          example: '94188'
-        supportEmail:
-          type: string
-          description: 'Email address utilized by the Business Entity for customer support
-
-            <br><br>
-
-            Example: `"support@mybusiness.com"`'
-          example: support@mybusiness.com
-        redirectionUrl:
-          type: string
-          description: 'The URL to redirect to after relevant requests, such as completion of a connection.
-
-            <br><br>
-
-            Example: `"https://mybusiness.com/redirect"`'
-          example: https://mybusiness.com/redirect
-    AppearanceOfferingPortalDto:
-      type: object
-      properties:
-        border:
-          type: string
-        background:
-          type: string
-        accent:
-          type: string
-        radius:
-          type: string
-        paigoBranding:
-          type: string
-        pricingTable:
-          $ref: '#/components/schemas/PricingTableOfferingPortalDto'
-      required:
-      - pricingTable
-    CTAOfferingPortalDto:
-      type: object
-      properties:
-        text:
-          type: string
-        offeringId:
-          type: string
-        externalLink:
-          type: string
-    InvoiceReminders:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        beforeDueReminders:
-          description: 'The number of days before the due date to send reminders.
-
-            <br><br>
-
-            Example: `{"first": "1", "second": "3", "third": "7"}`'
-          allOf:
-          - $ref: '#/components/schemas/InvoiceReminderSchedule'
-        afterDueReminders:
-          description: 'The number of days after the due date to send reminders.
-
-            <br><br>
-
-            Example: `{"first": "1", "second": "3", "third": "7"}`'
-          allOf:
-          - $ref: '#/components/schemas/InvoiceReminderSchedule'
-    PaymentPortalPageSettings:
+    InvoicePortalPageSettings:
       type: object
       properties:
         enabled:
           type: boolean
         text:
           type: string
-    BasicResponseDTO:
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-      required:
-      - message
     PricingTableOfferingPortalDto:
       type: object
       properties:
@@ -562,35 +547,50 @@ components:
           type: string
         showLogo:
           type: boolean
-    PortalOfferingPageDto:
+    OfferingPortalPageSettings:
       type: object
       properties:
-        title:
-          type: string
-        subtitle:
-          type: string
-        price:
-          type: string
-        featured:
-          $ref: '#/components/schemas/FeaturedOfferingPortalDto'
-        cta:
-          $ref: '#/components/schemas/CTAOfferingPortalDto'
-        description:
-          type: string
-        features:
+        offerings:
+          minItems: 0
           type: array
           items:
-            type: string
-      required:
-      - cta
-      - features
-    InvoicePortalPageSettings:
-      type: object
-      properties:
+            $ref: '#/components/schemas/PortalOfferingPageDto'
+        appearance:
+          $ref: '#/components/schemas/AppearanceOfferingPortalDto'
         enabled:
           type: boolean
         text:
           type: string
+    PortalPages:
+      type: object
+      properties:
+        invoice:
+          $ref: '#/components/schemas/InvoicePortalPageSettings'
+        payment:
+          $ref: '#/components/schemas/PaymentPortalPageSettings'
+        offering:
+          $ref: '#/components/schemas/OfferingPortalPageSettings'
+        extended:
+          type: object
+      required:
+      - extended
+    AppearanceOfferingPortalDto:
+      type: object
+      properties:
+        border:
+          type: string
+        background:
+          type: string
+        accent:
+          type: string
+        radius:
+          type: string
+        paigoBranding:
+          type: string
+        pricingTable:
+          $ref: '#/components/schemas/PricingTableOfferingPortalDto'
+      required:
+      - pricingTable
   securitySchemes:
     bearer:
       scheme: bearer

@@ -262,237 +262,23 @@ paths:
       x-operation-id-original: Delete an offering
 components:
   schemas:
-    DimensionTierDto:
+    DimensionTiersGroupByMetadataDto:
       type: object
       properties:
-        tierName:
-          type: string
-          description: 'The name of the tier as it would appear on the invoice. If Tier name is not included, no `tierName` will be displayed on the invoice, and it will follow the default line item naming standard. See: https://docs.paigo.tech/invoicing-and-payment/issue-invoice/automatic-line-item-formatting
+        metadataGroups:
+          type: object
+          description: 'The metadata groups to group the tiers by. A collection of key value pairs. metadata groups are used alongside the usage passed in to define more accurately how to break up price and usage for a dimension.
 
             <br><br>
 
-            Example: `"Tier 1"`'
-          example: Tier 1
-        upperBound:
-          type: string
-          description: 'The upper limit of the tier, inclusive. If the upperBound is set to "inf", it must have the highest `tierPosition`. Additionally, the `upperBound` must be a multiple of the `usageIncrement`
-
-            on the dimension. For example, if the `usageIncrement` is 100, the `upperBound` must be 100, 200, 300, etc. The `upperBound` cannot overlap with previous tiers, so tier 1''s `upperBound` must be smaller than tier 2''s.
-
-            <br><br>
-
-            Example: `"100"`'
-          example: '100'
-        unitPrice:
-          type: string
-          description: 'The unit price of the tier.
-
-            <br><br>
-
-            Example: `"10"`'
-          example: '10'
-        tierPosition:
-          type: string
-          description: 'The position of the tier. The first tier must have a `tierPosition` of 1, the second tier must have a `tierPosition` of 2, etc. Order of the tiers is determined by the `tierPosition`.
-
-            <br><br>
-
-            Example: `"1"`'
-          example: '1'
+            Example: `{ "instanceType": "t3.medium", "region": "us-east-1", "deployment": "production"}`'
+        tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/DimensionTierDto'
       required:
-      - upperBound
-      - tierPosition
-    TimeBasedConsumptionUnit:
-      type: object
-      properties:
-        unit:
-          enum:
-          - second
-          - minute
-          - hour
-          - day
-          type: string
-          description: A unit of time for a dimension of type time-based
-          examples:
-          - second
-          - minute
-          - hour
-          - day
-        type:
-          type: string
-          enum:
-          - time
-          description: A string that indicates the type of consumption unit
-      required:
-      - unit
-      - type
-    AgentAccessInformation:
-      type: object
-      properties:
-        iamRoleArn:
-          type: string
-          description: 'The IAM role created by SaaS business and can be by Paigo AWS account to measure usage.
-
-            <br><br>
-
-            Example `"arn:aws:iam::214826386939:role/paigo-scraper"`'
-          example: arn:aws:iam::214826386939:role/paigo-scraper
-        externalId:
-          type: string
-          description: 'The Optional ExternalId associated with the IAM role.
-
-            <br><br>
-
-            Example `"123456789"`'
-          example: '123456789'
-          externalDocs:
-            description: Read more about why externalIds are important
-            url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
-        hostingPlatform:
-          type: string
-          enum:
-          - k8spod
-          example: k8spod
-          description: Hosting platform of SaaS application
-      required:
-      - iamRoleArn
-      - hostingPlatform
-    InfrastructureAccessInformation:
-      type: object
-      properties:
-        iamRoleArn:
-          type: string
-          description: 'The IAM role created by SaaS business and can be by Paigo AWS account to measure usage.
-
-            <br><br>
-
-            Example `"arn:aws:iam::214826386939:role/paigo-scraper"`'
-          example: arn:aws:iam::214826386939:role/paigo-scraper
-        externalId:
-          type: string
-          description: 'The Optional ExternalId associated with the IAM role.
-
-            <br><br>
-
-            Example `"123456789"`'
-          example: '123456789'
-          externalDocs:
-            description: Read more about why externalIds are important
-            url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
-        cloudPlatform:
-          type: string
-          enum:
-          - aws
-          example: aws
-          description: Cloud infrastructure platform <br><br> Example `"aws"`
-        region:
-          type: string
-          description: 'Supported region of the infrastructure
-
-
-            Example `"us-east-1"`'
-          example: us-east-1
-        resourceType:
-          type: string
-          enum:
-          - ebssnapshot
-          - ebs
-          - k8spod
-          - ec2
-          - ec2egress
-          - usageData
-          example: ebs
-          description: Underlying resource type which Paigo measures usage for. <br><br> Example `"ec2"`
-      required:
-      - iamRoleArn
-      - cloudPlatform
-      - region
-      - resourceType
-    DatastoreAccessInformationResponse:
-      type: object
-      properties:
-        platform:
-          description: Underlying resource type which paigo connects to. <br><br> Example `"s3"`
-          enum:
-          - s3
-          - kafka
-          type: string
-          examples:
-          - s3
-        consumerDeploymentParameters:
-          description: The access information and configuration for deploying a datastore consumer by Paigo. Use this field in a case where Paigo is deploying a consumer and you want to provide the access information for the datastore.
-          oneOf:
-          - $ref: '#/components/schemas/KafkaDeploymentParametersDto'
-        ingestion:
-          type: string
-          description: The Ingestion endpioint for data to be dropped off at.
-        dlq:
-          type: string
-          description: The DLQ endpoint for data which has failed to be processed.
-        iamRoleArn:
-          type: string
-          description: The IAM role associated with the endpoints for access management
-        externalId:
-          type: string
-          description: The externalId associated with the endpoints
-        region:
-          type: string
-          description: The region associated with the endpoints, defaults to `us-east-1`
-        accountId:
-          type: string
-          description: 'The Unqiue ID for your cloud account.
-
-            <br><br>
-
-            Example `"623673123435"`'
-          example: '623673123435'
-      required:
-      - platform
-      - ingestion
-      - dlq
-    DatabasedConsumptionUnit:
-      type: object
-      properties:
-        unit:
-          enum:
-          - byte
-          - kilobyte
-          - megabyte
-          - gigabyte
-          - kibibyte
-          - mebibyte
-          - gibibyte
-          type: string
-          description: A unit of data for a dimension of type data-based
-          examples:
-          - byte
-          - kilobyte
-          - megabyte
-          - gigabyte
-        type:
-          type: string
-          enum:
-          - data
-          description: A string that indicates the type of consumption unit
-      required:
-      - unit
-      - type
-    UpdateOfferingResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-        offeringId:
-          type: string
-          description: 'The identified of the offering.
-
-            Example `"fcb1fa34-8f11-4832-80f2-464cbc7a8546"`'
-          example: fcb1fa34-8f11-4832-80f2-464cbc7a8546
-      required:
-      - message
-      - offeringId
+      - metadataGroups
+      - tiers
     CreateOfferingDTO:
       type: object
       properties:
@@ -664,218 +450,99 @@ components:
             Example `"metadata": null`'
       required:
       - offeringName
-    DimensionOverridesDto:
+    DatabasedConsumptionUnit:
       type: object
       properties:
-        dimensionId:
+        unit:
+          enum:
+          - byte
+          - kilobyte
+          - megabyte
+          - gigabyte
+          - kibibyte
+          - mebibyte
+          - gibibyte
           type: string
-          description: 'The Id of the dimension that is being overridden.
-
-            <br><br>
-
-            Example: `"6a8fb855-206c-4226-8695-daf67352e7ee"`'
-          example: 6a8fb855-206c-4226-8695-daf67352e7ee
-        consumptionPrice:
+          description: A unit of data for a dimension of type data-based
+          examples:
+          - byte
+          - kilobyte
+          - megabyte
+          - gigabyte
+        type:
           type: string
-          description: 'The price of the dimension. Must be a valid number.
-
-            <br><br>
-
-            Example: `"10.00"`'
-          example: '10.00'
-        tiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/DimensionTierDto'
-        tiersGroupByMetadata:
-          type: array
-          items:
-            $ref: '#/components/schemas/DimensionTiersGroupByMetadataDto'
+          enum:
+          - data
+          description: A string that indicates the type of consumption unit
       required:
-      - dimensionId
-    BasicResponseDTO:
+      - unit
+      - type
+    TimeBasedConsumptionUnit:
       type: object
       properties:
-        message:
+        unit:
+          enum:
+          - second
+          - minute
+          - hour
+          - day
           type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
+          description: A unit of time for a dimension of type time-based
+          examples:
+          - second
+          - minute
+          - hour
+          - day
+        type:
+          type: string
+          enum:
+          - time
+          description: A string that indicates the type of consumption unit
       required:
-      - message
-    ReadOfferingResponseData:
+      - unit
+      - type
+    DatastoreAccessInformationResponse:
       type: object
       properties:
-        offeringVisibility:
-          description: 'The visibility of the offering, specifically if its private or public.
-
-            Public offerings are designed to be shared among customers.
-
-            Private offerings are typically used for enterprise deals which contain discounts or prepaid credits.
-
-            <br><br>
-
-            Example: `"private"`'
-          example: private
+        platform:
+          description: Underlying resource type which paigo connects to. <br><br> Example `"s3"`
           enum:
-          - private
-          - public
+          - s3
+          - kafka
           type: string
-          default: public
-        offeringType:
+          examples:
+          - s3
+        consumerDeploymentParameters:
+          description: The access information and configuration for deploying a datastore consumer by Paigo. Use this field in a case where Paigo is deploying a consumer and you want to provide the access information for the datastore.
+          oneOf:
+          - $ref: '#/components/schemas/KafkaDeploymentParametersDto'
+        ingestion:
           type: string
-          description: 'The type of offering.
-
-            <br>  • `usage-based` - The offering is a pure usage-based offering, or pay-as-you-go. Customers on this plan will be billed precisely based on consumption.
-
-            <br>  • `subscription` - The offering is a fixed subscription. Customer will be billed on a fixed price.
-
-
-            Example `"subscription"`'
-          enum:
-          - usage-based
-          - subscription
-          default: usage-based
-          example: subscription
-          externalDocs:
-            description: Read more about the different offering types
-            url: https://docs.paigo.tech/model-pricing-and-package/pricing-modeling-guide
-        billingCycle:
-          description: 'The time frame when an automatic bill should be sent leave empty for no automated billing
-
-            <br><br>
-
-
-            Example `"monthly"`'
-          example: monthly
-          enum:
-          - monthly
-          - annualToDate
-          - topUp
+          description: The Ingestion endpioint for data to be dropped off at.
+        dlq:
           type: string
-          default: monthly
-        currency:
-          description: 'The supported currency for the offering. USD is currently supported. Customers can override the currency for their account.
-
-            However all offerings are denoted in USD.
-
-            <br><br>
-
-            Example `"USD"`'
-          example: USD
-          enum:
-          - USD
-          - EUR
-          - CNY
+          description: The DLQ endpoint for data which has failed to be processed.
+        iamRoleArn:
           type: string
-        dimensionOverrides:
-          description: Overrides for the offering. Applies specific overrides to the dimensions associated with the offering. These effect the price of each dimension on the offering.
-          type: array
-          items:
-            $ref: '#/components/schemas/DimensionOverridesDto'
-        offeringId:
+          description: The IAM role associated with the endpoints for access management
+        externalId:
           type: string
-          description: 'Unique identifier assigned by Paigo.
-
-            <br><br>
-
-            Example: `539b7f74-3832-474e-a955-6d69c5df12d0`'
-          example: 539b7f74-3832-474e-a955-6d69c5df12d0
-        dimensions:
-          description: The list of dimensions attached to the offering.
-          type: array
-          items:
-            $ref: '#/components/schemas/ReadDimensionResponseData'
-        prepaidCredit:
+          description: The externalId associated with the endpoints
+        region:
           type: string
-          description: 'Prepaid credit amount to be deducted as part of the bill payments. Only numerical string is allowed.
-
-            <br><br>Example: `"20.00"` for $20.00.'
-          example: '20.00'
-        minimumCharge:
-          type:
-          - string
-          - 'null'
-          description: 'A minimum charge to be billed to the customer in the event that the customer''s bill is less than the minimum charge. Only on usage based offerings. Only numerical strings are allowed, must be greater than zero.
-
-            <br><br>Example: `"32.00"` for $32.00.'
-          example: '32.00'
-        topUpAmount:
+          description: The region associated with the endpoints, defaults to `us-east-1`
+        accountId:
           type: string
-          description: 'The amount to top up the account by. Only positive number string is allowed. Required if `billingCycle` is `topUp`.
+          description: 'The Unqiue ID for your cloud account.
 
             <br><br>
 
-            Example: `"20.00"` for $20.00.'
-          example: '20.00'
-        topUpThreshold:
-          type: string
-          description: 'The threshold at which the account should be topped up. Only positive number string is allowed. Between 0 and 1.
-
-            If not provided the default value will be 0.2 or 20%. Meaning that when the account balance reaches 20% of the the top up amount, the account will be
-
-            topped up, and the end customer charged.
-
-            <br><br>
-
-            Example: `"0.2"` for 20%.'
-          example: '0.2'
-        subscriptionPrice:
-          type: number
-          description: 'The price of the subscription.
-
-            Only positive number string is allowed.
-
-            Only required if `offeringType` is `subscription`.
-
-            <br><br>
-
-
-            Example: `20.00` for $20.00.'
-          example: 20
-        freeTrialLength:
-          type: string
-          description: 'The length of time for a free trial. This is a number of days.
-
-            Only positive number string is allowed.
-
-            <br><br>
-
-
-            Example: `"1"` for 1 day or 1 billing cycle depending on the offeringType.'
-          example: '1'
-        offeringName:
-          type: string
-          description: 'A friendly, human-readable name for the offering.
-
-            <br><br>
-
-            Example `"Entperise Plan"`'
-          example: Entperise Plan
-        metadata:
-          type: object
-          description: 'An optional key-value map of additional metadata to associate with the offerings.
-
-            such as environment, purpose, owner, developer, contract number,
-
-            or any arbitrary data to be associated with this usage record. Additionally, if `null` is passed for any value in the metadata object it will be removed.
-
-            To entirely remove the metadata object, pass null to the metadata field.
-
-            <br><br>
-
-            Example `{"environment": "staging", "purpose": "proof-of-concept", "owner": "John Doe", "workspaceId": null}`
-
-            <br><br>
-
-            In the above example, the `workspaceId` metadata key will be removed from the dimension. To remove all fields pass the following.
-
-            <br><br>
-
-            Example `"metadata": null`'
+            Example `"623673123435"`'
+          example: '623673123435'
       required:
-      - offeringId
-      - dimensions
-      - offeringName
+      - platform
+      - ingestion
+      - dlq
     ReadMeasurementResponseData:
       type: object
       properties:
@@ -913,292 +580,57 @@ components:
       - measurementMode
       - measurementConfiguration
       - measurementId
-    DeleteOfferingResponse:
+    InfrastructureAccessInformation:
       type: object
       properties:
-        message:
+        iamRoleArn:
           type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-        offeringId:
-          type: string
-          description: The Unique ID defining the offering document
-          example: 539b7f74-3832-474e-a955-6d69c5df12d0
-      required:
-      - message
-      - offeringId
-    CreateOfferingResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-        offeringId:
-          type: string
-          description: 'The identified of the offering.
+          description: 'The IAM role created by SaaS business and can be by Paigo AWS account to measure usage.
 
-            Example `"fcb1fa34-8f11-4832-80f2-464cbc7a8546"`'
-          example: fcb1fa34-8f11-4832-80f2-464cbc7a8546
-      required:
-      - message
-      - offeringId
-    KafkaDeploymentParametersDto:
-      type: object
-      properties:
-        securityMechanism:
+            <br><br>
+
+            Example `"arn:aws:iam::214826386939:role/paigo-scraper"`'
+          example: arn:aws:iam::214826386939:role/paigo-scraper
+        externalId:
           type: string
+          description: 'The Optional ExternalId associated with the IAM role.
+
+            <br><br>
+
+            Example `"123456789"`'
+          example: '123456789'
           externalDocs:
-            url: https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_plain.html#sasl-plain-overview
-          example: PLAIN
-          description: 'The security protocol to use when connecting to the Kafka cluster. Defaults to `PLAIN`. Note this is not PLAINTEXT. PLAIN is the SASL_PLAIN protocol. <br><br> Example: `"PLAIN"`'
-        username:
+            description: Read more about why externalIds are important
+            url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
+        cloudPlatform:
           type: string
-          description: 'The username to use when connecting to the Kafka cluster. <br><br> Example: `"admin"`'
-          example: admin
-        password:
+          enum:
+          - aws
+          example: aws
+          description: Cloud infrastructure platform <br><br> Example `"aws"`
+        region:
           type: string
-          description: 'The password to use when connecting to the Kafka cluster. <br><br> Example: `"hunter2"`'
-          example: hunter2
-        bootstrapServerEndpoint:
+          description: 'Supported region of the infrastructure
+
+
+            Example `"us-east-1"`'
+          example: us-east-1
+        resourceType:
           type: string
-          description: 'The endpoint of the Kafka cluster to connect to. <br><br> Example: `"kafka.paigo.tech"`'
-          example: kafka.paigo.tech
-        topic:
-          type: string
-          description: 'The topic to subscribe to. <br><br> Example: `"test-topic"`'
-          example: '"test-topic"'
-        dlqTopic:
-          type: string
-          description: 'The DLQ topic to write to when a message fails to be processed. <br><br> Example: `"dlq-topic"`'
-          example: '"dlq-topic"'
+          enum:
+          - ebssnapshot
+          - ebs
+          - k8spod
+          - ec2
+          - ec2egress
+          - usageData
+          example: ebs
+          description: Underlying resource type which Paigo measures usage for. <br><br> Example `"ec2"`
       required:
-      - securityMechanism
-      - username
-      - password
-      - bootstrapServerEndpoint
-      - topic
-      - dlqTopic
-    CountBasedConsumptionUnit:
-      type: object
-      properties:
-        unit:
-          type: string
-          enum:
-          - count-based
-          description: A dimensionless unit for a dimension of type count-based
-          examples:
-          - count-based
-        type:
-          type: string
-          enum:
-          - count
-          description: A string that indicates the type of consumption unit
-      required:
-      - unit
-      - type
-    UpdateOfferingDto:
-      type: object
-      properties:
-        offeringVisibility:
-          description: 'The visibility of the offering, specifically if its private or public.
-
-            Public offerings are designed to be shared among customers.
-
-            Private offerings are typically used for enterprise deals which contain discounts or prepaid credits.
-
-            <br><br>
-
-            Example: `"private"`'
-          example: private
-          enum:
-          - private
-          - public
-          type: string
-          default: public
-        offeringType:
-          type: string
-          description: 'The type of offering.
-
-            <br>  • `usage-based` - The offering is a pure usage-based offering, or pay-as-you-go. Customers on this plan will be billed precisely based on consumption.
-
-            <br>  • `subscription` - The offering is a fixed subscription. Customer will be billed on a fixed price.
-
-
-            Example `"subscription"`'
-          enum:
-          - usage-based
-          - subscription
-          default: usage-based
-          example: subscription
-          externalDocs:
-            description: Read more about the different offering types
-            url: https://docs.paigo.tech/model-pricing-and-package/pricing-modeling-guide
-        billingCycle:
-          description: 'The time frame when an automatic bill should be sent leave empty for no automated billing
-
-            <br><br>
-
-
-            Example `"monthly"`'
-          example: monthly
-          enum:
-          - monthly
-          - annualToDate
-          - topUp
-          type: string
-          default: monthly
-        currency:
-          description: 'The supported currency for the offering. USD is currently supported. Customers can override the currency for their account.
-
-            However all offerings are denoted in USD.
-
-            <br><br>
-
-            Example `"USD"`'
-          example: USD
-          enum:
-          - USD
-          - EUR
-          - CNY
-          type: string
-        dimensionOverrides:
-          description: Overrides for the offering. Applies specific overrides to the dimensions associated with the offering. These effect the price of each dimension on the offering.
-          type: array
-          items:
-            $ref: '#/components/schemas/DimensionOverridesDto'
-        prepaidCredit:
-          type: string
-          description: 'Prepaid credit amount to be deducted as part of the bill payments. Only numerical string is allowed.
-
-            <br><br>Example: `"20.00"` for $20.00.'
-          example: '20.00'
-        minimumCharge:
-          type:
-          - string
-          - 'null'
-          description: 'A minimum charge to be billed to the customer in the event that the customer''s bill is less than the minimum charge. Only on usage based offerings. Only numerical strings are allowed, must be greater than zero.
-
-            <br><br>Example: `"32.00"` for $32.00.'
-          example: '32.00'
-        topUpAmount:
-          type: string
-          description: 'The amount to top up the account by. Only positive number string is allowed. Required if `billingCycle` is `topUp`.
-
-            <br><br>
-
-            Example: `"20.00"` for $20.00.'
-          example: '20.00'
-        topUpThreshold:
-          type: string
-          description: 'The threshold at which the account should be topped up. Only positive number string is allowed. Between 0 and 1.
-
-            If not provided the default value will be 0.2 or 20%. Meaning that when the account balance reaches 20% of the the top up amount, the account will be
-
-            topped up, and the end customer charged.
-
-            <br><br>
-
-            Example: `"0.2"` for 20%.'
-          example: '0.2'
-        subscriptionPrice:
-          type: number
-          description: 'The price of the subscription.
-
-            Only positive number string is allowed.
-
-            Only required if `offeringType` is `subscription`.
-
-            <br><br>
-
-
-            Example: `20.00` for $20.00.'
-          example: 20
-        freeTrialLength:
-          type: string
-          description: 'The length of time for a free trial. This is a number of days.
-
-            Only positive number string is allowed.
-
-            <br><br>
-
-
-            Example: `"1"` for 1 day or 1 billing cycle depending on the offeringType.'
-          example: '1'
-        offeringName:
-          type: string
-          description: 'A friendly, human-readable name for the offering.
-
-            <br><br>
-
-            Example `"Entperise Plan"`'
-          example: Entperise Plan
-        dimensionIds:
-          description: 'Array of the identifier of the dimensions that this offering contains. Dimensions specify the type of usage that is being billed for.
-
-            <br><br>
-
-            Example `["092f9444-851a-43fb-9503-2228dc01b1b", "4fcafdec-eeb9-4a7f-9caf-61387102b6fa"]`'
-          example:
-          - 092f9444-851a-43fb-9503-2228dc01b1b
-          - 4fcafdec-eeb9-4a7f-9caf-61387102b6fa
-          type: array
-          items:
-            type: string
-        metadata:
-          type: object
-          description: 'An optional key-value map of additional metadata to associate with the offerings.
-
-            such as environment, purpose, owner, developer, contract number,
-
-            or any arbitrary data to be associated with this usage record. Additionally, if `null` is passed for any value in the metadata object it will be removed.
-
-            To entirely remove the metadata object, pass null to the metadata field.
-
-            <br><br>
-
-            Example `{"environment": "staging", "purpose": "proof-of-concept", "owner": "John Doe", "workspaceId": null}`
-
-            <br><br>
-
-            In the above example, the `workspaceId` metadata key will be removed from the dimension. To remove all fields pass the following.
-
-            <br><br>
-
-            Example `"metadata": null`'
-    DimensionTiersGroupByMetadataDto:
-      type: object
-      properties:
-        metadataGroups:
-          type: object
-          description: 'The metadata groups to group the tiers by. A collection of key value pairs. metadata groups are used alongside the usage passed in to define more accurately how to break up price and usage for a dimension.
-
-            <br><br>
-
-            Example: `{ "instanceType": "t3.medium", "region": "us-east-1", "deployment": "production"}`'
-        tiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/DimensionTierDto'
-      required:
-      - metadataGroups
-      - tiers
-    ReadOfferingResponseDTO:
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-        data:
-          description: A list of offerings
-          minItems: 0
-          type: array
-          items:
-            $ref: '#/components/schemas/ReadOfferingResponseData'
-      required:
-      - message
-      - data
+      - iamRoleArn
+      - cloudPlatform
+      - region
+      - resourceType
     ReadDimensionResponseData:
       type: object
       properties:
@@ -1414,6 +846,574 @@ components:
       - usageIncrement
       - dimensionId
       - rounding
+    KafkaDeploymentParametersDto:
+      type: object
+      properties:
+        securityMechanism:
+          type: string
+          externalDocs:
+            url: https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_plain.html#sasl-plain-overview
+          example: PLAIN
+          description: 'The security protocol to use when connecting to the Kafka cluster. Defaults to `PLAIN`. Note this is not PLAINTEXT. PLAIN is the SASL_PLAIN protocol. <br><br> Example: `"PLAIN"`'
+        username:
+          type: string
+          description: 'The username to use when connecting to the Kafka cluster. <br><br> Example: `"admin"`'
+          example: admin
+        password:
+          type: string
+          description: 'The password to use when connecting to the Kafka cluster. <br><br> Example: `"hunter2"`'
+          example: hunter2
+        bootstrapServerEndpoint:
+          type: string
+          description: 'The endpoint of the Kafka cluster to connect to. <br><br> Example: `"kafka.paigo.tech"`'
+          example: kafka.paigo.tech
+        topic:
+          type: string
+          description: 'The topic to subscribe to. <br><br> Example: `"test-topic"`'
+          example: '"test-topic"'
+        dlqTopic:
+          type: string
+          description: 'The DLQ topic to write to when a message fails to be processed. <br><br> Example: `"dlq-topic"`'
+          example: '"dlq-topic"'
+      required:
+      - securityMechanism
+      - username
+      - password
+      - bootstrapServerEndpoint
+      - topic
+      - dlqTopic
+    DimensionTierDto:
+      type: object
+      properties:
+        tierName:
+          type: string
+          description: 'The name of the tier as it would appear on the invoice. If Tier name is not included, no `tierName` will be displayed on the invoice, and it will follow the default line item naming standard. See: https://docs.paigo.tech/invoicing-and-payment/issue-invoice/automatic-line-item-formatting
+
+            <br><br>
+
+            Example: `"Tier 1"`'
+          example: Tier 1
+        upperBound:
+          type: string
+          description: 'The upper limit of the tier, inclusive. If the upperBound is set to "inf", it must have the highest `tierPosition`. Additionally, the `upperBound` must be a multiple of the `usageIncrement`
+
+            on the dimension. For example, if the `usageIncrement` is 100, the `upperBound` must be 100, 200, 300, etc. The `upperBound` cannot overlap with previous tiers, so tier 1''s `upperBound` must be smaller than tier 2''s.
+
+            <br><br>
+
+            Example: `"100"`'
+          example: '100'
+        unitPrice:
+          type: string
+          description: 'The unit price of the tier.
+
+            <br><br>
+
+            Example: `"10"`'
+          example: '10'
+        tierPosition:
+          type: string
+          description: 'The position of the tier. The first tier must have a `tierPosition` of 1, the second tier must have a `tierPosition` of 2, etc. Order of the tiers is determined by the `tierPosition`.
+
+            <br><br>
+
+            Example: `"1"`'
+          example: '1'
+      required:
+      - upperBound
+      - tierPosition
+    UpdateOfferingDto:
+      type: object
+      properties:
+        offeringVisibility:
+          description: 'The visibility of the offering, specifically if its private or public.
+
+            Public offerings are designed to be shared among customers.
+
+            Private offerings are typically used for enterprise deals which contain discounts or prepaid credits.
+
+            <br><br>
+
+            Example: `"private"`'
+          example: private
+          enum:
+          - private
+          - public
+          type: string
+          default: public
+        offeringType:
+          type: string
+          description: 'The type of offering.
+
+            <br>  • `usage-based` - The offering is a pure usage-based offering, or pay-as-you-go. Customers on this plan will be billed precisely based on consumption.
+
+            <br>  • `subscription` - The offering is a fixed subscription. Customer will be billed on a fixed price.
+
+
+            Example `"subscription"`'
+          enum:
+          - usage-based
+          - subscription
+          default: usage-based
+          example: subscription
+          externalDocs:
+            description: Read more about the different offering types
+            url: https://docs.paigo.tech/model-pricing-and-package/pricing-modeling-guide
+        billingCycle:
+          description: 'The time frame when an automatic bill should be sent leave empty for no automated billing
+
+            <br><br>
+
+
+            Example `"monthly"`'
+          example: monthly
+          enum:
+          - monthly
+          - annualToDate
+          - topUp
+          type: string
+          default: monthly
+        currency:
+          description: 'The supported currency for the offering. USD is currently supported. Customers can override the currency for their account.
+
+            However all offerings are denoted in USD.
+
+            <br><br>
+
+            Example `"USD"`'
+          example: USD
+          enum:
+          - USD
+          - EUR
+          - CNY
+          type: string
+        dimensionOverrides:
+          description: Overrides for the offering. Applies specific overrides to the dimensions associated with the offering. These effect the price of each dimension on the offering.
+          type: array
+          items:
+            $ref: '#/components/schemas/DimensionOverridesDto'
+        prepaidCredit:
+          type: string
+          description: 'Prepaid credit amount to be deducted as part of the bill payments. Only numerical string is allowed.
+
+            <br><br>Example: `"20.00"` for $20.00.'
+          example: '20.00'
+        minimumCharge:
+          type:
+          - string
+          - 'null'
+          description: 'A minimum charge to be billed to the customer in the event that the customer''s bill is less than the minimum charge. Only on usage based offerings. Only numerical strings are allowed, must be greater than zero.
+
+            <br><br>Example: `"32.00"` for $32.00.'
+          example: '32.00'
+        topUpAmount:
+          type: string
+          description: 'The amount to top up the account by. Only positive number string is allowed. Required if `billingCycle` is `topUp`.
+
+            <br><br>
+
+            Example: `"20.00"` for $20.00.'
+          example: '20.00'
+        topUpThreshold:
+          type: string
+          description: 'The threshold at which the account should be topped up. Only positive number string is allowed. Between 0 and 1.
+
+            If not provided the default value will be 0.2 or 20%. Meaning that when the account balance reaches 20% of the the top up amount, the account will be
+
+            topped up, and the end customer charged.
+
+            <br><br>
+
+            Example: `"0.2"` for 20%.'
+          example: '0.2'
+        subscriptionPrice:
+          type: number
+          description: 'The price of the subscription.
+
+            Only positive number string is allowed.
+
+            Only required if `offeringType` is `subscription`.
+
+            <br><br>
+
+
+            Example: `20.00` for $20.00.'
+          example: 20
+        freeTrialLength:
+          type: string
+          description: 'The length of time for a free trial. This is a number of days.
+
+            Only positive number string is allowed.
+
+            <br><br>
+
+
+            Example: `"1"` for 1 day or 1 billing cycle depending on the offeringType.'
+          example: '1'
+        offeringName:
+          type: string
+          description: 'A friendly, human-readable name for the offering.
+
+            <br><br>
+
+            Example `"Entperise Plan"`'
+          example: Entperise Plan
+        dimensionIds:
+          description: 'Array of the identifier of the dimensions that this offering contains. Dimensions specify the type of usage that is being billed for.
+
+            <br><br>
+
+            Example `["092f9444-851a-43fb-9503-2228dc01b1b", "4fcafdec-eeb9-4a7f-9caf-61387102b6fa"]`'
+          example:
+          - 092f9444-851a-43fb-9503-2228dc01b1b
+          - 4fcafdec-eeb9-4a7f-9caf-61387102b6fa
+          type: array
+          items:
+            type: string
+        metadata:
+          type: object
+          description: 'An optional key-value map of additional metadata to associate with the offerings.
+
+            such as environment, purpose, owner, developer, contract number,
+
+            or any arbitrary data to be associated with this usage record. Additionally, if `null` is passed for any value in the metadata object it will be removed.
+
+            To entirely remove the metadata object, pass null to the metadata field.
+
+            <br><br>
+
+            Example `{"environment": "staging", "purpose": "proof-of-concept", "owner": "John Doe", "workspaceId": null}`
+
+            <br><br>
+
+            In the above example, the `workspaceId` metadata key will be removed from the dimension. To remove all fields pass the following.
+
+            <br><br>
+
+            Example `"metadata": null`'
+    BasicResponseDTO:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+      required:
+      - message
+    CountBasedConsumptionUnit:
+      type: object
+      properties:
+        unit:
+          type: string
+          enum:
+          - count-based
+          description: A dimensionless unit for a dimension of type count-based
+          examples:
+          - count-based
+        type:
+          type: string
+          enum:
+          - count
+          description: A string that indicates the type of consumption unit
+      required:
+      - unit
+      - type
+    AgentAccessInformation:
+      type: object
+      properties:
+        iamRoleArn:
+          type: string
+          description: 'The IAM role created by SaaS business and can be by Paigo AWS account to measure usage.
+
+            <br><br>
+
+            Example `"arn:aws:iam::214826386939:role/paigo-scraper"`'
+          example: arn:aws:iam::214826386939:role/paigo-scraper
+        externalId:
+          type: string
+          description: 'The Optional ExternalId associated with the IAM role.
+
+            <br><br>
+
+            Example `"123456789"`'
+          example: '123456789'
+          externalDocs:
+            description: Read more about why externalIds are important
+            url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
+        hostingPlatform:
+          type: string
+          enum:
+          - k8spod
+          example: k8spod
+          description: Hosting platform of SaaS application
+      required:
+      - iamRoleArn
+      - hostingPlatform
+    DimensionOverridesDto:
+      type: object
+      properties:
+        dimensionId:
+          type: string
+          description: 'The Id of the dimension that is being overridden.
+
+            <br><br>
+
+            Example: `"6a8fb855-206c-4226-8695-daf67352e7ee"`'
+          example: 6a8fb855-206c-4226-8695-daf67352e7ee
+        consumptionPrice:
+          type: string
+          description: 'The price of the dimension. Must be a valid number.
+
+            <br><br>
+
+            Example: `"10.00"`'
+          example: '10.00'
+        tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/DimensionTierDto'
+        tiersGroupByMetadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/DimensionTiersGroupByMetadataDto'
+      required:
+      - dimensionId
+    ReadOfferingResponseDTO:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+        data:
+          description: A list of offerings
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/ReadOfferingResponseData'
+      required:
+      - message
+      - data
+    CreateOfferingResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+        offeringId:
+          type: string
+          description: 'The identified of the offering.
+
+            Example `"fcb1fa34-8f11-4832-80f2-464cbc7a8546"`'
+          example: fcb1fa34-8f11-4832-80f2-464cbc7a8546
+      required:
+      - message
+      - offeringId
+    ReadOfferingResponseData:
+      type: object
+      properties:
+        offeringVisibility:
+          description: 'The visibility of the offering, specifically if its private or public.
+
+            Public offerings are designed to be shared among customers.
+
+            Private offerings are typically used for enterprise deals which contain discounts or prepaid credits.
+
+            <br><br>
+
+            Example: `"private"`'
+          example: private
+          enum:
+          - private
+          - public
+          type: string
+          default: public
+        offeringType:
+          type: string
+          description: 'The type of offering.
+
+            <br>  • `usage-based` - The offering is a pure usage-based offering, or pay-as-you-go. Customers on this plan will be billed precisely based on consumption.
+
+            <br>  • `subscription` - The offering is a fixed subscription. Customer will be billed on a fixed price.
+
+
+            Example `"subscription"`'
+          enum:
+          - usage-based
+          - subscription
+          default: usage-based
+          example: subscription
+          externalDocs:
+            description: Read more about the different offering types
+            url: https://docs.paigo.tech/model-pricing-and-package/pricing-modeling-guide
+        billingCycle:
+          description: 'The time frame when an automatic bill should be sent leave empty for no automated billing
+
+            <br><br>
+
+
+            Example `"monthly"`'
+          example: monthly
+          enum:
+          - monthly
+          - annualToDate
+          - topUp
+          type: string
+          default: monthly
+        currency:
+          description: 'The supported currency for the offering. USD is currently supported. Customers can override the currency for their account.
+
+            However all offerings are denoted in USD.
+
+            <br><br>
+
+            Example `"USD"`'
+          example: USD
+          enum:
+          - USD
+          - EUR
+          - CNY
+          type: string
+        dimensionOverrides:
+          description: Overrides for the offering. Applies specific overrides to the dimensions associated with the offering. These effect the price of each dimension on the offering.
+          type: array
+          items:
+            $ref: '#/components/schemas/DimensionOverridesDto'
+        offeringId:
+          type: string
+          description: 'Unique identifier assigned by Paigo.
+
+            <br><br>
+
+            Example: `539b7f74-3832-474e-a955-6d69c5df12d0`'
+          example: 539b7f74-3832-474e-a955-6d69c5df12d0
+        dimensions:
+          description: The list of dimensions attached to the offering.
+          type: array
+          items:
+            $ref: '#/components/schemas/ReadDimensionResponseData'
+        prepaidCredit:
+          type: string
+          description: 'Prepaid credit amount to be deducted as part of the bill payments. Only numerical string is allowed.
+
+            <br><br>Example: `"20.00"` for $20.00.'
+          example: '20.00'
+        minimumCharge:
+          type:
+          - string
+          - 'null'
+          description: 'A minimum charge to be billed to the customer in the event that the customer''s bill is less than the minimum charge. Only on usage based offerings. Only numerical strings are allowed, must be greater than zero.
+
+            <br><br>Example: `"32.00"` for $32.00.'
+          example: '32.00'
+        topUpAmount:
+          type: string
+          description: 'The amount to top up the account by. Only positive number string is allowed. Required if `billingCycle` is `topUp`.
+
+            <br><br>
+
+            Example: `"20.00"` for $20.00.'
+          example: '20.00'
+        topUpThreshold:
+          type: string
+          description: 'The threshold at which the account should be topped up. Only positive number string is allowed. Between 0 and 1.
+
+            If not provided the default value will be 0.2 or 20%. Meaning that when the account balance reaches 20% of the the top up amount, the account will be
+
+            topped up, and the end customer charged.
+
+            <br><br>
+
+            Example: `"0.2"` for 20%.'
+          example: '0.2'
+        subscriptionPrice:
+          type: number
+          description: 'The price of the subscription.
+
+            Only positive number string is allowed.
+
+            Only required if `offeringType` is `subscription`.
+
+            <br><br>
+
+
+            Example: `20.00` for $20.00.'
+          example: 20
+        freeTrialLength:
+          type: string
+          description: 'The length of time for a free trial. This is a number of days.
+
+            Only positive number string is allowed.
+
+            <br><br>
+
+
+            Example: `"1"` for 1 day or 1 billing cycle depending on the offeringType.'
+          example: '1'
+        offeringName:
+          type: string
+          description: 'A friendly, human-readable name for the offering.
+
+            <br><br>
+
+            Example `"Entperise Plan"`'
+          example: Entperise Plan
+        metadata:
+          type: object
+          description: 'An optional key-value map of additional metadata to associate with the offerings.
+
+            such as environment, purpose, owner, developer, contract number,
+
+            or any arbitrary data to be associated with this usage record. Additionally, if `null` is passed for any value in the metadata object it will be removed.
+
+            To entirely remove the metadata object, pass null to the metadata field.
+
+            <br><br>
+
+            Example `{"environment": "staging", "purpose": "proof-of-concept", "owner": "John Doe", "workspaceId": null}`
+
+            <br><br>
+
+            In the above example, the `workspaceId` metadata key will be removed from the dimension. To remove all fields pass the following.
+
+            <br><br>
+
+            Example `"metadata": null`'
+      required:
+      - offeringId
+      - dimensions
+      - offeringName
+    DeleteOfferingResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+        offeringId:
+          type: string
+          description: The Unique ID defining the offering document
+          example: 539b7f74-3832-474e-a955-6d69c5df12d0
+      required:
+      - message
+      - offeringId
+    UpdateOfferingResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+        offeringId:
+          type: string
+          description: 'The identified of the offering.
+
+            Example `"fcb1fa34-8f11-4832-80f2-464cbc7a8546"`'
+          example: fcb1fa34-8f11-4832-80f2-464cbc7a8546
+      required:
+      - message
+      - offeringId
   securitySchemes:
     bearer:
       scheme: bearer

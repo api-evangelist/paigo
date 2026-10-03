@@ -268,75 +268,257 @@ paths:
       x-operation-id-original: Delete a dimension
 components:
   schemas:
-    DatastoreAccessInformationResponse:
+    ReadDimensionResponseData:
       type: object
       properties:
-        platform:
-          description: Underlying resource type which paigo connects to. <br><br> Example `"s3"`
-          enum:
-          - s3
-          - kafka
+        dimensionName:
           type: string
-          examples:
-          - s3
-        consumerDeploymentParameters:
-          description: The access information and configuration for deploying a datastore consumer by Paigo. Use this field in a case where Paigo is deploying a consumer and you want to provide the access information for the datastore.
-          oneOf:
-          - $ref: '#/components/schemas/KafkaDeploymentParametersDto'
-        ingestion:
-          type: string
-          description: The Ingestion endpioint for data to be dropped off at.
-        dlq:
-          type: string
-          description: The DLQ endpoint for data which has failed to be processed.
-        iamRoleArn:
-          type: string
-          description: The IAM role associated with the endpoints for access management
-        externalId:
-          type: string
-          description: The externalId associated with the endpoints
-        region:
-          type: string
-          description: The region associated with the endpoints, defaults to `us-east-1`
-        accountId:
-          type: string
-          description: 'The Unqiue ID for your cloud account.
+          description: 'A friendly, human-readable name for the dimension.
 
             <br><br>
 
-            Example `"623673123435"`'
-          example: '623673123435'
+            Example `"API Call"`'
+          examples:
+          - API Call
+          - CPU Hours
+          - Provisioned Capacity
+        consumptionUnit:
+          description: 'Consumption unit of the dimension.
+
+            Paigo supports three types of consumption units: count-based, time-based, and data-based.
+
+            Supported values for each consumption unit type are listed below. <br>
+
+            - count: `"count-based"` <br>
+
+            - time-based: `"second"`, `"minute"`, `"hour"`, `"day"` <br>
+
+            - data-based: `"byte"`, `"kilobyte"`, `"megabyte"`, `"gigabyte"` <br>
+
+
+            This field accepts a JSON object with the following schema: <br>
+
+            ```
+
+            { "type": "typeName", "unit": "unitName" }
+
+            ```
+
+            <br><br>
+
+            Example: <br>
+
+            `{ "type": "count", "unit": "count-based" }` <br>
+
+            `{ "type": "time", "unit": "hour" }` <br>
+
+            `{ "type": "data", "unit": "byte" }` <br>'
+          oneOf:
+          - $ref: '#/components/schemas/CountBasedConsumptionUnit'
+          - $ref: '#/components/schemas/TimeBasedConsumptionUnit'
+          - $ref: '#/components/schemas/DatabasedConsumptionUnit'
+        usageIncrement:
+          type: string
+          description: 'The minimum increment for usage amount.
+
+            As an example, if usage increment is 1 Hour job execution time,
+
+            then 1 Hour and 5 Minutes execution time may be calculated as 1 Hour or 2 Hours,
+
+            depending on the rounding algorithm field of the dimension.
+
+            <br><br>
+
+            Example `1`'
+          example: '24'
+          externalDocs:
+            description: See how usage increment is used in the billing process
+            url: https://docs.paigo.tech/model-pricing-and-package/define-product-metrics#understand-how-billing-aggregation-works
+        usageEntitlement:
+          description: 'Used with Subscription Tier Offering type. <br>
+
+            SaaS customers subscribed to a subscription tier are entitled to use the amount of product
+
+            with regard to the dimension up to the value specified in this field.
+
+            For example, a subscription tier may entitle subscribers to make up to 1,000,000 API requests.'
+          oneOf:
+          - type: number
+            description: The number of units that the customer is entitled to use, must be greater than or equal to 0
+            example: 1000000
+          - type: string
+            format: inf
+            description: The customer is entitled to use the product's dimension without any limit
+            example: inf
+          examples:
+          - inf
+          - 1000000
+        aggregationInterval:
+          description: Time interval to aggregate dimension usage data for billing. <br><br>
+          enum:
+          - none
+          - hour
+          - day
+          - month
+          type: string
+          example: hour
+          default: hour
+          externalDocs:
+            description: See how aggregation interval is used in the billing process
+            url: https://docs.paigo.tech/model-pricing-and-package/define-product-metrics#understand-how-billing-aggregation-works
+        aggregationMethod:
+          description: 'The algorithm to aggregate raw usage data for billing.
+
+            <br><br>'
+          enum:
+          - sum
+          - max
+          - min
+          - count
+          - average
+          - last
+          type: string
+          example: sum
+          default: max
+          externalDocs:
+            description: See how aggregation method is used in the billing process
+            url: https://docs.paigo.tech/model-pricing-and-package/define-product-metrics#understand-how-billing-aggregation-works
+        dimensionId:
+          type: string
+          description: The unique ID for a dimension
+          example: 8a7b5f91-3b85-4cf4-8585-dcdf17f49004
+        measurement:
+          description: The measurement attached to the dimension
+          allOf:
+          - $ref: '#/components/schemas/ReadMeasurementResponseData'
+        rounding:
+          type: string
+          description: 'The rounding algorithm that is used to calculate the amount of usage increment.
+
+            Ceiling algorithm rounds up, floor algorithm rounds down, the round algrogrithm rounds to the nearest whole integer rounding half away from zero.
+
+            As an example, if usage increment is 1 Hour job execution time,
+
+            then 1 Hour and 5 Minutes execution time may be calculated as 2 Hours for ceiling algorithm, 1 Hour for floor algorithm, and 1 Hour for round algorithm.
+
+            depending on the rounding algorithm field of the dimension.
+
+            <br><br>'
+          enum:
+          - round
+          - floor
+          - ceiling
+        overageAllowed:
+          type: string
+          description: 'Used with Subscription Tier Offering type. <br>
+
+            When the usage entitlement is specified,
+
+            this field decides if allowing SaaS customers to use more than entitled amount of the product dimension.'
+          enum:
+          - 'true'
+          - 'false'
+        consumptionPrice:
+          type: string
+          description: 'The unit price of dimension.
+
+            Numerical values are represented as strings to avoid precision loss.
+
+            <br><br>'
+          example: '20.00'
+        sampleType:
+          type: string
+          description: 'The sample type used for the data. Gauge is a value that can go up or down. <br>
+
+            Currently set to gauge by default on all dimensions.'
+          example: gauge
+          enum:
+          - gauge
+          - continious
+        paymentSchedule:
+          type: string
+          description: 'The payment schedule for the dimension. Determines when billing should occur for a dimension. `upfront` will occur the moment a customer is enrolled in an offering containing the dimension. `arrear` will occur at the end of the billing cycle.
+
+            `upfront` is used for dimensions like purchasing a subscription, or seats for a plan. Where as `arrear` is used for dimensions like usage based billing. Dimensions can be comingled in an offering, so you can have a dimension that is billed `upfront` and another that is billed `arrear`.
+
+            Optional, if not included will be `arrear` by default.'
+          example: upfront
+          enum:
+          - upfront
+          - arrear
+        metadata:
+          type: object
+          description: 'An optional key-value map of additional metadata to associate with the dimensions.
+
+            such as environment, purpose, owner, developer, contract number,
+
+            or any arbitrary data to be associated with this usage record. Additionally, if `null` is passed for any value in the metadata object it will be removed.
+
+            To entirely remove the metadata object, pass null to the metadata field.
+
+            <br><br>
+
+            Example `{"environment": "staging", "purpose": "proof-of-concept", "owner": "John Doe", "workspaceId": null}`
+
+            <br><br>
+
+            In the above example, the `workspaceId` metadata key will be removed from the dimension. To remove all fields pass the following.
+
+            <br><br>
+
+            Example `"metadata": null`'
+        tiers:
+          description: Used to more granularly define the price of a dimension. For example if you want to charge a customer $1 for the first 1000 API calls and $0.50 for every API call after that you would define two tiers, the first tier with an `upperLimit` of `"1000"` and `tierPosition` of `"1"` with a `unitPrice` of `"1"` and a second tier with an `upperLimit` of `"inf"`, `tierPosition`  of `"2"` and `unitPrice` of `"0.50"`. Exclusive with standard `consumptionPrice`, `entitlement` and `overageAllowed` fields.
+          type: array
+          items:
+            $ref: '#/components/schemas/DimensionTierDto'
+        tiersGroupByMetadata:
+          description: Used to group tiers by metadata, meaning instead of grouping by the dimensionId for usage Paigo will group requests with the metadata passed in on the usage request. Exclusive with standard `consumptionPrice`, `entitlement`, `overageAllowed` and `tiers` fields.
+          type: array
+          items:
+            $ref: '#/components/schemas/DimensionTiersGroupByMetadataDto'
       required:
-      - platform
-      - ingestion
-      - dlq
-    DatabasedConsumptionUnit:
+      - dimensionName
+      - consumptionUnit
+      - usageIncrement
+      - dimensionId
+      - rounding
+    KafkaDeploymentParametersDto:
       type: object
       properties:
-        unit:
-          enum:
-          - byte
-          - kilobyte
-          - megabyte
-          - gigabyte
-          - kibibyte
-          - mebibyte
-          - gibibyte
+        securityMechanism:
           type: string
-          description: A unit of data for a dimension of type data-based
-          examples:
-          - byte
-          - kilobyte
-          - megabyte
-          - gigabyte
-        type:
+          externalDocs:
+            url: https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_plain.html#sasl-plain-overview
+          example: PLAIN
+          description: 'The security protocol to use when connecting to the Kafka cluster. Defaults to `PLAIN`. Note this is not PLAINTEXT. PLAIN is the SASL_PLAIN protocol. <br><br> Example: `"PLAIN"`'
+        username:
           type: string
-          enum:
-          - data
-          description: A string that indicates the type of consumption unit
+          description: 'The username to use when connecting to the Kafka cluster. <br><br> Example: `"admin"`'
+          example: admin
+        password:
+          type: string
+          description: 'The password to use when connecting to the Kafka cluster. <br><br> Example: `"hunter2"`'
+          example: hunter2
+        bootstrapServerEndpoint:
+          type: string
+          description: 'The endpoint of the Kafka cluster to connect to. <br><br> Example: `"kafka.paigo.tech"`'
+          example: kafka.paigo.tech
+        topic:
+          type: string
+          description: 'The topic to subscribe to. <br><br> Example: `"test-topic"`'
+          example: '"test-topic"'
+        dlqTopic:
+          type: string
+          description: 'The DLQ topic to write to when a message fails to be processed. <br><br> Example: `"dlq-topic"`'
+          example: '"dlq-topic"'
       required:
-      - unit
-      - type
+      - securityMechanism
+      - username
+      - password
+      - bootstrapServerEndpoint
+      - topic
+      - dlqTopic
     ReadDimensionResponse:
       type: object
       properties:
@@ -353,6 +535,72 @@ components:
       required:
       - message
       - data
+    DimensionTiersGroupByMetadataDto:
+      type: object
+      properties:
+        metadataGroups:
+          type: object
+          description: 'The metadata groups to group the tiers by. A collection of key value pairs. metadata groups are used alongside the usage passed in to define more accurately how to break up price and usage for a dimension.
+
+            <br><br>
+
+            Example: `{ "instanceType": "t3.medium", "region": "us-east-1", "deployment": "production"}`'
+        tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/DimensionTierDto'
+      required:
+      - metadataGroups
+      - tiers
+    DimensionTierDto:
+      type: object
+      properties:
+        tierName:
+          type: string
+          description: 'The name of the tier as it would appear on the invoice. If Tier name is not included, no `tierName` will be displayed on the invoice, and it will follow the default line item naming standard. See: https://docs.paigo.tech/invoicing-and-payment/issue-invoice/automatic-line-item-formatting
+
+            <br><br>
+
+            Example: `"Tier 1"`'
+          example: Tier 1
+        upperBound:
+          type: string
+          description: 'The upper limit of the tier, inclusive. If the upperBound is set to "inf", it must have the highest `tierPosition`. Additionally, the `upperBound` must be a multiple of the `usageIncrement`
+
+            on the dimension. For example, if the `usageIncrement` is 100, the `upperBound` must be 100, 200, 300, etc. The `upperBound` cannot overlap with previous tiers, so tier 1''s `upperBound` must be smaller than tier 2''s.
+
+            <br><br>
+
+            Example: `"100"`'
+          example: '100'
+        unitPrice:
+          type: string
+          description: 'The unit price of the tier.
+
+            <br><br>
+
+            Example: `"10"`'
+          example: '10'
+        tierPosition:
+          type: string
+          description: 'The position of the tier. The first tier must have a `tierPosition` of 1, the second tier must have a `tierPosition` of 2, etc. Order of the tiers is determined by the `tierPosition`.
+
+            <br><br>
+
+            Example: `"1"`'
+          example: '1'
+      required:
+      - upperBound
+      - tierPosition
+    BasicResponseDTO:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+      required:
+      - message
     UpdateDimensionDto:
       type: object
       properties:
@@ -558,60 +806,70 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DimensionTiersGroupByMetadataDto'
-    KafkaDeploymentParametersDto:
+    DatabasedConsumptionUnit:
       type: object
       properties:
-        securityMechanism:
+        unit:
+          enum:
+          - byte
+          - kilobyte
+          - megabyte
+          - gigabyte
+          - kibibyte
+          - mebibyte
+          - gibibyte
           type: string
-          externalDocs:
-            url: https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_plain.html#sasl-plain-overview
-          example: PLAIN
-          description: 'The security protocol to use when connecting to the Kafka cluster. Defaults to `PLAIN`. Note this is not PLAINTEXT. PLAIN is the SASL_PLAIN protocol. <br><br> Example: `"PLAIN"`'
-        username:
+          description: A unit of data for a dimension of type data-based
+          examples:
+          - byte
+          - kilobyte
+          - megabyte
+          - gigabyte
+        type:
           type: string
-          description: 'The username to use when connecting to the Kafka cluster. <br><br> Example: `"admin"`'
-          example: admin
-        password:
-          type: string
-          description: 'The password to use when connecting to the Kafka cluster. <br><br> Example: `"hunter2"`'
-          example: hunter2
-        bootstrapServerEndpoint:
-          type: string
-          description: 'The endpoint of the Kafka cluster to connect to. <br><br> Example: `"kafka.paigo.tech"`'
-          example: kafka.paigo.tech
-        topic:
-          type: string
-          description: 'The topic to subscribe to. <br><br> Example: `"test-topic"`'
-          example: '"test-topic"'
-        dlqTopic:
-          type: string
-          description: 'The DLQ topic to write to when a message fails to be processed. <br><br> Example: `"dlq-topic"`'
-          example: '"dlq-topic"'
+          enum:
+          - data
+          description: A string that indicates the type of consumption unit
       required:
-      - securityMechanism
-      - username
-      - password
-      - bootstrapServerEndpoint
-      - topic
-      - dlqTopic
-    DimensionTiersGroupByMetadataDto:
+      - unit
+      - type
+    CountBasedConsumptionUnit:
       type: object
       properties:
-        metadataGroups:
-          type: object
-          description: 'The metadata groups to group the tiers by. A collection of key value pairs. metadata groups are used alongside the usage passed in to define more accurately how to break up price and usage for a dimension.
+        unit:
+          type: string
+          enum:
+          - count-based
+          description: A dimensionless unit for a dimension of type count-based
+          examples:
+          - count-based
+        type:
+          type: string
+          enum:
+          - count
+          description: A string that indicates the type of consumption unit
+      required:
+      - unit
+      - type
+    CreateDimensionResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+        dimensionId:
+          type: string
+          description: 'The unique identifier assigned by Paigo.
 
             <br><br>
 
-            Example: `{ "instanceType": "t3.medium", "region": "us-east-1", "deployment": "production"}`'
-        tiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/DimensionTierDto'
+            Example: `"fcb1fa34-8f11-4832-80f2-464cbc7a8546"`'
+          example: fcb1fa34-8f11-4832-80f2-464cbc7a8546
       required:
-      - metadataGroups
-      - tiers
-    InfrastructureAccessInformation:
+      - message
+      - dimensionId
+    AgentAccessInformation:
       type: object
       properties:
         iamRoleArn:
@@ -633,112 +891,15 @@ components:
           externalDocs:
             description: Read more about why externalIds are important
             url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
-        cloudPlatform:
+        hostingPlatform:
           type: string
           enum:
-          - aws
-          example: aws
-          description: Cloud infrastructure platform <br><br> Example `"aws"`
-        region:
-          type: string
-          description: 'Supported region of the infrastructure
-
-
-            Example `"us-east-1"`'
-          example: us-east-1
-        resourceType:
-          type: string
-          enum:
-          - ebssnapshot
-          - ebs
           - k8spod
-          - ec2
-          - ec2egress
-          - usageData
-          example: ebs
-          description: Underlying resource type which Paigo measures usage for. <br><br> Example `"ec2"`
+          example: k8spod
+          description: Hosting platform of SaaS application
       required:
       - iamRoleArn
-      - cloudPlatform
-      - region
-      - resourceType
-    ReadMeasurementResponseData:
-      type: object
-      properties:
-        measurementMode:
-          type: string
-          enum:
-          - infrastructureBased
-          - agentBased
-          - datastoreBased
-          example: infrastructureBased
-          description: The measurement method. See <a href="https://docs.paigo.tech/measure-usage-and-collect-data/measure-and-collect-usage-data-at-production-scale">Measure and Collect Usage Data at Production Scale</a> for more information. <br><br> Example `"agentBased"`
-        measurementConfiguration:
-          description: Configuration for the measurement method.
-          oneOf:
-          - $ref: '#/components/schemas/InfrastructureAccessInformation'
-          - $ref: '#/components/schemas/AgentAccessInformation'
-          - $ref: '#/components/schemas/DatastoreAccessInformationResponse'
-        measurementName:
-          type: string
-          description: 'The human readable name of the measurement
-
-            <br><br>
-
-            Example `"EBS Usage"`'
-          example: EBS Usage
-        measurementId:
-          type: string
-          description: 'Unique identifier assigned by Paigo.
-
-            <br><br>
-
-            Example `"de388932-a7e1-11ed-afa1-0242ac120002"`'
-          example: de388932-a7e1-11ed-afa1-0242ac120002
-      required:
-      - measurementMode
-      - measurementConfiguration
-      - measurementId
-    DimensionTierDto:
-      type: object
-      properties:
-        tierName:
-          type: string
-          description: 'The name of the tier as it would appear on the invoice. If Tier name is not included, no `tierName` will be displayed on the invoice, and it will follow the default line item naming standard. See: https://docs.paigo.tech/invoicing-and-payment/issue-invoice/automatic-line-item-formatting
-
-            <br><br>
-
-            Example: `"Tier 1"`'
-          example: Tier 1
-        upperBound:
-          type: string
-          description: 'The upper limit of the tier, inclusive. If the upperBound is set to "inf", it must have the highest `tierPosition`. Additionally, the `upperBound` must be a multiple of the `usageIncrement`
-
-            on the dimension. For example, if the `usageIncrement` is 100, the `upperBound` must be 100, 200, 300, etc. The `upperBound` cannot overlap with previous tiers, so tier 1''s `upperBound` must be smaller than tier 2''s.
-
-            <br><br>
-
-            Example: `"100"`'
-          example: '100'
-        unitPrice:
-          type: string
-          description: 'The unit price of the tier.
-
-            <br><br>
-
-            Example: `"10"`'
-          example: '10'
-        tierPosition:
-          type: string
-          description: 'The position of the tier. The first tier must have a `tierPosition` of 1, the second tier must have a `tierPosition` of 2, etc. Order of the tiers is determined by the `tierPosition`.
-
-            <br><br>
-
-            Example: `"1"`'
-          example: '1'
-      required:
-      - upperBound
-      - tierPosition
+      - hostingPlatform
     CreateDimensionDto:
       type: object
       properties:
@@ -973,34 +1134,86 @@ components:
       required:
       - unit
       - type
-    CreateDimensionResponse:
+    DatastoreAccessInformationResponse:
       type: object
       properties:
-        message:
+        platform:
+          description: Underlying resource type which paigo connects to. <br><br> Example `"s3"`
+          enum:
+          - s3
+          - kafka
           type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-        dimensionId:
+          examples:
+          - s3
+        consumerDeploymentParameters:
+          description: The access information and configuration for deploying a datastore consumer by Paigo. Use this field in a case where Paigo is deploying a consumer and you want to provide the access information for the datastore.
+          oneOf:
+          - $ref: '#/components/schemas/KafkaDeploymentParametersDto'
+        ingestion:
           type: string
-          description: 'The unique identifier assigned by Paigo.
+          description: The Ingestion endpioint for data to be dropped off at.
+        dlq:
+          type: string
+          description: The DLQ endpoint for data which has failed to be processed.
+        iamRoleArn:
+          type: string
+          description: The IAM role associated with the endpoints for access management
+        externalId:
+          type: string
+          description: The externalId associated with the endpoints
+        region:
+          type: string
+          description: The region associated with the endpoints, defaults to `us-east-1`
+        accountId:
+          type: string
+          description: 'The Unqiue ID for your cloud account.
 
             <br><br>
 
-            Example: `"fcb1fa34-8f11-4832-80f2-464cbc7a8546"`'
-          example: fcb1fa34-8f11-4832-80f2-464cbc7a8546
+            Example `"623673123435"`'
+          example: '623673123435'
       required:
-      - message
-      - dimensionId
-    BasicResponseDTO:
+      - platform
+      - ingestion
+      - dlq
+    ReadMeasurementResponseData:
       type: object
       properties:
-        message:
+        measurementMode:
           type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
+          enum:
+          - infrastructureBased
+          - agentBased
+          - datastoreBased
+          example: infrastructureBased
+          description: The measurement method. See <a href="https://docs.paigo.tech/measure-usage-and-collect-data/measure-and-collect-usage-data-at-production-scale">Measure and Collect Usage Data at Production Scale</a> for more information. <br><br> Example `"agentBased"`
+        measurementConfiguration:
+          description: Configuration for the measurement method.
+          oneOf:
+          - $ref: '#/components/schemas/InfrastructureAccessInformation'
+          - $ref: '#/components/schemas/AgentAccessInformation'
+          - $ref: '#/components/schemas/DatastoreAccessInformationResponse'
+        measurementName:
+          type: string
+          description: 'The human readable name of the measurement
+
+            <br><br>
+
+            Example `"EBS Usage"`'
+          example: EBS Usage
+        measurementId:
+          type: string
+          description: 'Unique identifier assigned by Paigo.
+
+            <br><br>
+
+            Example `"de388932-a7e1-11ed-afa1-0242ac120002"`'
+          example: de388932-a7e1-11ed-afa1-0242ac120002
       required:
-      - message
-    AgentAccessInformation:
+      - measurementMode
+      - measurementConfiguration
+      - measurementId
+    InfrastructureAccessInformation:
       type: object
       properties:
         iamRoleArn:
@@ -1022,248 +1235,35 @@ components:
           externalDocs:
             description: Read more about why externalIds are important
             url: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
-        hostingPlatform:
+        cloudPlatform:
           type: string
           enum:
+          - aws
+          example: aws
+          description: Cloud infrastructure platform <br><br> Example `"aws"`
+        region:
+          type: string
+          description: 'Supported region of the infrastructure
+
+
+            Example `"us-east-1"`'
+          example: us-east-1
+        resourceType:
+          type: string
+          enum:
+          - ebssnapshot
+          - ebs
           - k8spod
-          example: k8spod
-          description: Hosting platform of SaaS application
+          - ec2
+          - ec2egress
+          - usageData
+          example: ebs
+          description: Underlying resource type which Paigo measures usage for. <br><br> Example `"ec2"`
       required:
       - iamRoleArn
-      - hostingPlatform
-    ReadDimensionResponseData:
-      type: object
-      properties:
-        dimensionName:
-          type: string
-          description: 'A friendly, human-readable name for the dimension.
-
-            <br><br>
-
-            Example `"API Call"`'
-          examples:
-          - API Call
-          - CPU Hours
-          - Provisioned Capacity
-        consumptionUnit:
-          description: 'Consumption unit of the dimension.
-
-            Paigo supports three types of consumption units: count-based, time-based, and data-based.
-
-            Supported values for each consumption unit type are listed below. <br>
-
-            - count: `"count-based"` <br>
-
-            - time-based: `"second"`, `"minute"`, `"hour"`, `"day"` <br>
-
-            - data-based: `"byte"`, `"kilobyte"`, `"megabyte"`, `"gigabyte"` <br>
-
-
-            This field accepts a JSON object with the following schema: <br>
-
-            ```
-
-            { "type": "typeName", "unit": "unitName" }
-
-            ```
-
-            <br><br>
-
-            Example: <br>
-
-            `{ "type": "count", "unit": "count-based" }` <br>
-
-            `{ "type": "time", "unit": "hour" }` <br>
-
-            `{ "type": "data", "unit": "byte" }` <br>'
-          oneOf:
-          - $ref: '#/components/schemas/CountBasedConsumptionUnit'
-          - $ref: '#/components/schemas/TimeBasedConsumptionUnit'
-          - $ref: '#/components/schemas/DatabasedConsumptionUnit'
-        usageIncrement:
-          type: string
-          description: 'The minimum increment for usage amount.
-
-            As an example, if usage increment is 1 Hour job execution time,
-
-            then 1 Hour and 5 Minutes execution time may be calculated as 1 Hour or 2 Hours,
-
-            depending on the rounding algorithm field of the dimension.
-
-            <br><br>
-
-            Example `1`'
-          example: '24'
-          externalDocs:
-            description: See how usage increment is used in the billing process
-            url: https://docs.paigo.tech/model-pricing-and-package/define-product-metrics#understand-how-billing-aggregation-works
-        usageEntitlement:
-          description: 'Used with Subscription Tier Offering type. <br>
-
-            SaaS customers subscribed to a subscription tier are entitled to use the amount of product
-
-            with regard to the dimension up to the value specified in this field.
-
-            For example, a subscription tier may entitle subscribers to make up to 1,000,000 API requests.'
-          oneOf:
-          - type: number
-            description: The number of units that the customer is entitled to use, must be greater than or equal to 0
-            example: 1000000
-          - type: string
-            format: inf
-            description: The customer is entitled to use the product's dimension without any limit
-            example: inf
-          examples:
-          - inf
-          - 1000000
-        aggregationInterval:
-          description: Time interval to aggregate dimension usage data for billing. <br><br>
-          enum:
-          - none
-          - hour
-          - day
-          - month
-          type: string
-          example: hour
-          default: hour
-          externalDocs:
-            description: See how aggregation interval is used in the billing process
-            url: https://docs.paigo.tech/model-pricing-and-package/define-product-metrics#understand-how-billing-aggregation-works
-        aggregationMethod:
-          description: 'The algorithm to aggregate raw usage data for billing.
-
-            <br><br>'
-          enum:
-          - sum
-          - max
-          - min
-          - count
-          - average
-          - last
-          type: string
-          example: sum
-          default: max
-          externalDocs:
-            description: See how aggregation method is used in the billing process
-            url: https://docs.paigo.tech/model-pricing-and-package/define-product-metrics#understand-how-billing-aggregation-works
-        dimensionId:
-          type: string
-          description: The unique ID for a dimension
-          example: 8a7b5f91-3b85-4cf4-8585-dcdf17f49004
-        measurement:
-          description: The measurement attached to the dimension
-          allOf:
-          - $ref: '#/components/schemas/ReadMeasurementResponseData'
-        rounding:
-          type: string
-          description: 'The rounding algorithm that is used to calculate the amount of usage increment.
-
-            Ceiling algorithm rounds up, floor algorithm rounds down, the round algrogrithm rounds to the nearest whole integer rounding half away from zero.
-
-            As an example, if usage increment is 1 Hour job execution time,
-
-            then 1 Hour and 5 Minutes execution time may be calculated as 2 Hours for ceiling algorithm, 1 Hour for floor algorithm, and 1 Hour for round algorithm.
-
-            depending on the rounding algorithm field of the dimension.
-
-            <br><br>'
-          enum:
-          - round
-          - floor
-          - ceiling
-        overageAllowed:
-          type: string
-          description: 'Used with Subscription Tier Offering type. <br>
-
-            When the usage entitlement is specified,
-
-            this field decides if allowing SaaS customers to use more than entitled amount of the product dimension.'
-          enum:
-          - 'true'
-          - 'false'
-        consumptionPrice:
-          type: string
-          description: 'The unit price of dimension.
-
-            Numerical values are represented as strings to avoid precision loss.
-
-            <br><br>'
-          example: '20.00'
-        sampleType:
-          type: string
-          description: 'The sample type used for the data. Gauge is a value that can go up or down. <br>
-
-            Currently set to gauge by default on all dimensions.'
-          example: gauge
-          enum:
-          - gauge
-          - continious
-        paymentSchedule:
-          type: string
-          description: 'The payment schedule for the dimension. Determines when billing should occur for a dimension. `upfront` will occur the moment a customer is enrolled in an offering containing the dimension. `arrear` will occur at the end of the billing cycle.
-
-            `upfront` is used for dimensions like purchasing a subscription, or seats for a plan. Where as `arrear` is used for dimensions like usage based billing. Dimensions can be comingled in an offering, so you can have a dimension that is billed `upfront` and another that is billed `arrear`.
-
-            Optional, if not included will be `arrear` by default.'
-          example: upfront
-          enum:
-          - upfront
-          - arrear
-        metadata:
-          type: object
-          description: 'An optional key-value map of additional metadata to associate with the dimensions.
-
-            such as environment, purpose, owner, developer, contract number,
-
-            or any arbitrary data to be associated with this usage record. Additionally, if `null` is passed for any value in the metadata object it will be removed.
-
-            To entirely remove the metadata object, pass null to the metadata field.
-
-            <br><br>
-
-            Example `{"environment": "staging", "purpose": "proof-of-concept", "owner": "John Doe", "workspaceId": null}`
-
-            <br><br>
-
-            In the above example, the `workspaceId` metadata key will be removed from the dimension. To remove all fields pass the following.
-
-            <br><br>
-
-            Example `"metadata": null`'
-        tiers:
-          description: Used to more granularly define the price of a dimension. For example if you want to charge a customer $1 for the first 1000 API calls and $0.50 for every API call after that you would define two tiers, the first tier with an `upperLimit` of `"1000"` and `tierPosition` of `"1"` with a `unitPrice` of `"1"` and a second tier with an `upperLimit` of `"inf"`, `tierPosition`  of `"2"` and `unitPrice` of `"0.50"`. Exclusive with standard `consumptionPrice`, `entitlement` and `overageAllowed` fields.
-          type: array
-          items:
-            $ref: '#/components/schemas/DimensionTierDto'
-        tiersGroupByMetadata:
-          description: Used to group tiers by metadata, meaning instead of grouping by the dimensionId for usage Paigo will group requests with the metadata passed in on the usage request. Exclusive with standard `consumptionPrice`, `entitlement`, `overageAllowed` and `tiers` fields.
-          type: array
-          items:
-            $ref: '#/components/schemas/DimensionTiersGroupByMetadataDto'
-      required:
-      - dimensionName
-      - consumptionUnit
-      - usageIncrement
-      - dimensionId
-      - rounding
-    CountBasedConsumptionUnit:
-      type: object
-      properties:
-        unit:
-          type: string
-          enum:
-          - count-based
-          description: A dimensionless unit for a dimension of type count-based
-          examples:
-          - count-based
-        type:
-          type: string
-          enum:
-          - count
-          description: A string that indicates the type of consumption unit
-      required:
-      - unit
-      - type
+      - cloudPlatform
+      - region
+      - resourceType
   securitySchemes:
     bearer:
       scheme: bearer
