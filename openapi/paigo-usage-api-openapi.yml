@@ -56,15 +56,6 @@ paths:
       x-operation-id-original: Collect usage data
 components:
   schemas:
-    BasicResponseDTO:
-      type: object
-      properties:
-        message:
-          type: string
-          description: A human readable message describing the outcome of the operation
-          example: This is a sample API message. The exact message may vary based on the API behavior
-      required:
-      - message
     CreateUsageDto:
       type: object
       properties:
@@ -122,6 +113,15 @@ components:
       - timestamp
       - customerId
       - recordValue
+    BasicResponseDTO:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable message describing the outcome of the operation
+          example: This is a sample API message. The exact message may vary based on the API behavior
+      required:
+      - message
   securitySchemes:
     bearer:
       scheme: bearer
