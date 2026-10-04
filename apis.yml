@@ -175,6 +175,9 @@ apis:
   - type: GettingStarted
     url: https://docs.paigo.tech/overview/getting-started-with-paigo
 common:
+  - type: CapabilityMap
+    url: capabilities/paigo-capability-edges.yml
+    name: Paigo Business Capability Map
   - type: AgenticAccess
     url: agentic-access/paigo-agentic-access.yml
   - type: DomainSecurity

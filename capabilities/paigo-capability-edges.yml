@@ -1,0 +1,61 @@
+slug: paigo
+provider: Paigo
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Invoices
+  spec_file: paigo-invoices-api-openapi.yml
+  capability_id: BC-4250.30
+  capability_id_l1: BC-4250
+  capability_name: Invoicing & Statement Management
+  confidence: 0.9
+  evidence: GET /invoices/{invoiceId} GetAnInvoiceByID; schemas ReadInvoicesDto, InvoiceLineItem, InvoiceCommunicationHistory
+  reason: Operations create and retrieve invoices with line items and delivery history — invoicing and
+    statement management for subscription/usage billing.
+- tag: Usage
+  spec_file: paigo-usage-api-openapi.yml
+  capability_id: BC-4250.10
+  capability_id_l1: BC-4250
+  capability_name: Usage Metering
+  confidence: 0.9
+  evidence: POST /usage CollectUsageData 'Collect usage data'; schema CreateUsageDto
+  reason: Single endpoint ingesting usage events that feed rating and invoicing — textbook usage metering.
+- tag: Webhooks
+  spec_file: paigo-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.85
+  evidence: POST /webhooks/subscribe SubscribeAWebhook; DELETE /webhooks/{webhookId} UnsubscribeAWebhook;
+    GET /webhooks/test TestWebhookConnection
+  reason: Lifecycle of outbound webhook subscriptions and delivery testing exposed to integrating developers,
+    which is explicitly the webhook & event subscription capability.
+- tag: Measurements
+  spec_file: paigo-measurements-api-openapi.yml
+  capability_id: BC-4250.10
+  capability_id_l1: BC-4250
+  capability_name: Usage Metering
+  confidence: 0.7
+  evidence: POST /measurements CreateAMeasurement; schemas CreateMeasurementConfigDto, DatastoreAccessInformation,
+    AgentAccessInformation
+  reason: Measurement configurations define how consumption data is collected from agents/datastores for
+    billing — usage metering setup. Slightly configuration-flavoured, hence moderate confidence.
+- tag: Offerings
+  spec_file: paigo-offerings-api-openapi.yml
+  capability_id: BC-4240.10
+  capability_id_l1: BC-4240
+  capability_name: Plan & Entitlement Design
+  confidence: 0.7
+  evidence: POST /offerings CreateAnOffering; schemas CreateOfferingDTO, DimensionOverridesDto, DimensionTierDto
+  reason: Offerings are the sellable plans composed of priced dimensions/tiers that customers enrol into
+    — plan and entitlement design for the SaaS commercial model.
