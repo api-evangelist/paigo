@@ -1,13 +1,57 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/paigo-paigo-api-openapi.yml
-docs: https://docs.paigo.tech/overview/getting-started-with-paigo
-note: Paigo uses an OAuth 2.0 client_credentials flow (token from https://auth.paigo.tech/oauth/token with client ID/secret from Settings > API) and does not document or use OAuth scopes (https://docs.paigo.tech/overview/getting-started-with-paigo).
+generated: '2026-10-14'
+method: none
+source: openapi/paigo-customers-api-openapi.yml, openapi/paigo-dimensions-api-openapi.yml, openapi/paigo-invoices-api-openapi.yml,
+  openapi/paigo-measurements-api-openapi.yml, openapi/paigo-offerings-api-openapi.yml, openapi/paigo-settings-api-openapi.yml,
+  openapi/paigo-usage-api-openapi.yml, openapi/paigo-webhooks-api-openapi.yml
 schemes:
 - name: bearer
-  source: openapi/paigo-paigo-api-openapi.yml
+  source: openapi/paigo-customers-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.paigo.tech/oauth/token
+  description: Use bearer token to authenticate `Bearer <your access token>`
+- name: bearer
+  source: openapi/paigo-dimensions-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.paigo.tech/oauth/token
+  description: Use bearer token to authenticate `Bearer <your access token>`
+- name: bearer
+  source: openapi/paigo-invoices-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.paigo.tech/oauth/token
+  description: Use bearer token to authenticate `Bearer <your access token>`
+- name: bearer
+  source: openapi/paigo-measurements-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.paigo.tech/oauth/token
+  description: Use bearer token to authenticate `Bearer <your access token>`
+- name: bearer
+  source: openapi/paigo-offerings-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.paigo.tech/oauth/token
+  description: Use bearer token to authenticate `Bearer <your access token>`
+- name: bearer
+  source: openapi/paigo-settings-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.paigo.tech/oauth/token
+  description: Use bearer token to authenticate `Bearer <your access token>`
+- name: bearer
+  source: openapi/paigo-usage-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.paigo.tech/oauth/token
+  description: Use bearer token to authenticate `Bearer <your access token>`
+- name: bearer
+  source: openapi/paigo-webhooks-api-openapi.yml
   flows:
   - flow: clientCredentials
     tokenUrl: https://auth.paigo.tech/oauth/token
   description: Use bearer token to authenticate `Bearer <your access token>`
 scopes: []
+note: The OAuth2 security scheme(s) in the OpenAPI declare no scopes, and no security requirement
+  references one.
