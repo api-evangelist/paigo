@@ -66,31 +66,178 @@
 
 Paigo is a usage-based billing infrastructure platform with a REST API for metering API calls, tracking consumption, managing pricing tiers, and automating invoice generation for developer products. It supports pay-as-you-go, subscription tier, seat-based, custom unit, and top-up pricing models with zero transaction fees.
 
-## Links
+**Areas:** Billing · Usage-Based Billing · Metering · Invoicing · Pricing · Software-as-a-Service · Subscription · Developer Tools · FinOps
 
-- **Website:** https://www.paigo.tech/
-- **Documentation:** https://docs.paigo.tech/
-- **API Reference:** https://paigo-public-information.s3.us-east-2.amazonaws.com/public_api.html
-- **Getting Started:** https://docs.paigo.tech/overview/getting-started-with-paigo
-- **Blog:** https://blog.paigo.tech/
-- **Pricing:** https://paigo.tech/pricing
-- **GitHub:** https://github.com/paigo-tech
-- **LinkedIn:** https://www.linkedin.com/company/paigo-tech
-- **X:** https://x.com/PaigoTech
-- **Contact:** team@paigo.tech
+## Paigo on APIs.io
 
-## APIs
+Everything profiled for Paigo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/paigo/](https://apis.io/providers/paigo/)** — or go straight to one of the APIs or properties below.
 
-- **Paigo API** — REST API for usage metering, customer management, pricing plan administration, and invoice automation. Base URL: `https://api.prod.paigo.tech`
+### APIs (8)
 
-## Authentication
+- [Paigo Customers API](https://apis.io/apis/paigo/paigo-customers-api/) — Manage customers in Paigo.
+- [Paigo Dimensions API](https://apis.io/apis/paigo/paigo-dimensions-api/) — Manage dimensions in Paigo.
+- [Paigo Invoices API](https://apis.io/apis/paigo/paigo-invoices-api/) — Manage invoices in Paigo.
+- [Paigo Measurements API](https://apis.io/apis/paigo/paigo-measurements-api/) — Manage measurements in Paigo. <br><br> See <a…
+- [Paigo Offerings API](https://apis.io/apis/paigo/paigo-offerings-api/) — Manage offerings in Paigo.
+- [Paigo Settings API](https://apis.io/apis/paigo/paigo-settings-api/) — The Settings API from Paigo — 2 operation(s) for settings.
+- [Paigo Usage API](https://apis.io/apis/paigo/paigo-usage-api/) — Measure and collect usage data.
+- [Paigo Webhooks API](https://apis.io/apis/paigo/paigo-webhooks-api/) — The Webhooks API from Paigo — 7 operation(s) for webhooks.
 
-OAuth 2.0 client credentials flow. Obtain a Client ID and Client Secret from the Paigo dashboard under Settings > API, then exchange for a Bearer token at `https://auth.paigo.tech/oauth/token`.
+### Published properties
 
-## Pricing
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Free Forever plan with 0% transaction fees and no revenue sharing. All features and unlimited users included at no cost.
+#### Agentic access (1)
 
-## Maintainer
+Which operations an agent can call, which act, and which need a human in the loop.
 
-**Kin Lane** — kin@apievangelist.com
+- [Paigo Agentic Access](https://apis.io/agentic-access/paigo/paigo-agentic-access/)
+
+#### JSON Schema (10)
+
+The data models the API reads and writes.
+
+- [AggregatedUsageResponse](https://apis.io/schemas/paigo/paigo-aggregated-usage/)
+- [CreateCustomerDto](https://apis.io/schemas/paigo/paigo-create-customer/)
+- [CreateDimensionDto](https://apis.io/schemas/paigo/paigo-create-dimension/)
+- [CreateInvoicesDto](https://apis.io/schemas/paigo/paigo-create-invoices/)
+- [CreateOfferingDTO](https://apis.io/schemas/paigo/paigo-create-offering/)
+- [CreateUsageDto](https://apis.io/schemas/paigo/paigo-create-usage/)
+- [CreateWebhookDto](https://apis.io/schemas/paigo/paigo-create-webhook/)
+- [ReadCustomerResponseData](https://apis.io/schemas/paigo/paigo-read-customer/)
+- [ReadInvoicesDto](https://apis.io/schemas/paigo/paigo-read-invoices/)
+- [UpdateCustomerEnrollmentDto](https://apis.io/schemas/paigo/paigo-update-customer-enrollment/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Paigo Context](https://apis.io/jsonld/paigo/paigo-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Paigo API Vocabulary](https://apis.io/vocabularies/paigo/paigo-vocabulary/)
+
+#### Examples (5)
+
+Example requests and responses.
+
+- [Paigo Auth Token Example](https://apis.io/examples/paigo/paigo-auth-token-example/)
+- [Paigo Customer Create Example](https://apis.io/examples/paigo/paigo-customer-create-example/)
+- [Paigo Invoice Create Example](https://apis.io/examples/paigo/paigo-invoice-create-example/)
+- [Paigo Offering Create Example](https://apis.io/examples/paigo/paigo-offering-create-example/)
+- [Paigo Usage Create Example](https://apis.io/examples/paigo/paigo-usage-create-example/)
+
+#### Collections (8)
+
+Postman and Open Collection request collections.
+
+- [Paigo Customers API](https://apis.io/collections/paigo/open-paigo-customers-api/)
+- [Paigo Customers Dimensions API](https://apis.io/collections/paigo/open-paigo-dimensions-api/)
+- [Paigo Customers Invoices API](https://apis.io/collections/paigo/open-paigo-invoices-api/)
+- [Paigo Customers Measurements API](https://apis.io/collections/paigo/open-paigo-measurements-api/)
+- [Paigo Customers Offerings API](https://apis.io/collections/paigo/open-paigo-offerings-api/)
+- [Paigo Customers Settings API](https://apis.io/collections/paigo/open-paigo-settings-api/)
+- [Paigo Customers Usage API](https://apis.io/collections/paigo/open-paigo-usage-api/)
+- [Paigo Customers Webhooks API](https://apis.io/collections/paigo/open-paigo-webhooks-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Paigo — jsonschema rules](https://apis.io/rules/paigo/paigo-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Paigo Authentication](https://apis.io/security/paigo/paigo-authentication/)
+- [Paigo Domain Security](https://apis.io/security/paigo/paigo-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Paigo Scopes](https://apis.io/scopes/paigo/paigo-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Paigo Plans Pricing](https://apis.io/plans/paigo/paigo-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Paigo Rate Limits](https://apis.io/rate-limits/paigo/paigo-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Paigo Finops](https://apis.io/finops/paigo/paigo-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.paigo.tech/)
+- [Documentation](https://docs.paigo.tech/)
+- [Pricing](https://paigo.tech/pricing)
+- [Blog](https://blog.paigo.tech/)
+
+## API Evangelist rating
+
+**Kin Score 34.6** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 52.5 |
+| Contract governance | 9.8 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 35.7 |
+| Access clarity | 10.5 |
+
+**Agent readiness 30.8** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 26.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/paigo/](https://apis.io/providers/paigo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Paigo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/paigo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
